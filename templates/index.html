@@ -55,7 +55,9 @@
   {% endif %}
 {% endwith %}
 
-<h2>Date range</h2>
+
+<h2>Time range</h2>
+<h3>Date range</h3>
   <form action="/setrange" method="post">
   <input type="text" name="daterange" size="12"
     {% if session.daterange is defined %}
@@ -79,17 +81,6 @@
         }}
        );
     });
-  </script>
-
-  <input type="text" name="begin_time" size = "12"
-    {% if session.begin_time is defined %}
-        value="{{session.begin_time}}"
-    {% endif %}
-     class="pull-down"
-     style="background: #fff; cursor: pointer; padding: 5px 10px;
-     border: 1px solid #ccc; width: 12em"  >
-  <script type="text/javascript">
-  $('input["name=begin_time"]').timepicker({"timeformat": "HH:mm"});
   </script>
 
 <br /><input type="submit" value="Choose" />
