@@ -82,6 +82,18 @@
     });
   </script>
 
+  <input type="text" name="begin_time" size="12"
+    {% if session.begin_time is defined %}
+         value="{{session.begin_time}}"
+    {% endif %}
+     class="pull-down" >
+     
+  <script type="text/javascript">
+  $(function2() {
+  $('input[name="begin_time"]').timepicker();
+  });
+  </script>
+
 <br /><input type="submit" value="Choose" />
 </form>
 
