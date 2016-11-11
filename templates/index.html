@@ -89,8 +89,10 @@
      class="pull-down" >
      
   <script type="text/javascript">
-  $(function2() {
-  $('input[name="begin_time"]').timepicker({"timeFormat": "HH:mm"});
+
+  $("#begin_time").timepicker({"timeFormat": "HH:mm"});
+  $("#begin_time").on('click', function () {
+      $("#begin_time").timepicker('setTime');
   });
   </script>
 
