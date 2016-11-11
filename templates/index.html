@@ -78,6 +78,7 @@
        );
     });
   </script>
+
   <form action="/setrange" method="post">
   <input type="text" name="begintime" size="4"
     {% if session.begintime is difined %}
@@ -86,6 +87,9 @@
      class="pull-down"
      style="background: #fff; cursor: pointer; padding: 5px 10px;
      border: 1px solid #ccc; width: 12em"  >
+   <script type="text/javascript">
+   $('#begin time').timepicker();
+   </script>  
 
 <br /><input type="submit" value="Choose" />
 </form>
