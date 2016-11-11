@@ -81,7 +81,7 @@
 
   <form action="/setrange" method="post">
   <input type="text" name="begintime" size="4"
-    {% if session.begin_time is difined %}
+    {% if session.begin_time is defined %}
         value="{{session.begin_time}}"
     {% endif %}
      class="pull-down"
