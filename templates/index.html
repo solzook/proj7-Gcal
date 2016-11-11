@@ -82,7 +82,7 @@
     });
   </script>
 
-  <input type="text" name="begin_time" size="12"
+  <input type="text" name="begin_time" size="5"
     {% if session.begin_time is defined %}
          value="{{session.begin_time}}"
     {% endif %}
@@ -90,7 +90,8 @@
      
   <script type="text/javascript">
 
-  $("#begin_time").timepicker(); </script>
+  $("#begin_time").timepicker(); 
+  </script>
 
 <!-- {"timeFormat": "HH:mm"});
   $("#begin_time").on('click', function () {
