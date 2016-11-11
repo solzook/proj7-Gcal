@@ -57,7 +57,7 @@
 
 
 
-<h3>Date range</h3>
+<h2>Date range</h2>
   <form action="/setrange" method="post">
   <input type="text" name="daterange" size="12"
     {% if session.daterange is defined %}
@@ -83,10 +83,6 @@
     });
   </script>
 
-<br /><input type="submit" value="Choose" />
-</form>
-
-  <form action="/set_times" method="post">
   <input type="text" name="begin_time" size="12"
     {% if session.begin_time is defined %}
          value="{{session.begin_time}}"
@@ -97,8 +93,9 @@
   $('input[name="begin_time"]').timepicker();
   });
   </script>
-<br /><input type="submit" value="Apply" />
-</form>
+
+  <br /><input type="submit" value="Choose" />
+  </form>
  
    
 
