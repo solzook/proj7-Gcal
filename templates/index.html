@@ -57,7 +57,7 @@
 
 
 <h2>Time range</h2>
-  <form action="/setrange" method="post">
+  <form action="/set_times" method="post">
   <input type="text" name="begin_time" size="12"
     {% if session.begin_time is defined %}
          value="{{session.begin_time}}"
@@ -66,7 +66,9 @@
      style="background: #fff; cursor: pointer; padding: 5px 10px;
      border: 1px solid #ccc; width: 12em" >
   <script type="text/javascript">
+  $(function() {
   $("begin_time").timepicker({"timeFormat": "HH:mm"});
+  });
   </script>
   </form>
 

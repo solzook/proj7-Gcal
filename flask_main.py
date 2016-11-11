@@ -206,6 +206,18 @@ def setrange():
       flask.session['begin_date'], flask.session['end_date']))
     return flask.redirect(flask.url_for("choose"))
 
+
+@app.route('/set_times', methods=['POST'])
+def set_times():
+    """
+    User entered a non-default time range
+    """
+    app.logger.debug("Entering set_times")
+    flask.flash("Set times gave us '{}'".format( request.form.get('begin_time')))
+    begin_time = request.form.get('begin_time')
+    flask.session['begin_time'] = begin_time
+    return flask.redirect(flask.url_for("index"))
+
 ####
 #
 #   Initialize session variables 
