@@ -91,10 +91,11 @@
     {% if session.begin_time is defined %}
          value="{{session.begin_time}}"
     {% endif %}
+     >
   <script type="text/javascript">
   $(function() {
   $('input[name="begin_time"]').timepicker();
-});
+  });
   </script>
 <br /><input type="submit" value="Apply" />
 </form>
