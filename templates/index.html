@@ -95,7 +95,6 @@
       snapToStep: true,
       showInputs: false,
       template: false,
-      defaultTime: "11:00 AM"
   });
   </script>
 
@@ -112,7 +111,6 @@
       snapToStep: true,
       showInputs: false,
       template: false,
-      defaultTime: false
   });
   </script>
 
@@ -125,19 +123,17 @@
     shown in each row (but the order is across then down; I would
     prefer down then across). 
     -->
+
+<form>
 {% if g.calendars is defined  %}
   <div class="row">
-  {% for cal in g.calendars if cal.selected %}
-          <div class="col-md-4">
-	   {{ cal.summary }}
-          </div>
-         {% if loop.index is divisibleby 3 %}
-          </div> <div class="row">
-         {% endif %}
+  {% for cal in g.calendars %}
+      <input type="radio" name="calendars" id={{cal.id}} value={{cal.summary}}
+      
   {% endfor %}
   </div>
 {% endif %}
-    
+</form>    
 
   </div>  <!-- container (for bootstrap) -->
   </body> </html>
