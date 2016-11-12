@@ -125,11 +125,11 @@
     -->
 
 {% if g.calendars is defined  %}
+Select which calendars to get times for <br />
 <form action="/calctimes" method="post">
   <div class="row">
   {% for cal in g.calendars %}
-      <label for=cal.id>{{cal.summary}}</label>
-      <input type="radio" name="calendars" id=cal.id value=cal.summary><br>
+      <input type="checkbox" name="calendars" value="selected">{{cal.summary}}<br>
   {% endfor %}
   </div>
 <br />
