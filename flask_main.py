@@ -218,7 +218,8 @@ def calctimes():
     app.logger.debug("Entering calctimes")
     selected_calendars = []
     for cal in flask.session['calendars']:
-        flask.flash(cal['id'])
+        if(request.form.get(cal['id']) == "checked" ):
+            flask.flash("selected calendar info: {}, {}".format(cal['id'], cal['summary']))
     return flask.redirect(flask.url_for('index'))
    
 ####
