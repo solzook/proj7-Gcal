@@ -314,6 +314,7 @@ def list_calendars(service):
     """
     app.logger.debug("Entering list_calendars")  
     calendar_list = service.calendarList().list().execute()["items"]
+
     result = [ ]
     for cal in calendar_list:
         kind = cal["kind"]
@@ -326,8 +327,8 @@ def list_calendars(service):
         # Optional binary attributes with False as default
         selected = ("selected" in cal) and cal["selected"]
         primary = ("primary" in cal) and cal["primary"]
-        events = cal.events().list()
         
+        events = service.events().list(cal["id"]).execute()["items"]
 
         result.append(
           { "kind": kind,
@@ -337,6 +338,7 @@ def list_calendars(service):
             "primary": primary,
             "events": events
             })
+    
     return sorted(result, key=cal_sort_key)
 
 
