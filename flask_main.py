@@ -222,6 +222,7 @@ def calctimes():
         if(request.form.get(cal['id']) == "checked" ):
             flask.flash(cal['summary'])
     return flask.redirect(flask.url_for('index'))
+
    
 ####
 #
@@ -325,6 +326,7 @@ def list_calendars(service):
         # Optional binary attributes with False as default
         selected = ("selected" in cal) and cal["selected"]
         primary = ("primary" in cal) and cal["primary"]
+        events = cal.events().list()
         
 
         result.append(
@@ -333,6 +335,7 @@ def list_calendars(service):
             "summary": summary,
             "selected": selected,
             "primary": primary
+            "events": events
             })
     return sorted(result, key=cal_sort_key)
 
