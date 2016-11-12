@@ -194,8 +194,6 @@ def setrange():
     widget.
     """
     app.logger.debug("Entering setrange")  
-    flask.flash("Setrange gave us '{}'".format(
-      request.form.get('daterange')))
     daterange = request.form.get('daterange')
     flask.session['daterange'] = daterange
     daterange_parts = daterange.split()
@@ -207,7 +205,6 @@ def setrange():
 
     begin_time = interpret_time(request.form.get('begin_time'))
     end_time = interpret_time(request.form.get('end_time'))
-    flask.flash("Times are {} and {}".format(begin_time, end_time))
     flask.session['begin_time'] = begin_time
     flask.session['end_time'] = end_time
     return flask.redirect(flask.url_for("choose"))
@@ -218,7 +215,8 @@ def calctimes():
     calculate the busy times on the selected calendars between the given hours each day
     """
     app.logger.debug("Entering calctimes")
-    flask.flash("FIXME")
+    selected_calendars = []
+    flask.flash(request.form.get('calendars'))
     return flask.redirect(flask.url_for('index'))
    
 ####
