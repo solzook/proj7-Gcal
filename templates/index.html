@@ -90,8 +90,9 @@
      class="pull-down" >
      
   <script type="text/javascript">
-
-  $("#begin_time").timepicker({timeFormat:"h:i A"});
+  $(function() {
+  $('input[name="begin_time"]').timepicker({timeFormat:"h:i A"});
+  });
   </script>
 
 <br /><input type="submit" value="Choose" />
