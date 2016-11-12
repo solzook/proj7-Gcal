@@ -128,7 +128,8 @@
 {% if g.calendars is defined  %}
   <div class="row">
   {% for cal in g.calendars %}
-      <input type="radio" name="calendars" id=cal.id value=cal.summary>  
+      <label for=cal.id>cal.summary</label>
+      <input type="radio" name="calendars" id=cal.id value=cal.summary><br>
   {% endfor %}
   </div>
 {% endif %}
