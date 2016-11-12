@@ -219,7 +219,7 @@ def calctimes():
     """
     app.logger.debug("Entering calctimes")
     flask.flash("FIXME")
-    return flask.redirect(flask.url_for(index))
+    return flask.redirect(flask.url_for('index'))
    
 ####
 #
