@@ -69,6 +69,7 @@ def choose():
     gcal_service = get_gcal_service(credentials)
     app.logger.debug("Returned from get_gcal_service")
     flask.g.calendars = list_calendars(gcal_service)
+    flask.session['calendars'] = flask.g.calendars
     return render_template('index.html')
 
 ####
@@ -216,7 +217,7 @@ def calctimes():
     """
     app.logger.debug("Entering calctimes")
     selected_calendars = []
-    for cal in g.calendars:
+    for cal in flask.session['calendars']:
         flask.flash(request.form.get(cal.id))
     return flask.redirect(flask.url_for('index'))
    
