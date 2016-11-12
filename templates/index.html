@@ -90,7 +90,11 @@
      
   <script type="text/javascript">
 
-  $("begin_time").timepicker(); 
+  $("begin_time").timepicker(
+    {
+      'disableTextInput': 'true',
+      'timeFormat': 'HH:mm'
+    }); 
   </script>
 
 <!-- {"timeFormat": "HH:mm"});
