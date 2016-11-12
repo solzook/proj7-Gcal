@@ -216,7 +216,8 @@ def calctimes():
     """
     app.logger.debug("Entering calctimes")
     selected_calendars = []
-    flask.flash(request.form.get('calendars'))
+    for cal in flask.g.calendars:
+        flask.flash(request.form.get(cal.id))
     return flask.redirect(flask.url_for('index'))
    
 ####
