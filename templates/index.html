@@ -82,9 +82,9 @@
     });
   </script>
 
-  <br />Select the time range shown
+  <br />Select the time range
   <br />
-  <input type="text" id="timepicker1" name="begin_time" size="12"
+  <input type="text" id="timepicker1" name="begin_time" size="8"
     {% if session.begin_time is defined %}
          value="{{session.begin_time}}"
     {% endif %}>
@@ -93,6 +93,21 @@
   $('#timepicker1').timepicker({
       minuteStep: 30,
       defaultTime: '9:00 AM',
+      snapToStep: true
+  });
+  </script>
+
+  to
+
+  <input type="text" id="timepicker2" name="end_time" size="8"
+    {% if session.end_time is defined %}
+         value="{{session.end_time}}"
+    {% endif %}>
+     
+  <script type="text/javascript">
+  $('#timepicker2').timepicker({
+      minuteStep: 30,
+      defaultTime: '5:00 PM',
       snapToStep: true
   });
   </script>
