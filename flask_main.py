@@ -204,6 +204,12 @@ def setrange():
     app.logger.debug("Setrange parsed {} - {}  dates as {} - {}".format(
       daterange_parts[0], daterange_parts[1], 
       flask.session['begin_date'], flask.session['end_date']))
+
+    begin_time = flask.form.get('begin_time')
+    end_time = flask.form.get('end_time')
+    flask.flash("Times are {} and {}".format(begin_time, end_time))
+    flask.session['begin_time'] = begin_time
+    flask.session['end_time'] = end_time
     return flask.redirect(flask.url_for("choose"))
 
 
