@@ -212,7 +212,7 @@ def setrange():
     flask.session['end_time'] = end_time
     return flask.redirect(flask.url_for("choose"))
 
-@app.route('/calctimes, methods=['POST'])
+@app.route('/calctimes', methods=['POST'])
 def calctimes():
     """
     calculate the busy times on the selected calendars between the given hours each day
