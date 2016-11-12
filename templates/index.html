@@ -124,16 +124,18 @@
     prefer down then across). 
     -->
 
-<form>
 {% if g.calendars is defined  %}
+<form action="calc_times" method="post">
   <div class="row">
   {% for cal in g.calendars %}
-      <label for=cal.id>{{cal.id}}</label>
+      <label for=cal.id>{{cal.summary}}</label>
       <input type="radio" name="calendars" id=cal.id value=cal.summary><br>
   {% endfor %}
   </div>
+<br />
+<input type="submit" value="Get Busy Times" />
+</form>
 {% endif %}
-</form>    
 
   </div>  <!-- container (for bootstrap) -->
   </body> </html>

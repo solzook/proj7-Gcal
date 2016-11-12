@@ -212,7 +212,15 @@ def setrange():
     flask.session['end_time'] = end_time
     return flask.redirect(flask.url_for("choose"))
 
-
+@app.route('/calctimes, methods=['POST'])
+def calctimes():
+    """
+    calculate the busy times on the selected calendars between the given hours each day
+    """
+    app.logger.debug("Entering calctimes")
+    flask.flash("FIXME")
+    return flask.redirect(flask.url_for(index))
+   
 ####
 #
 #   Initialize session variables 
