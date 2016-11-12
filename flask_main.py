@@ -219,7 +219,8 @@ def calctimes():
     selected_calendars = []
     for cal in flask.session['calendars']:
         if(request.form.get(cal['id']) == "checked" ):
-            flask.flash("selected calendar info: {}, {}".format(cal['id'], cal['summary']))
+            flask.flash(begin_time)
+            flask.flash(end_time)
     return flask.redirect(flask.url_for('index'))
    
 ####
