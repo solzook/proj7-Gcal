@@ -125,7 +125,7 @@
     -->
 
 {% if g.calendars is defined  %}
-<form action="calc_times" method="post">
+<form action="/calctimes" method="post">
   <div class="row">
   {% for cal in g.calendars %}
       <label for=cal.id>{{cal.summary}}</label>
