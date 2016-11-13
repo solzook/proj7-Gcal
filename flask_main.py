@@ -328,7 +328,8 @@ def list_calendars(service):
         selected = ("selected" in cal) and cal["selected"]
         primary = ("primary" in cal) and cal["primary"]
         
-        events = service.events().list(id).execute()
+        events = service.events().list(id).execute()["items"]
+        app.logger.debug("event list: {}".format(events))
 
         result.append(
           { "kind": kind,
