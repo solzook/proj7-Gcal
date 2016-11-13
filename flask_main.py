@@ -328,7 +328,17 @@ def list_calendars(service):
         selected = ("selected" in cal) and cal["selected"]
         primary = ("primary" in cal) and cal["primary"]
         
-        events = service.events().list('primary')["items"]
+
+        page_token = null
+        while true:
+            events = service.events().list(id).setPageToken(pageToken).execute()
+            items = events.getItems()
+            for ev in items:
+                print("{}".format(ev.getSummary()))
+            page_token = events.getNextPageToken()
+            if page_token is null:
+                break
+
         app.logger.debug("event list: {}".format(events))
 
         result.append(
