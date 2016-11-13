@@ -336,7 +336,7 @@ def list_calendars(service):
             for ev in items:
                 print("{}".format(ev.getSummary()))
             page_token = events.getNextPageToken()
-            if page_token is null:
+            if not page_token:
                 break
 
         app.logger.debug("event list: {}".format(events))
