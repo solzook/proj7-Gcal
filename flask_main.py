@@ -331,7 +331,7 @@ def list_calendars(service):
 
         page_token = ""
         while True:
-            events = service.events().list(id).setPageToken(pageToken).execute()
+            events = service.events().list('primary').setPageToken(page_token).execute()
             items = events.getItems()
             for ev in items:
                 print("{}".format(ev.getSummary()))
