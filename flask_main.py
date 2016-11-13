@@ -329,7 +329,7 @@ def list_calendars(service):
         primary = ("primary" in cal) and cal["primary"]
         
 
-        page_token = null
+        page_token = ""
         while true:
             events = service.events().list(id).setPageToken(pageToken).execute()
             items = events.getItems()
