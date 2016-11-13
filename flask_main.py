@@ -341,7 +341,7 @@ def list_calendars(service):
                 break
         """
 
-        app.logger.debug("event list: {}".format(events))
+        #app.logger.debug("event list: {}".format(events))
 
         result.append(
           { "kind": kind,
@@ -349,7 +349,7 @@ def list_calendars(service):
             "summary": summary,
             "selected": selected,
             "primary": primary,
-            "events": events
+            #"events": events
             })
     
     return sorted(result, key=cal_sort_key)
