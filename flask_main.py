@@ -328,7 +328,8 @@ def list_calendars(service):
         selected = ("selected" in cal) and cal["selected"]
         primary = ("primary" in cal) and cal["primary"]
         
-
+        flask.flash("calendar id: {}, summary:{}".format(id, summary))
+        """
         page_token = ""
         while True:
             events = service.events().list('primary').setPageToken(page_token).execute()
@@ -338,6 +339,7 @@ def list_calendars(service):
             page_token = events.getNextPageToken()
             if not page_token:
                 break
+        """
 
         app.logger.debug("event list: {}".format(events))
 
