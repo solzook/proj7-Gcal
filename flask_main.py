@@ -218,7 +218,7 @@ def calctimes():
     """
     app.logger.debug("Entering calctimes")
     selected_calendars = []
-    flask.flash("start: {}  end: {}".format(flask.session['begin_time'], flask.session['end_time']))
+    cur_busy_times = []
     for cal in flask.session['calendars']:
         if(request.form.get(cal['id']) == "checked" ):
             flask.flash("{}".format(cal['summary']))
