@@ -244,7 +244,7 @@ def get_busy_times(busy_list, cur_busy_times):
             #event is outside the date range
             flask.flash("{} - {} is outside the date range".format(event[0].isoformat(), event[1].isoformat()))
             continue
-
+"""
         if(event[1] < time_window[0]) or (event[0] > time_window[1]):
             #the event is entirely outside the specified time window
             flask.flash("event from {} - {} is out of range".format(event[0],event[1]))
@@ -258,7 +258,7 @@ def get_busy_times(busy_list, cur_busy_times):
             event[1] = time_window[1]
         cur_busy_times.append(event.isoformat())
         flask.flash("{} - {}".format(event[0],event[1]))
-
+"""
     flask.flash(cur_busy_times)
     return cur_busy_times
 
