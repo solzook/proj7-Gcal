@@ -221,7 +221,7 @@ def calctimes():
     flask.flash("start: {}  end: {}".format(flask.session['begin_time'], flask.session['end_time']))
     for cal in flask.session['calendars']:
         if(request.form.get(cal['id']) == "checked" ):
-            flask.flash(cal['summary'])
+            flask.flash("{} has time list {}".format(cal['summary'],cal['busy_times']))
     return flask.redirect(flask.url_for('index'))
 
    
@@ -347,24 +347,24 @@ def list_calendars(service):
                         ev_start = arrow.get(ev["start"]["dateTime"]).isoformat()
                         ev_end = arrow.get(ev["end"]["dateTime"]).isoformat()
                         event_list.append([ev_start, ev_end])
-                        print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
+                        #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                     except:
                         #try to get start/end date if there isn't a datetime
                         try:
                             ev_start = arrow.get(ev["start"]["date"]).isoformat()
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
                             event_list.append([ev_start, ev_end])
-                            print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
+                            #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
                             pass
-                            print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
+                            #print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
             page_token = events.get('nextPageToken')
             if not page_token:
                 break
         
 
-        app.logger.debug("exited event getter with event_list: {}".format(event_list))
+        app.logger.debug("exited event getter")
 
         result.append(
           { "kind": kind,
