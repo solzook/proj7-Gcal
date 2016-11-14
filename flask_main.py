@@ -338,9 +338,23 @@ def list_calendars(service):
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
             for ev in events['items']:
                 try:
-                    print("{}: {} - {}".format(ev["summary"], ev["transparency"], " "))    #ev["start"]["dateTime"], ev["end"]["dateTime"]))
+                    #if this succeeds then the event isn't a busy time and will be skipped
+                    is_busy = ev["transparency"]
                 except:
-                    print("no start/end time for event {}".format(ev["summary"]))
+                    #busy events end up here
+                    try:
+                        #get start and end times for events that have them
+                        ev_start = ev["start"]["dateTime"]
+                        ev_end = ev["end"]["dateTime"]
+                        print("{} goes from {} to {}".format(ev["summary"], ev_start, ev_end))
+                    except:
+                        #try to get start/end date before continuing
+                        try:
+                            ev_start = ["start"]["date"]
+                            ev_end = ["end"]["date"]
+                            print("{} goes from {} to {}".format(summary, ev_start, ev_end))
+                        except:
+                            print("{} has no start/end date or datetime".format(summary))
             page_token = events.get('nextPageToken')
             if not page_token:
                 break
