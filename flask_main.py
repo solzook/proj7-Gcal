@@ -19,7 +19,7 @@ import httplib2   # used in oauth2 flow
 
 # Google API for services 
 from apiclient import discovery
-import com.google.api.services.valendar.Calendar
+import com.google.api.services.calendar.Calendar
 import com.google.api.services.calendar.model.Event
 import com.google.api.services.calendar.model.Events
 
@@ -316,20 +316,17 @@ def list_calendars(service):
     Google Calendars web app) calendars before unselected calendars.
     """
     app.logger.debug("Entering list_calendars")  
-    page_token = ""
+    page_token = None
     while True:
         #if primary:
         #    break
         #for attr in dir(id):
         #    print( "id.%s = %s" % (attr, getattr(id, attr)))
 
-        events = service.events()
-        events = events.list("%s".format("primary"))
-        events = events.setPageToken(page_token).execute()
-        items = events.getItems()
-        for ev in items:
-            print("{}".format(ev.getSummary()))
-        page_token = events.getNextPageToken()
+        events = service.events().list(calendarId='primary', pageToken=page_token).execute()
+        for ev in events['items']:
+            print event['summary']
+        page_token = events.get('nextPageToken')
         if not page_token:
             break
 
