@@ -237,8 +237,8 @@ def get_busy_times(busy_list, cur_busy_times):
     time_window = [flask.session['begin_time'], flask.session['end_time']]
     flask.flash("looking for times between {} and {}".format(time_window[0], time_window[1]))
     for event in busy_list:
-        event[0] = arrow.get(event[0])#get times as arrow objects
-        event[1] = arrow.get(event[1])
+        ev_st = arrow.get(event[0])#get times as arrow objects
+        ev_end = arrow.get(event[1])
 
     
     return cur_busy_times
