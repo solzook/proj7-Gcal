@@ -313,6 +313,21 @@ def list_calendars(service):
     Google Calendars web app) calendars before unselected calendars.
     """
     app.logger.debug("Entering list_calendars")  
+    page_token = ""
+    while True:
+        #if primary:
+        #    break
+        #for attr in dir(id):
+        #    print( "id.%s = %s" % (attr, getattr(id, attr)))
+
+        events = service.events().list('primary').setPageToken(page_token).execute()
+        items = events.getItems()
+        for ev in items:
+            print("{}".format(ev.getSummary()))
+        page_token = events.getNextPageToken()
+        if not page_token:
+            break
+
     calendar_list = service.calendarList().list().execute()["items"]
 
     result = [ ]
