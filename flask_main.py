@@ -314,15 +314,6 @@ def list_calendars(service):
     Google Calendars web app) calendars before unselected calendars.
     """
     app.logger.debug("Entering list_calendars")  
-    page_token = None
-    while True:
-        events = service.events().list(calendarId='primary', pageToken=page_token).execute()
-        for ev in events['items']:
-            print(ev['summary'])
-        page_token = events.get('nextPageToken')
-        if not page_token:
-            break
-
     calendar_list = service.calendarList().list().execute()["items"]
 
     result = [ ]
@@ -342,18 +333,11 @@ def list_calendars(service):
             flask.flash("calendar id: {}, summary:{}".format(id, summary))
         
         app.logger.debug("entering event loop")
-        page_token = ""
+        page_token = None
         while True:
-            #if primary:
-            #    break
-
-            for attr in dir(id):
-                print( "id.%s = %s" % (attr, getattr(id, attr)))
-
-            events = service.events().list(id.__getitem__).setPageToken(page_token).execute()
-            items = events.getItems()
-            for ev in items:
-                print("{}".format(ev.getSummary()))
+            events = service.events().list(calendarId=id, pageToken=page_token).execute()
+            for ev in events['items']:
+                print(event['summary'])
             page_token = events.getNextPageToken()
             if not page_token:
                 break
