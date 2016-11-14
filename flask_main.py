@@ -395,7 +395,7 @@ def list_calendars(service):
                         ev_start = arrow.get(ev["start"]["dateTime"]).isoformat()
                         ev_end = arrow.get(ev["end"]["dateTime"]).isoformat()
                         ev_desc = ev["summary"] + ":" + ev["description"]
-                        event_list.append([ev_start, ev_end], ev_desc)
+                        event_list.append([ev_start, ev_end, ev_desc])
                         #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                     except:
                         #try to get start/end date if there isn't a datetime
@@ -403,7 +403,7 @@ def list_calendars(service):
                             ev_start = arrow.get(ev["start"]["date"]).isoformat()
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
                             ev_desc = ev["summary"] + ":" + ev["description"]
-                            event_list.append([ev_start, ev_end], ev_desc)
+                            event_list.append([ev_start, ev_end, ev_desc])
                             #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
