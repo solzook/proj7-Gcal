@@ -244,6 +244,7 @@ def get_busy_times(busy_list, cur_busy_times):
     for event in busy_list:
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
+        ev_desc = event[2]
 
         st_time = ev_st.time()#get time values without a date
         end_time = ev_end.time()
@@ -267,7 +268,7 @@ def get_busy_times(busy_list, cur_busy_times):
             #ev_end.replace(hours=time_window[1].hour, minutes=time_window[1].minute) #this line broken
             ev_end = arrow.get(ev_end.year, ev_end.month, ev_end.day, time_window[1].hour, time_window[1].minute)
 
-        to_add = [ev_st.isoformat(), ev_end.isoformat(), event[2]]
+        to_add = [ev_st.isoformat(), ev_end.isoformat(), ev_desc]
         cur_busy_times.append(to_add)
 
     return cur_busy_times
