@@ -352,6 +352,7 @@ def list_calendars(service):
                     except:
                         #try to get start/end date if there isn't a datetime
                         try:
+                            app.logger.debug("attempting to get begin/end date")
                             ev_start = arrow.get(ev["start"]["date"]).isoformat()
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
                             #event_list.append([ev_start, ev_end])
