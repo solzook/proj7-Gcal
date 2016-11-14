@@ -233,8 +233,10 @@ def get_busy_times(busy_list, cur_busy_times):
     (the portion of an event during those hours will be added if applicable)
     doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
     """
+    app.logger.debug("entering get_busy_times")
     for event in busy_list:
         print("{} - {}".format(event[0],event[1]))
+        flask.flash("{} - {}".format(event[0],event[1]))
 
    
 ####
