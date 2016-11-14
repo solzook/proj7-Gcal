@@ -258,6 +258,7 @@ def get_busy_times(busy_list, cur_busy_times):
         
         to_add = [ev_st.isoformat(), ev_end.isoformat()]
         cur_busy_times.append(to_add)
+        flask.flash("event added")
 
     return cur_busy_times
 
