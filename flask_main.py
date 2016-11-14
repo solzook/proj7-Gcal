@@ -336,6 +336,8 @@ def list_calendars(service):
         page_token = None
         while True:
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
+
+            event_list = []
             for ev in events['items']:
                 try:
                     #if this succeeds then the event isn't a busy time and will be skipped
@@ -343,18 +345,21 @@ def list_calendars(service):
                 except:
                     #busy events end up here
                     try:
-                        #get start and end times for events that have them
+                        #try to get start and end datetimes
                         ev_start = ev["start"]["dateTime"]
                         ev_end = ev["end"]["dateTime"]
-                        print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
+                        #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                     except:
-                        #try to get start/end date before continuing
+                        #try to get start/end date if there isn't a datetime
                         try:
-                            ev_start = ev["start"]["date"]
-                            ev_end = ev["end"]["date"]
-                            print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
+                            ev_start = arrow.get(ev["start"]["date"]).isoformat()
+                            ev_end = arrow.get(ev["end"]["date"]).isoformat()
+                            #event_list.append([ev_start, ev_end])
+                            print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start.isoformat, ev_end))
                         except:
-                            print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
+                            #events here caused an error getting date/datetime info or don't have it
+                            pass
+                            #print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
             page_token = events.get('nextPageToken')
             if not page_token:
                 break
