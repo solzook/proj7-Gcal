@@ -240,6 +240,12 @@ def get_busy_times(busy_list, cur_busy_times):
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
 
+        if (ev_end < arrow.get(flask.session['begin_date'])) or (ev_st > arrow.get(flask.session['end_date'])):
+            #event is outside the date range, skip remainder of loop
+            flask.flash("event outside date range")
+            continue
+        cur_busy_times.append(event)
+
     flask.flash(cur_busy_times)
     return cur_busy_times
 
