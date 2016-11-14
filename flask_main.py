@@ -246,6 +246,7 @@ def get_busy_times(busy_list, cur_busy_times):
             event[0] = time_window[0]
         if(event[1] > time_window[1]):
             #if event ends after the time window then set the busy time to the end of the time window
+            event[1] = time_window[1]
         cur_busy_times.append(event)
         flask.flash("{} - {}".format(event[0],event[1]))
 
