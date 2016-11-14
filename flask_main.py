@@ -356,6 +356,7 @@ def list_calendars(service):
                             ev_start = arrow.get(ev["start"]["date"]).isoformat()
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
                             #event_list.append([ev_start, ev_end])
+                            app.logger.debug("got begin/end date")
                             print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start.isoformat, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
