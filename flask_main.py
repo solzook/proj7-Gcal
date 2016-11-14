@@ -328,7 +328,8 @@ def list_calendars(service):
         selected = ("selected" in cal) and cal["selected"]
         primary = ("primary" in cal) and cal["primary"]
         
-        flask.flash("calendar id: {}, summary:{}".format(id, summary))
+        if not primary:
+            flask.flash("calendar id: {}, summary:{}".format(id, summary))
         """
         page_token = ""
         while True:
