@@ -1,5 +1,6 @@
 # Local
 secrets/*
+secrets/google_client_key.json
 client_secret.json
 CONFIG.py
 node_modules
