@@ -19,6 +19,9 @@ import httplib2   # used in oauth2 flow
 
 # Google API for services 
 from apiclient import discovery
+import com.google.api.services.valendar.Calendar
+import com.google.api.services.calendar.model.Event
+import com.google.api.services.calendar.model.Events
 
 ###
 # Globals
