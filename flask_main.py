@@ -254,34 +254,13 @@ def get_busy_times(busy_list, cur_busy_times):
         if st_time < time_window[0]:
             ev_st.replace(hour=st_time.hour, minute=st_time.minute)
         if end_time > time_window[1]:
-            ev_end.replace(hour=end_time.hour, minute=end_time.minute
+            ev_end.replace(hour=end_time.hour, minute=end_time.minute)
         
-        cur_busy_times.append(event)
+        to_add = [ev_st.isoformat(), ev_end.isoformat()]
+        cur_busy_times.append(to_add)
 
     return cur_busy_times
 
-
-        #if (event[1] < arrow.get(flask.session['begin_date'])) or (event[0] > arrow.get(flask.session['end_date'])):
-            #event is outside the date range
-            #flask.flash("{} - {} is outside the date range".format(event[0].isoformat(), event[1].isoformat()))
-            #continue
-"""
-        if(event[1] < time_window[0]) or (event[0] > time_window[1]):
-            #the event is entirely outside the specified time window
-            flask.flash("event from {} - {} is out of range".format(event[0],event[1]))
-            continue
-        #everything here overlaps the time window
-        if(event[0] < time_window[0]):
-            #if event begins before the time window then set the busy time to the beginning of the time window
-            event[0] = time_window[0]
-        if(event[1] > time_window[1]):
-            #if event ends after the time window then set the busy time to the end of the time window
-            event[1] = time_window[1]
-        cur_busy_times.append(event.isoformat())
-        flask.flash("{} - {}".format(event[0],event[1]))
-"""
-    #print(cur_busy_times)
-    #return cur_busy_times
 
    
 ####
