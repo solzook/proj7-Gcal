@@ -255,17 +255,17 @@ def get_busy_times(busy_list, cur_busy_times):
             #event is outside the specified time window, skip remainder of the loop
             continue
         
+        
         #don't include times outside the given time window
         if st_time < time_window[0]:
             new_hrs = time_window[0].hour
             new_mins = time_window[0].minute
-            ev_st.replace(hours=4)
-            ev_st.replace(minute=30)
-            flask.flash("start time changed to {}:{}".format(ev_st.hour, ev_st.minute))
+            #ev_st.replace(hour=new_hrs, minute=new_mins)#this line broken
+            ev_st = arrow.get(ev_st.year, ev_st.month, ev_st.day, new_hrs, new_mins)#workaround
         if end_time > time_window[1]:
-            ev_end.replace(hours=time_window[1].hour, minutes=time_window[1].minute)
-            flask.flash("end time changed to {}:{}".format(time_window[1].hour, time_window[1].minute))
-        
+            #ev_end.replace(hours=time_window[1].hour, minutes=time_window[1].minute) #this line broken
+            ev_end = arrow.get(ev_end.year, ev_end.month, ev_end.day, time_window[1].hour, time_window[1].minute)
+
         to_add = [ev_st.isoformat(), ev_end.isoformat()]
         flask.flash("adding {} - {}".format(to_add[0], to_add[1]))
         cur_busy_times.append(to_add)
