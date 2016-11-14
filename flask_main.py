@@ -238,7 +238,7 @@ def get_busy_times(busy_list, cur_busy_times):
     doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
     """
     app.logger.debug("entering get_busy_times")
-    time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
+    time_window = [arrow.get(flask.session['begin_time']), arrow.get(flask.session['end_time'])]
     for event in busy_list:
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
