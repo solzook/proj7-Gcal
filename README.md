@@ -2,12 +2,13 @@
 Get a list of busy times from any number of the user's google calendars during a range of dates and times (e.g. the next 2 weeks from 8 AM to 5PM)
 
 ## Running the Program
-git clone "https://github.com/solzook/proj7-Gcal
-bash ./configure
-You will need to add your own 'secrets' file, described below
-make run
-the default port is 5000
-note: cannot be accessed by clients on a different ip address than the host when run from localhost
+
+    git clone "https://github.com/solzook/proj7-Gcal
+    bash ./configure
+    You will need to add your own 'secrets' file, described below
+    make run
+
+notes: the default port is 5000 and the page cannot be accessed by clients on a different ip address than the host when run from localhost
 
 ## Secrets File
 3 files are needed here: admin_secrets.py, client_secrets.py and google_client_key.json
