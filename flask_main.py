@@ -243,11 +243,12 @@ def get_busy_times(busy_list, cur_busy_times):
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
 
+        st_time = ev_st.time()#time values without a date attached
+        end_time = ev_end.time()
+
         if (ev_end < arrow.get(flask.session['begin_date'])) or (ev_st > arrow.get(flask.session['end_date'])):
             #event is outside the date range, skip remainder of loop
             continue
-        st_time = ev_st.time()
-        end_time = ev_end.time()
 
         if(st_time > time_window[1] or end_time < time_window[0]):
             #event is outside the specified time window, skip remainder of the loop
@@ -255,11 +256,9 @@ def get_busy_times(busy_list, cur_busy_times):
         
         #don't include times outside the given time window
         if st_time < time_window[0]:
-            ev_st.replace(hour=st_time.hour, minute=st_time.minute)
-            flask.flash("start time changed to {}:{}".format(st_time.hour, st_time.minute))
+            ev_st.replace(hour=time_window[0].hour, minute=time_window[0].minute)
         if end_time > time_window[1]:
-            ev_end.replace(hour=end_time.hour, minute=end_time.minute)
-            flask.flash("end time changed to {}:{}".format(end_time.hour, end_time.minute))
+            ev_end.replace(hour=time_window[1].hour, minute=time_window[1].minute)
         
         to_add = [ev_st.isoformat(), ev_end.isoformat()]
         cur_busy_times.append(to_add)
