@@ -243,8 +243,8 @@ def get_busy_times(busy_list, cur_busy_times):
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
 
-        st_time = ev_st.time()#time values without a date attached
-        end_time = ev_end.time()
+        st_time = arrow.get(ev_st.time())#time values with the same default date as time_window
+        end_time = arrow.get(ev_end.time())
 
         if (ev_end < arrow.get(flask.session['begin_date'])) or (ev_st > arrow.get(flask.session['end_date'])):
             #event is outside the date range, skip remainder of loop
