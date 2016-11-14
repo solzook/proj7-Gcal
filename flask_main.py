@@ -338,7 +338,7 @@ def list_calendars(service):
             #    break
 
             for attr in dir(id):
-                print "id.%s = %s" % (attr, getattr(id, attr))
+                print( "id.%s = %s" % (attr, getattr(id, attr)))
 
             events = service.events().list(id).setPageToken(page_token).execute()
             items = events.getItems()
