@@ -364,7 +364,7 @@ def list_calendars(service):
                 break
         
 
-        app.logger.debug("exited event getter with event_list: {}".format(events))
+        app.logger.debug("exited event getter with event_list: {}".format(event_list))
 
         result.append(
           { "kind": kind,
