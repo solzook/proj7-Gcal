@@ -237,8 +237,20 @@ def get_busy_times(busy_list, cur_busy_times):
     time_window = [flask.session['begin_time'], flask.session['end_time']]
     flask.flash("looking for times between {} and {}".format(time_window[0], time_window[1]))
     for event in busy_list:
-        print("{} - {}".format(event[0],event[1]))
+        if(event[1] < time_window[0]) or (event[0] > time_window[1]):
+            #the event is entirely outside the specified time window
+            continue
+        #everything here overlaps the time window
+        if(event[0] < time_window[0]):
+            #if event begins before the time window then set the busy time to the beginning of the time window
+            event[0] = time_window[0]
+        if(event[1] > time_window[1]):
+            #if event ends after the time window then set the busy time to the end of the time window
+        cur_busy_times.append(event)
         flask.flash("{} - {}".format(event[0],event[1]))
+
+    flask.flash(cur_busy_times)
+    return cur_busy_times
 
    
 ####
