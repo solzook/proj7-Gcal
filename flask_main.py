@@ -329,25 +329,24 @@ def list_calendars(service):
         selected = ("selected" in cal) and cal["selected"]
         primary = ("primary" in cal) and cal["primary"]
         
-        if not primary:
-            flask.flash("calendar id: {}, summary:{}".format(id, summary))
         
-        app.logger.debug("entering event loop")
+        app.logger.debug("entering event time getting construct")
         page_token = None
+        event_list = [] #will contain entries of the form [begin date or datetime, end date or datetime] for each busy(transparency) event
         while True:
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
 
-            event_list = []
             for ev in events['items']:
                 try:
-                    #if this succeeds then the event isn't a busy time and will be skipped
+                    #if this succeeds then the event isn't a busy time and there's nothing to do
                     is_busy = ev["transparency"]
                 except:
-                    #busy events end up here
+                    #busy events end up here, they can have start/end dates or datetimes, test for both
                     try:
                         #try to get start and end datetimes
                         ev_start = arrow.get(ev["start"]["dateTime"]).isoformat()
                         ev_end = arrow.get(ev["end"]["dateTime"]).isoformat()
+                        event_list.append([ev_start, ev_end])
                         print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                     except:
                         #try to get start/end date if there isn't a datetime
@@ -365,7 +364,7 @@ def list_calendars(service):
                 break
         
 
-        #app.logger.debug("event list: {}".format(events))
+        app.logger.debug("exited event getter with event_list: {}".format(events))
 
         result.append(
           { "kind": kind,
@@ -373,7 +372,7 @@ def list_calendars(service):
             "summary": summary,
             "selected": selected,
             "primary": primary,
-            #"events": events
+            "busy_times": event_list
             })
     
     return sorted(result, key=cal_sort_key)
