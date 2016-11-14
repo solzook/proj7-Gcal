@@ -337,8 +337,8 @@ def list_calendars(service):
         while True:
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
             for ev in events['items']:
-                if ev["transparency"] is True:
-                    print("{}: {} - {}".format(ev["summary"], ev["start"], ev["end"]))
+                if ev["start"]["dateTime"] and ev["end"]["dateTime"]:
+                    print("{}: {} - {}".format(ev["summary"], ev["start"]["dateTime"], ev["end"]["dateTime"]))
             page_token = events.get('nextPageToken')
             if not page_token:
                 break
