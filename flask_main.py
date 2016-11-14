@@ -352,12 +352,13 @@ def list_calendars(service):
                     except:
                         #try to get start/end date if there isn't a datetime
                         try:
-                            app.logger.debug("attempting to get begin/end date")
+                            #app.logger.debug("attempting to get begin/end date")
                             ev_start = arrow.get(ev["start"]["date"]).isoformat()
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
                             #event_list.append([ev_start, ev_end])
-                            app.logger.debug("got begin/end date")
-                            print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start.isoformat, ev_end))
+                            #app.logger.debug("got begin/end date")
+                            print("got date info")
+                            print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
                             pass
