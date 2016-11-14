@@ -240,7 +240,7 @@ def get_busy_times(busy_list, cur_busy_times):
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
 
-    flask.flask(cur_busy_times)
+    flask.flash(cur_busy_times)
     return cur_busy_times
 
 
