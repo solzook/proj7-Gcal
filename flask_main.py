@@ -338,7 +338,7 @@ def list_calendars(service):
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
             for ev in events['items']:
                 try:
-                    print("{}: {} - {}".format(ev["summary"], ev["start"]["dateTime"], ev["end"]["dateTime"]))
+                    print("{}: {} - {}".format(ev["summary"], ev["transparency"], " "))    #ev["start"]["dateTime"], ev["end"]["dateTime"]))
                 except:
                     print("no start/end time for event {}".format(ev["summary"]))
             page_token = events.get('nextPageToken')
