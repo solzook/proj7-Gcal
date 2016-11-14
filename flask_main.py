@@ -316,14 +316,9 @@ def list_calendars(service):
     app.logger.debug("Entering list_calendars")  
     page_token = None
     while True:
-        #if primary:
-        #    break
-        #for attr in dir(id):
-        #    print( "id.%s = %s" % (attr, getattr(id, attr)))
-
         events = service.events().list(calendarId='primary', pageToken=page_token).execute()
         for ev in events['items']:
-            print(event['summary'])
+            print(ev['summary'])
         page_token = events.get('nextPageToken')
         if not page_token:
             break
