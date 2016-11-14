@@ -221,8 +221,20 @@ def calctimes():
     flask.flash("start: {}  end: {}".format(flask.session['begin_time'], flask.session['end_time']))
     for cal in flask.session['calendars']:
         if(request.form.get(cal['id']) == "checked" ):
-            flask.flash("{} has time list {}".format(cal['summary'],cal['busy_times']))
+            flask.flash("{}".format(cal['summary']))
+            cur_busy_times = get_busy_times(cal['busy_times'], cur_busy_times)
+      
     return flask.redirect(flask.url_for('index'))
+
+
+def get_busy_times(busy_list, cur_busy_times):
+    """
+    gets busy times from busy_list and add them to cur_busy_times if they are during the user specified hours
+    (the portion of an event during those hours will be added if applicable)
+    doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
+    """
+    for event in busy_list:
+        print("{} - {}".format(event[0],event[1]))
 
    
 ####
@@ -332,7 +344,7 @@ def list_calendars(service):
         
         app.logger.debug("entering event time getting construct")
         page_token = None
-        event_list = [] #will contain entries of the form [begin date or datetime, end date or datetime] for each busy(transparency) event
+        event_list = [] #will contain isoformatted arrow dates, [begin date, end date] for each busy(transparency) event
         while True:
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
 
