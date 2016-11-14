@@ -238,13 +238,13 @@ def get_busy_times(busy_list, cur_busy_times):
     doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
     """
     app.logger.debug("entering get_busy_times")
-    time_window = [arrow.get(flask.session['begin_time']), arrow.get(flask.session['end_time'])]
+    time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
     for event in busy_list:
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
 
-        st_time = arrow.get(ev_st.time())#time values with the same default date as time_window
-        end_time = arrow.get(ev_end.time())
+        st_time = ev_st.time()#get time values without a date
+        end_time = ev_end.time()
 
         if (ev_end < arrow.get(flask.session['begin_date'])) or (ev_st > arrow.get(flask.session['end_date'])):
             #event is outside the date range, skip remainder of loop
@@ -377,7 +377,6 @@ def list_calendars(service):
         primary = ("primary" in cal) and cal["primary"]
         
         
-        app.logger.debug("entering event time getting construct")
         page_token = None
         event_list = [] #will contain isoformatted arrow dates, [begin date, end date] for each busy(transparency) event
         while True:
@@ -410,8 +409,6 @@ def list_calendars(service):
             if not page_token:
                 break
         
-
-        app.logger.debug("exited event getter")
 
         result.append(
           { "kind": kind,
