@@ -262,14 +262,12 @@ def get_busy_times(busy_list, cur_busy_times):
         if st_time < time_window[0]:
             new_hrs = time_window[0].hour
             new_mins = time_window[0].minute
-            #ev_st.replace(hour=new_hrs, minute=new_mins)#this line broken
-            ev_st = arrow.get(ev_st.year, ev_st.month, ev_st.day, new_hrs, new_mins)#workaround
+            ev_st = arrow.get(ev_st.year, ev_st.month, ev_st.day, new_hrs, new_mins)
         if end_time > time_window[1]:
-            #ev_end.replace(hours=time_window[1].hour, minutes=time_window[1].minute) #this line broken
             ev_end = arrow.get(ev_end.year, ev_end.month, ev_end.day, time_window[1].hour, time_window[1].minute)
 
         to_add = [ev_st.isoformat(), ev_end.isoformat(), ev_desc]
-        cur_busy_times.append(to_add)
+        cur_busy_times.append(to_add)#the busy times from busy_list(in iso format) have now been added with their summary
 
     return cur_busy_times
 
