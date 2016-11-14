@@ -354,7 +354,7 @@ def list_calendars(service):
                             ev_end = ["end"]["date"]
                             print("{} goes from {} to {}".format(ev["summary"], ev_start, ev_end))
                         except:
-                            print("{} has no start/end date or datetime".format(ev["summary"]))
+                            print("{} has no start/end date or datetime, it has {}".format(ev["summary"], ev["start"]))
             page_token = events.get('nextPageToken')
             if not page_token:
                 break
