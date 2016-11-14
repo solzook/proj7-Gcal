@@ -338,7 +338,7 @@ def list_calendars(service):
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
             for ev in events['items']:
                 print(ev['summary'])
-            page_token = events.getNextPageToken()
+            page_token = events.get('nextPageToken')
             if not page_token:
                 break
         
