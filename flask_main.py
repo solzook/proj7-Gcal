@@ -209,6 +209,7 @@ def setrange():
     end_time = interpret_time(request.form.get('end_time'))
     flask.session['begin_time'] = begin_time
     flask.session['end_time'] = end_time
+    flask.flash("Begin time: {}\nEnd time: {}".format(arrow.get(begin_time).format("h:mm A"), end_time.format("h:mm A"))) 
     return flask.redirect(flask.url_for("choose"))
 
 @app.route('/calctimes', methods=['POST'])
@@ -235,7 +236,6 @@ def get_busy_times(busy_list, cur_busy_times):
     """
     app.logger.debug("entering get_busy_times")
     time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
-    flask.flash("looking for times between {} and {}".format(time_window[0].isoformat(), time_window[1].isoformat()))
     for event in busy_list:
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
@@ -258,7 +258,6 @@ def get_busy_times(busy_list, cur_busy_times):
         
         to_add = [ev_st.isoformat(), ev_end.isoformat()]
         cur_busy_times.append(to_add)
-        flask.flash("event added")
 
     return cur_busy_times
 
