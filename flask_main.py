@@ -240,7 +240,7 @@ def get_busy_times(busy_list, cur_busy_times):
         event[0] = arrow.get(event[0])#get times as arrow objects
         event[1] = arrow.get(event[1])
 
-    print(cur_busy_times)
+    
     return cur_busy_times
 
 
