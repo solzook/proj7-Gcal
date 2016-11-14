@@ -222,9 +222,12 @@ def calctimes():
     cur_busy_times = []
     for cal in flask.session['calendars']:
         if(request.form.get(cal['id']) == "checked" ):
-            flask.flash("{}".format(cal['summary']))
             cur_busy_times = get_busy_times(cal['busy_times'], cur_busy_times)
-      
+    
+    for ev in cur_busy_times:
+        start = arrow.get(ev[0])
+        end = arrow.get(ev[1])
+        flask.flash("busy on {} from {} to {}".format(start.format('YYYY/MM/DD'), start.format('h:mm A'), end.format('h:mm A')))
     return flask.redirect(flask.url_for('index'))
 
 
