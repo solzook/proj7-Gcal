@@ -234,16 +234,19 @@ def get_busy_times(busy_list, cur_busy_times):
     doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
     """
     app.logger.debug("entering get_busy_times")
-    time_window = [flask.session['begin_time'], flask.session['end_time']]
-    flask.flash("looking for times between {} and {}".format(time_window[0], time_window[1]))
+    time_window = [arrow.get(flask.session['begin_time']), arrow.get(flask.session['end_time'])]
+    flask.flash("looking for times between {} and {}".format(time_window[0].isoformat(), time_window[1].isoformat()))
     for event in busy_list:
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
 
         if (ev_end < arrow.get(flask.session['begin_date'])) or (ev_st > arrow.get(flask.session['end_date'])):
             #event is outside the date range, skip remainder of loop
-            flask.flash("event outside date range")
             continue
+        st_time = ev_st.time()
+        end_time = ev_end.time()
+
+        
         cur_busy_times.append(event)
         flask.flash("{} appended to {}\n".format(event, cur_busy_times))
 
