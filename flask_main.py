@@ -346,23 +346,20 @@ def list_calendars(service):
                     #busy events end up here
                     try:
                         #try to get start and end datetimes
-                        ev_start = ev["start"]["dateTime"]
-                        ev_end = ev["end"]["dateTime"]
-                        #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
+                        ev_start = arrow.get(ev["start"]["dateTime"]).isoformat()
+                        ev_end = arrow.get(ev["end"]["dateTime"]).isoformat()
+                        print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                     except:
                         #try to get start/end date if there isn't a datetime
                         try:
-                            #app.logger.debug("attempting to get begin/end date")
                             ev_start = arrow.get(ev["start"]["date"]).isoformat()
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
-                            #event_list.append([ev_start, ev_end])
-                            #app.logger.debug("got begin/end date")
-                            print("got date info")
+                            event_list.append([ev_start, ev_end])
                             print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
                             pass
-                            #print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
+                            print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
             page_token = events.get('nextPageToken')
             if not page_token:
                 break
