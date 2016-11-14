@@ -350,8 +350,8 @@ def list_calendars(service):
                     except:
                         #try to get start/end date before continuing
                         try:
-                            ev_start = ["start"]
-                            ev_end = ["end"]
+                            ev_start = ev["start"]["date"]
+                            ev_end = ev["end"]["date"]
                             print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
