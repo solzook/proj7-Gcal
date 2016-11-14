@@ -331,6 +331,7 @@ def list_calendars(service):
         if not primary:
             flask.flash("calendar id: {}, summary:{}".format(id, summary))
         
+        app.logger.debug("entering event loop")
         page_token = ""
         while True:
             if primary:
