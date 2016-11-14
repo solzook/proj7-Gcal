@@ -9,7 +9,8 @@ import logging
 
 # Date handling 
 import arrow # Replacement for datetime, based on moment.js
-# import datetime # But we still need time
+import datetime # But we still need time
+import time
 from dateutil import tz  # For interpreting local times
 
 
