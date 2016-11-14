@@ -228,7 +228,8 @@ def calctimes():
     for ev in cur_busy_times:
         start = arrow.get(ev[0])
         end = arrow.get(ev[1])
-        flask.flash("busy on {} from {} to {}".format(start.format('YYYY/MM/DD'), start.format('h:mm A'), end.format('h:mm A')))
+        ev_desc = ev[2]#get event summary and description from ev[2] as a string
+        flask.flash("{} is on {} from {} to {}".format(ev_desc, start.format('YYYY/MM/DD'), start.format('h:mm A'), end.format('h:mm A')))
     return flask.redirect(flask.url_for('index'))
 
 
@@ -266,8 +267,7 @@ def get_busy_times(busy_list, cur_busy_times):
             #ev_end.replace(hours=time_window[1].hour, minutes=time_window[1].minute) #this line broken
             ev_end = arrow.get(ev_end.year, ev_end.month, ev_end.day, time_window[1].hour, time_window[1].minute)
 
-        to_add = [ev_st.isoformat(), ev_end.isoformat()]
-        flask.flash("adding {} - {}".format(to_add[0], to_add[1]))
+        to_add = [ev_st.isoformat(), ev_end.isoformat(), event[2]]
         cur_busy_times.append(to_add)
 
     return cur_busy_times
@@ -380,7 +380,7 @@ def list_calendars(service):
         
         
         page_token = None
-        event_list = [] #will contain isoformatted arrow dates, [begin date, end date] for each busy(transparency) event
+        event_list = [] #will contain event info, [begin date(isoformat), end date(isoformat), description(str)] for each busy event
         while True:
             events = service.events().list(calendarId=id, pageToken=page_token).execute()
 
@@ -394,14 +394,16 @@ def list_calendars(service):
                         #try to get start and end datetimes
                         ev_start = arrow.get(ev["start"]["dateTime"]).isoformat()
                         ev_end = arrow.get(ev["end"]["dateTime"]).isoformat()
-                        event_list.append([ev_start, ev_end])
+                        ev_desc = ev["summary"] + ":" + ev["description"]
+                        event_list.append([ev_start, ev_end], ev_desc)
                         #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                     except:
                         #try to get start/end date if there isn't a datetime
                         try:
                             ev_start = arrow.get(ev["start"]["date"]).isoformat()
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
-                            event_list.append([ev_start, ev_end])
+                            ev_desc = ev["summary"] + ":" + ev["description"]
+                            event_list.append([ev_start, ev_end], ev_desc)
                             #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
