@@ -242,7 +242,7 @@ def get_busy_times(busy_list, cur_busy_times):
 
         if (event[1] < arrow.get(flask.session['begin_date'])) or (event[0] > arrow.get(flask.session['end_date'])):
             #event is outside the date range
-            flask.flash("{} - {} is outside the date range".format(event[0], event[1]))
+            flask.flash("{} - {} is outside the date range".format(event[0].isoformat(), event[1].isoformat()))
             continue
 
         if(event[1] < time_window[0]) or (event[0] > time_window[1]):
