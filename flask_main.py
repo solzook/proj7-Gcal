@@ -321,7 +321,7 @@ def list_calendars(service):
         #    print( "id.%s = %s" % (attr, getattr(id, attr)))
 
         events = service.events()
-        events = events.list()
+        events = events.list("%s".format("primary"))
         events = events.setPageToken(page_token).execute()
         items = events.getItems()
         for ev in items:
