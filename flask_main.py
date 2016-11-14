@@ -244,7 +244,7 @@ def get_busy_times(busy_list, cur_busy_times):
     for event in busy_list:
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
-        ev_desc = event[-1]
+        ev_desc = event[2]
 
         st_time = ev_st.time()#get time values without a date
         end_time = ev_end.time()
