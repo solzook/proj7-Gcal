@@ -334,9 +334,12 @@ def list_calendars(service):
         app.logger.debug("entering event loop")
         page_token = ""
         while True:
-            if primary:
-                break
-            dump(id)
+            #if primary:
+            #    break
+
+            for attr in dir(id):
+                print "obj.%s = %s" % (attr, getattr(id, attr))
+
             events = service.events().list(id).setPageToken(page_token).execute()
             items = events.getItems()
             for ev in items:
