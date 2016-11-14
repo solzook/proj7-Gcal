@@ -258,11 +258,11 @@ def get_busy_times(busy_list, cur_busy_times):
         if st_time < time_window[0]:
             new_hrs = time_window[0].hour
             new_mins = time_window[0].minute
-            ev_st.replace(hour=new_hrs)
-            ev_st.replace(minute=new_mins)
+            ev_st.replace(hours=new_hrs)
+            ev_st.replace(minutes=new_mins)
             flask.flash("start time changed to {}:{}".format(ev_st.hour, ev_st.minute))
         if end_time > time_window[1]:
-            ev_end.replace(hour=time_window[1].hour, minute=time_window[1].minute)
+            ev_end.replace(hours=time_window[1].hour, minutes=time_window[1].minute)
             flask.flash("end time changed to {}:{}".format(time_window[1].hour, time_window[1].minute))
         
         to_add = [ev_st.isoformat(), ev_end.isoformat()]
