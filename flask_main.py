@@ -330,7 +330,7 @@ def list_calendars(service):
         
         if not primary:
             flask.flash("calendar id: {}, summary:{}".format(id, summary))
-        """
+        
         page_token = ""
         while True:
             if primary:
@@ -342,7 +342,7 @@ def list_calendars(service):
             page_token = events.getNextPageToken()
             if not page_token:
                 break
-        """
+        
 
         #app.logger.debug("event list: {}".format(events))
 
