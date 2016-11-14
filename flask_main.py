@@ -346,13 +346,13 @@ def list_calendars(service):
                         #get start and end times for events that have them
                         ev_start = ev["start"]["dateTime"]
                         ev_end = ev["end"]["dateTime"]
-                        print("{} goes from {} to {}".format(ev["summary"], ev_start, ev_end))
+                        print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                     except:
                         #try to get start/end date before continuing
                         try:
                             ev_start = ["start"]
                             ev_end = ["end"]
-                            print("{} goes from {} to {}".format(ev["summary"], ev_start["date"], ev_end))
+                            print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start['date'], ev_end))
                         except:
                             print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
             page_token = events.get('nextPageToken')
