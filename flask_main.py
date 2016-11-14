@@ -245,9 +245,8 @@ def get_busy_times(busy_list, cur_busy_times):
             flask.flash("event outside date range")
             continue
         cur_busy_times.append(event)
-        flask.flash("{} appended".format(event))
+        flask.flash("{} appended to {}\n".format(event, cur_busy_times))
 
-    flask.flash(cur_busy_times)
     return cur_busy_times
 
 
