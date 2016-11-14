@@ -11,9 +11,10 @@ note: cannot be accessed by clients on a different ip address than the host when
 
 ## Secrets File
 3 files are needed here: admin_secrets.py, client_secrets.py and google_client_key.json
-	admin_secrets.py - has this line "google_secret_key = 'google_client_key.json'"
-	client_secrets.py - may be empty but will cause an error if missing
-	google_client_key.json - a kind of developer key that you must get from google
+
+    admin_secrets.py - has this line "google_secret_key = 'google_client_key.json'"
+    client_secrets.py - may be empty but will cause an error if missing
+    google_client_key.json - a kind of developer key that you must get from google
 
 ## More Developer Key Info
 See https://auth0.com/docs/connections/social/google and
