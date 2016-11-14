@@ -235,7 +235,7 @@ def get_busy_times(busy_list, cur_busy_times):
     """
     app.logger.debug("entering get_busy_times")
     time_window = [arrow.get(flask.session['begin_time']), arrow.get(flask.session['end_time'])]
-    flask.flash("looking for times between {} and {}".format(time_window[0], time_window[1]))
+    flask.flash("looking for times between {} and {}".format(time_window[0].isoformat(), time_window[1].isoformat()))
     for event in busy_list:
         event[0] = arrow.get(event[0])#get times as arrow objects
         event[1] = arrow.get(event[1])
