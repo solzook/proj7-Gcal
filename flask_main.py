@@ -263,6 +263,7 @@ def get_busy_times(busy_list, cur_busy_times):
             flask.flash("end time changed to {}:{}".format(time_window[1].hour, time_window[1].minute))
         
         to_add = [ev_st.isoformat(), ev_end.isoformat()]
+        flask.flash("adding {} - {}".format(to_add[0], to_add[1]))
         cur_busy_times.append(to_add)
 
     return cur_busy_times
