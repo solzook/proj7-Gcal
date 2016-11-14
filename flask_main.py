@@ -239,6 +239,7 @@ def get_busy_times(busy_list, cur_busy_times):
     for event in busy_list:
         if(event[1] < time_window[0]) or (event[0] > time_window[1]):
             #the event is entirely outside the specified time window
+            flask.flash("event from {} - {} is out of range".format(event[0],event[1]))
             continue
         #everything here overlaps the time window
         if(event[0] < time_window[0]):
