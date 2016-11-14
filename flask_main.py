@@ -209,7 +209,7 @@ def setrange():
     end_time = interpret_time(request.form.get('end_time'))
     flask.session['begin_time'] = begin_time
     flask.session['end_time'] = end_time
-    flask.flash("Begin time: {}\nEnd time: {}".format(arrow.get(begin_time).format("h:mm A"), end_time.format("h:mm A"))) 
+    flask.flash("Time window selected: {} to {}".format(arrow.get(begin_time).format("h:mm A"), arrow.get(end_time).format("h:mm A"))) 
     return flask.redirect(flask.url_for("choose"))
 
 @app.route('/calctimes', methods=['POST'])
