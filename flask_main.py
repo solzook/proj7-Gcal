@@ -223,6 +223,7 @@ def calctimes():
     cur_busy_times = []
     for cal in flask.session['calendars']:
         if(request.form.get(cal['id']) == "checked" ):
+            flask.flash("busy_times = {}".format(cal['busy_times']))
             cur_busy_times = get_busy_times(cal['busy_times'], cur_busy_times)
     
     for ev in cur_busy_times:
