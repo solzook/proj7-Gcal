@@ -349,7 +349,7 @@ class Agenda:
                 return False
         return True
 
-
+"""
 #########################
 #  Self-test invoked when module is run
 #  as main program. 
@@ -578,6 +578,6 @@ if __name__ == "__main__":
 
     
     
-    
+    """
     
     
