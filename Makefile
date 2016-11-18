@@ -56,7 +56,7 @@ run:	env
 # 'make testtimes' runs the main file in free_times.py
 # which contains a few test cases
 testtimes:	env
-	$(INVENV) python3 free_times.py)
+	$(INVENV) python3 free_times.py
 
 # 'make service' runs as a background job under the gunicorn 
 #  WSGI server. FIXME:  A real production service would use 
