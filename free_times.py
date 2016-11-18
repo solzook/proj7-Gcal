@@ -10,7 +10,7 @@ import Agenda.py
 import datetime
 import arrow
 
-def get_free_times(st, end, begin_date, end_date, event_list)
+def get_free_times(st, end, begin_date, end_date, event_list):
 """
 paramaters:
 	st: string, 'h:mm A' format representing start time each day
