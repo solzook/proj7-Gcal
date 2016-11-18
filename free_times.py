@@ -17,13 +17,16 @@ def get_free_times(st, end, begin_date, end_date, event_list):
 	end: string, 'h:mm A' format representing end time each day
 	begin_date: arrow, first day to calculate free times on
 	end_date: arrow, last day to calculate free times on
-	event_list:2d list[][arrow, arrow], unordered list of busy times
+	event_list:2d list[][arrow, arrow, string], unordered list of busy times 
+		and event summaries for those times
     returns:
 	2d list [][arrow, arrow], ordered list of free times between the given 
 	dates and times
     """
     print("made it to the file")
-    print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date,end_date))
+    print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date.isoformat(),end_date.isoformat()))
+    
+
     return event_list
 
 if __name__ == "__main__":
@@ -33,5 +36,6 @@ if __name__ == "__main__":
     begin_time = arrow.get("18/11/2016", "DD/MM/YYYY")
     end_time = arrow.get("2016/11/28", "YYYY/MM/DD")
     event_list = []
-    event_list.append(["an", "event"])
+    for i in range(5):
+        event_list.append([begin_time.replace(days=i,hours=i), begin_time.replace(days=i,hours=12)])
     print(get_free_times(st, end, begin_time, end_time, event_list))
