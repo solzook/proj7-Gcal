@@ -11,20 +11,20 @@ import datetime
 import arrow
 
 def get_free_times(st, end, begin_date, end_date, event_list):
-"""
-paramaters:
+    """
+    paramaters:
 	st: string, 'h:mm A' format representing start time each day
 	end: string, 'h:mm A' format representing end time each day
 	begin_date: arrow, first day to calculate free times on
 	end_date: arrow, last day to calculate free times on
 	event_list:2d list[][arrow, arrow], unordered list of busy times
-returns:
+    returns:
 	2d list [][arrow, arrow], ordered list of free times between the given 
 	dates and times
-"""
-print("made it to the file")
-print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date,end_date))
-return event_list
+    """
+    print("made it to the file")
+    print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date,end_date))
+    return event_list
 
 if __name__ == "__main__":
     # test this file
