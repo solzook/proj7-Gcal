@@ -6,7 +6,7 @@ use get_free_times(start_time, end_time, start_date, end_date, event_list) to ge
 of free times
 """
 
-import Agenda.py
+import Agenda
 import datetime
 import arrow
 
