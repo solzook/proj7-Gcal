@@ -38,12 +38,16 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     for day in arrow.Arrow.span_range('day', date1, date2):
         apt_today = Agenda.Appt(day[0].date(), time1, time2, "Free time on {}".format(day[0].format("YYYY/MM/DD")))
         free_today = busy_agenda.complement(apt_today)
-        free_times.append([])
         for apt in free_today:
+            free_times.append[]
             as_list = appt_to_list(apt)
             as_list[0] = as_list[0].isoformat()
             as_list[1] = as_list[1].isoformat()
-            free_times[-1].append(as_list)
+            free_times[-1].append(
+                    { "begin": as_list[0],
+                      "end": as_list[1],
+                      "description": as_list[2]
+                      })
 
     return free_times
    
@@ -130,9 +134,9 @@ if __name__ == "__main__":
     event_list.append([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"])
 
     free_list = get_free_times(st, end, begin_time, end_time, event_list)
-    print("printing list from main")
+    print("printing list of free times from main")
     for day in free_list:
         if day[0]:
-            print("Events on {}".format(arrow.get(day[0][0]).format("YYYY/MM/DD")))
+            print("Events on {}".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
         for ev in day:
-            print("\tFree from {} - {}".format(arrow.get(ev[0]).format('h:mm A'), arrow.get(ev[1]).format('h:mm A')))
+            print("\tFree from {} - {}".format(arrow.get(ev['begin']).format('h:mm A'), arrow.get(ev['end']).format('h:mm A')))
