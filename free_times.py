@@ -1,4 +1,6 @@
 """
+Author: Solomon Zook
+
 This file contains method that utilize the Appt and Agenda classes to get a list of free
 times between two times each day for every day in range of days given a list of busy times.
 
@@ -13,7 +15,7 @@ import arrow
 
 def get_free_times(st, end, begin_date, end_date, event_list):
     """
-    paramaters:
+    parameters:
 	st: string, 'h:mm A' format representing start time each day
 	end: string, 'h:mm A' format representing end time each day
 	begin_date: arrow, first day to calculate free times on
@@ -30,11 +32,11 @@ def get_free_times(st, end, begin_date, end_date, event_list):
     busy_agenda = list_to_agenda(event_list)
     busy_agenda.normalize()
     print(busy_agenda)
-    return busy_agenda
+    return agenda_to_list(busy_agenda)
 
 def list_to_agenda(event_list):
     """
-    paramater:
+    parameter:
 	event_list: [][arrow, arrow, string], list of events with descriptions
     returns:
 	An Agenda with Appt's representing entries from event_list
@@ -45,7 +47,44 @@ def list_to_agenda(event_list):
         #begin and end dates in event_list should always be the same
 
     return agenda
-        
+
+def agenda_to_list(agenda)
+    """
+    parameter:
+	agenda: Agenda, an Agenda
+    returns:
+        a 2d list representing the Appts in Agenda [][arrow, arrow, string]
+	arrow times representing begin and end times of each appointment and a
+	string containing the Appt description
+    """
+    ret_list = [][]
+    for apt in agenda:
+        apt_str = str(apt)
+        info = appt_parts(apt)
+        begin = arrow.get(info[0], info[1], info[2], info[3], info[4])
+        end = arrow.get(info[0], info[1], info[2], info[5], info[6])
+        desc = info[7]
+        ret_list.append(begin, end, desc)
+
+def appt_parts(apt):
+    """
+    divide apt into parts like Agenda.__str__(Appt) describes
+    parameter:
+	apt: string, string representation of an Appt, eg str(Appt)
+    returns:
+        [year, month, day, start_hours, start_mins, end_hours, end_mins, description]
+	values are all ints except description which is a string
+    """
+    li = apt_str.split('|') #separate each piece of the Appt
+    date_info = li[0].split()
+    desc = li[1]
+
+    date = date_info[0].split('/')
+    begin = date_info[1].split(':')
+    end = date_info[2].split(':')
+
+    ret_val = [date[0], date[1], date[2], begin[0], begin[1], end[0], end[1], desc]
+    return ret_val
 
 if __name__ == "__main__":
     # test this file
@@ -59,4 +98,8 @@ if __name__ == "__main__":
     event_list.append([begin_time.replace(hours=11), begin_time.replace(hours=12), "Event 6(should completely overlap)"])
     event_list.append([begin_time.replace(hours=4), begin_time.replace(hours=14), "Event 7(should partailly overlap)"])
     event_list.append([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"])
-    busy_agenda = get_free_times(st, end, begin_time, end_time, event_list)
+    free_list = get_free_times(st, end, begin_time, end_time, event_list)
+    print("printing list from main")
+    for ev in free_list:
+        print("On {} from {} - {}".format(ev[0].format('YYYY/MM/DD'), ev[0].format('h:MM A'), ev[1].format('h:MM A'))
+
