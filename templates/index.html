@@ -56,13 +56,10 @@
   {% endif %}
 {% endwith %}
 
-{% if g.events is defined %}
-Deselect any events you would like to ignore <br/>
-<form action ="/free_times" method="post">
-  <input type="text" id="box" size="10"
-  <input type="submit" value="Get Free Times" />
+<form action="/freetimes" method="post">
+  Deselect any events you would like to ignore<br />
+  <input type="submit" value="Get Free Times"
 </form>
-{% endif %}
 
 
 <h2>Date range</h2>
