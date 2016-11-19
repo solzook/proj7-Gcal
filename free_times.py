@@ -57,13 +57,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
         #print()
         #for apt in day:
             #print("\t{}".format(apt))
-    
-    free_list = []
-    for day in free_times:
-       free_list.append([])
-       day_times
-    return agenda_to_list(busy_agenda)
-
+   
 
 def list_to_agenda(event_list):
     """
