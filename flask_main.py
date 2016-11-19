@@ -225,6 +225,8 @@ def calctimes():
         if(request.form.get(cal['id']) == "checked" ):
             cur_busy_times = get_busy_times(cal['busy_times'], cur_busy_times)
     
+    flask.g.events = cur_busy_times
+    flask.session['events'] = cur_busy_times
     for ev in cur_busy_times:
         start = arrow.get(ev[0])
         end = arrow.get(ev[1])
