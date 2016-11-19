@@ -35,7 +35,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     date2 = arrow.get(end_date)
 
     for day in arrow.Arrow.span_range('day', date1, date2):
-        print("Day from {} - {}".format(day[0].format('YYYY/MM/DD h:mm A'), day[1].format('YYYY/MM/DD h:mm A')))
+        print("Day from {} - {}".format(day[0].format('YYYY/MM/DD HH:MM'), day[1].format('YYYY/MM/DD HH:MM')))
     print(busy_agenda)
 
     return agenda_to_list(busy_agenda)
