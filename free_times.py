@@ -57,14 +57,16 @@ def agenda_to_list(agenda):
 	arrow times representing begin and end times of each appointment and a
 	string containing the Appt description
     """
-    ret_list = [][]
+    ret_list
     for apt in agenda:
-        apt_str = str(apt)
-        info = appt_parts(apt)
-        begin = arrow.get(info[0], info[1], info[2], info[3], info[4])
+        apt_str = str(apt) #get string representation
+        info = appt_parts(apt) #get values in a list
+        begin = arrow.get(info[0], info[1], info[2], info[3], info[4]) #get arrow times
         end = arrow.get(info[0], info[1], info[2], info[5], info[6])
         desc = info[7]
-        ret_list.append(begin, end, desc)
+        ret_list.append([begin, end, desc]) #append a list representing apt 
+
+    return ret_list #return the 2d list
 
 def appt_parts(apt):
     """
@@ -92,12 +94,14 @@ if __name__ == "__main__":
     end = "10 PM"
     begin_time = arrow.get("18/11/2016", "DD/MM/YYYY")
     end_time = arrow.get("2016/11/28", "YYYY/MM/DD")
+
     event_list = []
     for i in range(5):
         event_list.append([begin_time.replace(days=i,hours=i), begin_time.replace(days=i,hours=12), "Event {}".format(i+1)])
     event_list.append([begin_time.replace(hours=11), begin_time.replace(hours=12), "Event 6(should completely overlap)"])
     event_list.append([begin_time.replace(hours=4), begin_time.replace(hours=14), "Event 7(should partailly overlap)"])
     event_list.append([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"])
+
     free_list = get_free_times(st, end, begin_time, end_time, event_list)
     print("printing list from main")
     for ev in free_list:
