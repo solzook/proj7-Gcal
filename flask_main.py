@@ -65,6 +65,8 @@ def freetimes():
 @app.route("/calcfree")
 def calcfree():
     app.logger.debug("Preparing to calculate free times")
+    for ev in flask.session['events']:
+        flask.flash("Got {}".format(ev[2]))
     return render_template(flask.url_for("freetime"))
 
 @app.route("/choose")
@@ -238,11 +240,6 @@ def calctimes():
 
     flask.g.events = cur_busy_times
     flask.session['events'] = flask.g.events
-    for ev in flask.session['events']:
-        start = arrow.get(ev[0])
-        end = arrow.get(ev[1])
-        ev_desc = ev[2]#get event summary and description from ev[2] as a string
-        flask.flash("{} is on {} from {} to {}".format(ev_desc, start.format('YYYY/MM/DD'), start.format('h:mm A'), end.format('h:mm A')))
 
     return flask.redirect(flask.url_for("freetimes"))
 
