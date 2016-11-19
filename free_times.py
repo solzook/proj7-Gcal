@@ -39,7 +39,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
         apt_today = Agenda.Appt(day[0].date(), time1, time2, "Free time on {}".format(day[0].format("YYYY/MM/DD")))
         free_today = busy_agenda.complement(apt_today)
         for apt in free_today:
-            free_times.append[]
+            free_times.append([])
             as_list = appt_to_list(apt)
             as_list[0] = as_list[0].isoformat()
             as_list[1] = as_list[1].isoformat()
