@@ -34,11 +34,15 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     time2 = arrow.get(end_time)
     date1 = arrow.get(begin_date)
     date2 = arrow.get(end_date)
-    print("got arrow objects")
+    print("getting free times")
 
+    free_times = []
     for day in arrow.Arrow.span_range('day', date1, date2):
-        print("Day from {} - {}".format(day[0].format('YYYY/MM/DD h:mm A'), day[1].format('YYYY/MM/DD h:mm A')))
+        apt_today = Agenda.Appt(day[0].date(), time1, time2, "Free times on {}".format(day[0].format("YYYY/MM/DD")))
+        free_times.append(busy_agenda.complement(apt_today))
     print(busy_agenda)
+    print()
+    print(free_agenda)
 
     return agenda_to_list(busy_agenda)
 
