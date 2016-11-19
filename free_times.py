@@ -55,7 +55,7 @@ if __name__ == "__main__":
     event_list = []
     for i in range(5):
         event_list.append([begin_time.replace(days=i,hours=i), begin_time.replace(days=i,hours=12), "Event {}".format(i+1)])
-    event_list.append(Agenda.Appt([begin_time.replace(hours=11), begin_time.replace(hours=12), "Event 6(should completely overlap)"]))
-    event_list.append(Agenda.Appt([begin_time.replace(hours=4), begin_time.replace(hours=14), "Event 7(should partailly overlap)"]))
-    event_list.append(Agenda.Appt([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"]))
+    event_list.append([begin_time.replace(hours=11), begin_time.replace(hours=12), "Event 6(should completely overlap)"])
+    event_list.append([begin_time.replace(hours=4), begin_time.replace(hours=14), "Event 7(should partailly overlap)"])
+    event_list.append([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"])
     busy_agenda = get_free_times(st, end, begin_time, end_time, event_list)
