@@ -13,26 +13,33 @@ import datetime
 import time
 import arrow
 
-def get_free_times(st, end, begin_date, end_date, event_list):
+def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     """
     parameters:
-	st: string, 'h:mm A' format representing start time each day
-	end: string, 'h:mm A' format representing end time each day
-	begin_date: arrow, first day to calculate free times on
-	end_date: arrow, last day to calculate free times on
+	st: string, iso formatted arrow time, start time range
+	end: string, iso formatted arrow time, end time range
+	begin_date: string, iso formatted arrow time, begin date range
+	end_date: string, iso formatted arrow time, end date range
 	event_list:2d list[][arrow, arrow, string], unordered list of busy times 
 		and event summaries for those times
     returns:
 	2d list [][arrow, arrow], ordered list of free times between the given 
 	dates and times
     """
-    print("made it to the file")
-    print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date.format("MM/DD/YYYY"),end_date.format("MM/DD/YYYY")))
-    
     busy_agenda = list_to_agenda(event_list)
     busy_agenda.normalize()
+
+    time1 = arrow.get(begin_time)
+    time2 = arrow.get(end_time)
+    date1 = arrow.get(begin_date)
+    date2 = arrow.get(end_date)
+
+    for day in arrow.Arrow.span_range('day', date1, date2):
+        print("Day from {} - {}".format(day[0].format('YYYY/MM/DD h:mm A'), day[1].format('YYYY/MM/DD h:mm A')))
     print(busy_agenda)
+
     return agenda_to_list(busy_agenda)
+
 
 def list_to_agenda(event_list):
     """
@@ -77,7 +84,6 @@ def appt_parts(apt):
 	values are all ints except description which is a string
     """
     apt_str = str(apt)
-    print(apt_str)
     li = apt_str.split('|', 1) #don't split more than once if '|' is in apt description
     date_info = li[0].split(' ')
     desc = li[1]
@@ -91,8 +97,8 @@ def appt_parts(apt):
 
 if __name__ == "__main__":
     # test this file
-    st = "9 AM"
-    end = "10 PM"
+    st = "3 AM"
+    end = "3 PM"
     begin_time = arrow.get("18/11/2016", "DD/MM/YYYY")
     end_time = arrow.get("2016/11/28", "YYYY/MM/DD")
 
