@@ -23,8 +23,8 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
 	event_list:2d list[][arrow, arrow, string], unordered list of busy times 
 		and event summaries for those times
     returns:
-	2d list [][arrow, arrow], ordered list of free times between the given 
-	dates and times
+	3d list [][][arrow, arrow, string], ordered list of free times between the given 
+	dates and times each with description "Free time on 'YYYY/MM/DD'" 
     """
     print("entering get_free_times")
     busy_agenda = list_to_agenda(event_list)
@@ -57,6 +57,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
         #print()
         #for apt in day:
             #print("\t{}".format(apt))
+    return free_times
    
 
 def list_to_agenda(event_list):
@@ -142,5 +143,8 @@ if __name__ == "__main__":
 
     free_list = get_free_times(st, end, begin_time, end_time, event_list)
     print("printing list from main")
-    for ev in free_list:
-        print("On {} from {} - {}".format(ev[0].format('YYYY/MM/DD'), ev[0].format('h:mm A'), ev[1].format('h:mm A')))
+    for day in free_list:
+        if day[0]:
+            print("Events on {}".format(arrow.get(day[0][0]).format("YYYY/MM/DD")))
+        for ev in day:
+            print("\tFree from {} - {}".format(arrow.get(ev[0]).format('h:mm A'), arrow.get(ev[1]).format('h:mm A')))
