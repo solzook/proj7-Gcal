@@ -54,5 +54,5 @@ if __name__ == "__main__":
     end_time = arrow.get("2016/11/28", "YYYY/MM/DD")
     event_list = []
     for i in range(5):
-        event_list.append([begin_time.replace(days=i,hours=i), begin_time.replace(days=i,hours=12)])
+        event_list.append([begin_time.replace(days=i,hours=i), begin_time.replace(days=i,hours=12), "Event {}".format(i+1)])
     busy_agenda = get_free_times(st, end, begin_time, end_time, event_list)
