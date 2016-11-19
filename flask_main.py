@@ -238,7 +238,7 @@ def calctimes():
         ev_desc = ev[2]#get event summary and description from ev[2] as a string
         flask.flash("{} is on {} from {} to {}".format(ev_desc, start.format('YYYY/MM/DD'), start.format('h:mm A'), end.format('h:mm A')))
 
-    return flask.redirect(flask.url_for('freetime.html'))
+    return flask.redirect('freetime.html'))
 
 
 def add_busy_times(busy_list, cur_busy_times):
