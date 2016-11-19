@@ -23,18 +23,16 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
 	event_list:2d list[][arrow, arrow, string], unordered list of busy times 
 		and event summaries for those times
     returns:
-	3d list [][][arrow, arrow, string], ordered list of free times between the given 
-	dates and times each with description "Free time on 'YYYY/MM/DD'" 
+	3d list [][][ISO formatted date, ISO formatted date, string], ordered list of free 
+        times between the given dates and times each with description "Free time on 'YYYY/MM/DD'" 
     """
-    print("entering get_free_times")
     busy_agenda = list_to_agenda(event_list)
-    busy_agenda.normalize()
-    print("processed busy times")
+    busy_agenda.normalize() #sort the agenda
+
     time1 = arrow.get(begin_time).time()
     time2 = arrow.get(end_time).time()
     date1 = arrow.get(begin_date)
     date2 = arrow.get(end_date)
-    print("getting free times")
 
     free_times = []
     for day in arrow.Arrow.span_range('day', date1, date2):
@@ -118,7 +116,7 @@ def appt_parts(apt):
 
 
 if __name__ == "__main__":
-    # test this file
+    # call get_free_times with a sample set of parameters
     st = arrow.get("12:00 AM", "h:mm A")
     end = arrow.get("6:00 PM", "h:mm A")
     begin_time = arrow.get("18/11/2016", "DD/MM/YYYY")
