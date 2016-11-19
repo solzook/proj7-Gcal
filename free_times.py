@@ -60,7 +60,7 @@ def agenda_to_list(agenda):
     ret_list = []
     for apt in agenda:
         apt_str = str(apt) #get string representation
-        info = appt_parts(apt) #get values in a list
+        info = appt_parts(apt_str) #get values in a list
         begin = arrow.get(info[0], info[1], info[2], info[3], info[4]) #get arrow times
         end = arrow.get(info[0], info[1], info[2], info[5], info[6])
         desc = info[7]
