@@ -28,7 +28,7 @@ def get_free_times(st, end, begin_date, end_date, event_list):
     print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date.format("MM/DD/YYYY"),end_date.format("MM/DD/YYYY")))
     
     busy_agenda = list_to_agenda(event_list)
-    busy_agenda.Agenda.normalize()
+    busy_agenda.normalize()
     print(busy_agenda)
     return busy_agenda
 
