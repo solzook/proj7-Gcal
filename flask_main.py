@@ -65,7 +65,7 @@ def freetimes():
 @app.route("/calcfree")
 def calcfree():
     app.logger.debug("Preparing to calculate free times")
-    return render_template("freetime.html")
+    return render_template(flask.url_for("freetime"))
 
 @app.route("/choose")
 def choose():
