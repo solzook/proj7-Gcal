@@ -61,6 +61,12 @@ def freetimes():
     app.logger.debug("Entering freetimes")
     return render_template('freetime.html')
 
+
+@app.route("/calcfree")
+def calcfree():
+    app.logger.debug("Preparing to calculate free times")
+    return render_template("freetime.html")
+
 @app.route("/choose")
 def choose():
     ## We'll need authorization to list calendars 
