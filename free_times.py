@@ -79,14 +79,16 @@ def appt_parts(apt):
     print("Entered apt_parts")
     apt_str = str(apt)
     print(apt_str)
-    li = apt_str.split('|')
+    li = apt_str.split('|', 1) #don't split more than once if '|' is in apt description
     date_info = li[0].split()
     desc = li[1]
 
+    print("split string, splitting date...")
     date = date_info[0].split('/')
     begin = date_info[1].split(':')
     end = date_info[2].split(':')
 
+    print("apt split, returning")
     ret_val = [date[0], date[1], date[2], begin[0], begin[1], end[0], end[1], desc]
     return ret_val
 
