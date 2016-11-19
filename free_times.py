@@ -88,6 +88,8 @@ def appt_parts(apt):
     begin = date_info[1].split(':')
     end = date_info[2].split(':')
 
+    print("date: {}, begin: {}, end: {}".format(date,begin,end))
+
     ret_val = [date[0], date[1], date[2], begin[0], begin[1], end[0], end[1], desc]
     
     print("apt split, returning {}".format(ret_val))
