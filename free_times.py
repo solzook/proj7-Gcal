@@ -27,8 +27,9 @@ def get_free_times(st, end, begin_date, end_date, event_list):
     print("made it to the file")
     print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date.format("MM/DD/YYYY"),end_date.format("MM/DD/YYYY")))
     
-
-    return event_list
+    busy_agenda = list_to_agenda(event_list)
+    print(busy_agenda)
+    return busy_agenda
 
 def list_to_agenda(event_list):
     """
@@ -54,4 +55,4 @@ if __name__ == "__main__":
     event_list = []
     for i in range(5):
         event_list.append([begin_time.replace(days=i,hours=i), begin_time.replace(days=i,hours=12)])
-    print(get_free_times(st, end, begin_time, end_time, event_list))
+    busy_agenda = get_free_times(st, end, begin_time, end_time, event_list)
