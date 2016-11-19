@@ -26,13 +26,15 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
 	2d list [][arrow, arrow], ordered list of free times between the given 
 	dates and times
     """
+    print("entering get_free_times")
     busy_agenda = list_to_agenda(event_list)
     busy_agenda.normalize()
-
+    print("processed busy times")
     time1 = arrow.get(begin_time)
     time2 = arrow.get(end_time)
     date1 = arrow.get(begin_date)
     date2 = arrow.get(end_date)
+    print("got arrow objects")
 
     for day in arrow.Arrow.span_range('day', date1, date2):
         print("Day from {} - {}".format(day[0].format('YYYY/MM/DD HH:MM'), day[1].format('YYYY/MM/DD HH:MM')))
