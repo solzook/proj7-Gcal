@@ -86,9 +86,7 @@ def appt_parts(apt):
     begin = date_info[1].split(':')
     end = date_info[2].split(':')
 
-
-    ret_val = [date[0], date[1], date[2], begin[0], begin[1], end[0], end[1], desc]
-    
+    ret_val = [int(date[0]), int(date[1]), int(date[2]), int(begin[0]), int(begin[1]), int(end[0]), int(end[1]), desc]    
     return ret_val
 
 if __name__ == "__main__":
