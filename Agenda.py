@@ -163,7 +163,7 @@ class Appt:
     def __str__(self):
         """String representation of appointment.
         Example:
-            2012.10.31 13:00 13:50 | CIS 210 lecture
+            2012/10/31 13:00 13:50 | CIS 210 lecture
             
         This format is designed to be easily divided
         into parts:  Split on '|', then split on whitespace,

@@ -76,23 +76,19 @@ def appt_parts(apt):
         [year, month, day, start_hours, start_mins, end_hours, end_mins, description]
 	values are all ints except description which is a string
     """
-    print("Entered apt_parts")
     apt_str = str(apt)
     print(apt_str)
     li = apt_str.split('|', 1) #don't split more than once if '|' is in apt description
-    date_info = li[0].split()
+    date_info = li[0].split(' ')
     desc = li[1]
 
-    print("split string, splitting date...")
-    date = date_info[0].split('/')
+    date = date_info[0].split('.')
     begin = date_info[1].split(':')
     end = date_info[2].split(':')
 
-    print("date: {}, begin: {}, end: {}".format(date,begin,end))
 
     ret_val = [date[0], date[1], date[2], begin[0], begin[1], end[0], end[1], desc]
     
-    print("apt split, returning {}".format(ret_val))
     return ret_val
 
 if __name__ == "__main__":
