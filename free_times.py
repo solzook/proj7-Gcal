@@ -39,15 +39,29 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     free_times = []
     for day in arrow.Arrow.span_range('day', date1, date2):
         apt_today = Agenda.Appt(day[0].date(), time1, time2, "Free time on {}".format(day[0].format("YYYY/MM/DD")))
-        free_times.append(busy_agenda.complement(apt_today))
-    print(busy_agenda)
-    print()
-    for day in free_times:
-        print()
-        for apt in day:
-            print("\t{}".format(apt))
-        
+        free_agenda = (busy_agenda.complement(apt_today))
+        free_times.append([])
+        for apt in free_agenda:
+            free_times[-1].append(appt_to_list(apt))
 
+    for day in free_times:
+        for apt in day:
+            print("{} - {} | {}".format(apt[0].format("YYYY/MM/DD h:mm A"), apt[1].format("h:mm A"), apt[2])))
+            apt[0] = apt[0].isoformat()
+            apt[1] = apt[1].isoformat()
+        print()
+
+    #print(busy_agenda)
+    #print()
+    #for day in free_times:
+        #print()
+        #for apt in day:
+            #print("\t{}".format(apt))
+    
+    free_list = []
+    for day in free_times:
+       free_list.append([])
+       day_times
     return agenda_to_list(busy_agenda)
 
 
@@ -65,6 +79,7 @@ def list_to_agenda(event_list):
 
     return agenda
 
+
 def agenda_to_list(agenda):
     """
     parameter:
@@ -76,13 +91,24 @@ def agenda_to_list(agenda):
     """
     ret_list = []
     for apt in agenda:
-        info = appt_parts(apt) #get values in a list
-        begin = arrow.get(info[0], info[1], info[2], info[3], info[4]) #get arrow times
-        end = arrow.get(info[0], info[1], info[2], info[5], info[6])
-        desc = info[7]
-        ret_list.append([begin, end, desc]) #append a list representing apt 
+        ret_list.append(appt_to_list(apt)) #append a list representing apt 
 
     return ret_list #return the 2d list
+
+
+def appt_to_list(apt):
+    """
+    parameter:
+	apt: an Appt
+    returns:
+	a list [arrow, arrow, string], contains begin_time, end_time and description
+    """
+    info = appt_parts(apt)
+    begin = arrow.get(info[0], info[1], info[2], info[3], info[4])
+    end = arrow.get(info[0], info[1], info[2], info[5], info[6])
+    desc = info[7]
+    return [begin, end, desc]
+
 
 def appt_parts(apt):
     """
