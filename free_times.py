@@ -105,5 +105,4 @@ if __name__ == "__main__":
     free_list = get_free_times(st, end, begin_time, end_time, event_list)
     print("printing list from main")
     for ev in free_list:
-        print("On {} from {} - {}".format(ev[0].format('YYYY/MM/DD'), ev[0].format('h:MM A'), ev[1].format('h:MM A'))
-
+        print("On {} from {} - {}".format(ev[0].format('YYYY/MM/DD'), ev[0].format('h:MM A'), ev[1].format('h:MM A')))
