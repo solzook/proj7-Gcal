@@ -59,7 +59,7 @@ def index():
 @app.route("/freetimes")
 def freetimes():
     app.logger.debug("Entering free times")
-    return render_template('free_times.html')
+    return render_template('freetime.html')
 
 @app.route("/choose")
 def choose():
@@ -238,7 +238,7 @@ def calctimes():
         ev_desc = ev[2]#get event summary and description from ev[2] as a string
         flask.flash("{} is on {} from {} to {}".format(ev_desc, start.format('YYYY/MM/DD'), start.format('h:mm A'), end.format('h:mm A')))
 
-    return flask.redirect(flask.url_for('free_times.html'))
+    return flask.redirect(flask.url_for('freetime.html'))
 
 
 def add_busy_times(busy_list, cur_busy_times):
