@@ -38,9 +38,9 @@ def list_to_agenda(event_list):
     returns:
 	An Agenda with Appt's representing entries from event_list
     """
-    agenda = new Agenda()
+    agenda = Agenda.Agenda()
     for event in event_list: #turn each event into an Appt and append it to agenda
-        agenda.append(new Appt(event[0].date(), event[0].time(), event[1].time(), event[2]))
+        agenda.append(Agenda.Appt(event[0].date(), event[0].time(), event[1].time(), event[2]))
         #begin and end dates in event_list should always be the same
 
     return agenda
