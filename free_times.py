@@ -8,7 +8,6 @@ of free times
 
 import Agenda
 import datetime
-import date
 import time
 import arrow
 
