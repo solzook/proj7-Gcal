@@ -56,6 +56,10 @@
   {% endif %}
 {% endwith %}
 
+{% if g.events is defined %}
+Deselect any events you would like to ignore <br/>
+
+{% endif %}
 
 
 <h2>Date range</h2>
@@ -139,10 +143,6 @@ Select which calendars to get times for <br />
 </form>
 {% endif %}
 
-{% if g.events is defined %}
-Deselect any events you would like to ignore <br/>
-
-{% endif %}
 
   </div>  <!-- container (for bootstrap) -->
   </body> </html>
