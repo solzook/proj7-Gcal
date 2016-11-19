@@ -39,12 +39,13 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     free_times = []
     for day in arrow.Arrow.span_range('day', date1, date2):
         apt_today = Agenda.Appt(day[0].date(), time1, time2, "Free time on {}".format(day[0].format("YYYY/MM/DD")))
-        free_agenda = (busy_agenda.complement(apt_today))
+        free_today = busy_agenda.complement(apt_today)
         free_times.append([])
-        for apt in free_agenda:
-            free_times[-1].append(appt_to_list(apt))
-            free_times[-1][0] = free_times[-1][0].isoformat()
-            free_times[-1][1] = free_times[-1][1].isoformat()
+        for apt in free_today:
+            as_list = appt_to_list(apt)
+            as_list[0] = as_list[0].isoformat()
+            as_list[1] = as_list[1].isoformat()
+            free_times[-1].append(as_list)
 
     for day in free_times:
         for apt in day:
