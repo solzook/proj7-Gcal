@@ -46,7 +46,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
 
     for day in free_times:
         for apt in day:
-            print("{} - {} | {}".format(apt[0].format("YYYY/MM/DD h:mm A"), apt[1].format("h:mm A"), apt[2])))
+            print("{} - {} | {}".format(apt[0].format("YYYY/MM/DD h:mm A"), apt[1].format("h:mm A"), apt[2]))
             apt[0] = apt[0].isoformat()
             apt[1] = apt[1].isoformat()
         print()
