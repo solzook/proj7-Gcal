@@ -108,7 +108,7 @@ def appt_parts(apt):
 if __name__ == "__main__":
     # test this file
     st = arrow.get("12:00 AM", "h:mm A")
-    end = arrow.get("3:00 PM", "h:mm A")
+    end = arrow.get("6:00 PM", "h:mm A")
     begin_time = arrow.get("18/11/2016", "DD/MM/YYYY")
     end_time = arrow.get("2016/11/28", "YYYY/MM/DD")
 
