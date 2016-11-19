@@ -43,20 +43,14 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
         free_times.append([])
         for apt in free_agenda:
             free_times[-1].append(appt_to_list(apt))
+            free_times[-1][0] = free_times[-1][0].isoformat()
+            free_times[-1][1] = free_times[-1][1].isoformat()
 
     for day in free_times:
         for apt in day:
-            print("{} - {} | {}".format(apt[0].format("YYYY/MM/DD h:mm A"), apt[1].format("h:mm A"), apt[2]))
             apt[0] = apt[0].isoformat()
             apt[1] = apt[1].isoformat()
-        print()
 
-    #print(busy_agenda)
-    #print()
-    #for day in free_times:
-        #print()
-        #for apt in day:
-            #print("\t{}".format(apt))
     return free_times
    
 
