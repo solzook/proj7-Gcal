@@ -43,8 +43,8 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
         free_times.append([])
         for apt in free_today:
             as_list = appt_to_list(apt)
-            as_list[0] = as_list[0].isoformat()
-            as_list[1] = as_list[1].isoformat()
+            #as_list[0] = as_list[0].isoformat()
+            #as_list[1] = as_list[1].isoformat()
             free_times[-1].append(as_list)
 
     for day in free_times:
