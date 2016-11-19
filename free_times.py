@@ -23,8 +23,12 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
 	event_list:2d list[][arrow, arrow, string], unordered list of busy times 
 		and event summaries for those times
     returns:
-	3d list [][][ISO formatted date, ISO formatted date, string], ordered list of free 
-        times between the given dates and times each with description "Free time on 'YYYY/MM/DD'" 
+	a 2d list of dictionaries [][]{} that represnts a list of free times for each day
+        between the given dates 
+        dictionary fields:
+		'begin' : ISO formatted date
+                'end' :ISO formatted date
+		'description': "Free time on 'YYYY/MM/DD'" 
     """
     busy_agenda = list_to_agenda(event_list)
     busy_agenda.normalize() #sort the agenda
