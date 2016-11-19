@@ -37,7 +37,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     print("got arrow objects")
 
     for day in arrow.Arrow.span_range('day', date1, date2):
-        print("Day from {} - {}".format(day[0].format('YYYY/MM/DD HH:MM'), day[1].format('YYYY/MM/DD HH:MM')))
+        print("Day from {} - {}".format(day[0].format('YYYY/MM/DD h:mm A'), day[1].format('YYYY/MM/DD h:mm A')))
     print(busy_agenda)
 
     return agenda_to_list(busy_agenda)
@@ -99,8 +99,8 @@ def appt_parts(apt):
 
 if __name__ == "__main__":
     # test this file
-    st = "3 AM"
-    end = "3 PM"
+    st = arrow.get("3 AM", "h:mm A")
+    end = arrow.get("3 PM", "h:mm A")
     begin_time = arrow.get("18/11/2016", "DD/MM/YYYY")
     end_time = arrow.get("2016/11/28", "YYYY/MM/DD")
 
