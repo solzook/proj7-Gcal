@@ -56,10 +56,10 @@ def index():
     init_session_values()
   return render_template('index.html')
 
-@app.route("/free_times")
-def free_times():
+@app.route("/freetimes")
+def freetimes():
     app.logger.debug("Entering free times")
-    return render_template('free_times.html')
+    return render_template('free_time.html')
 
 @app.route("/choose")
 def choose():
