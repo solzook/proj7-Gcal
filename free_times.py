@@ -105,6 +105,7 @@ def appt_parts(apt):
     ret_val = [int(date[0]), int(date[1]), int(date[2]), int(begin[0]), int(begin[1]), int(end[0]), int(end[1]), desc]    
     return ret_val
 
+
 if __name__ == "__main__":
     # test this file
     st = arrow.get("12:00 AM", "h:mm A")
@@ -116,7 +117,7 @@ if __name__ == "__main__":
     for i in range(5):
         event_list.append([begin_time.replace(days=i,hours=i), begin_time.replace(days=i,hours=12), "Event {}".format(i+1)])
     event_list.append([begin_time.replace(hours=11), begin_time.replace(hours=12), "Event 6(should completely overlap)"])
-    event_list.append([begin_time.replace(hours=4), begin_time.replace(hours=14), "Event 7(should partailly overlap)"])
+    event_list.append([begin_time.replace(hours=4), begin_time.replace(hours=13), "Event 7(should partailly overlap)"])
     event_list.append([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"])
 
     free_list = get_free_times(st, end, begin_time, end_time, event_list)
