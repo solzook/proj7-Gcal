@@ -8,6 +8,8 @@ of free times
 
 import Agenda
 import datetime
+import date
+import time
 import arrow
 
 def get_free_times(st, end, begin_date, end_date, event_list):
@@ -24,10 +26,25 @@ def get_free_times(st, end, begin_date, end_date, event_list):
 	dates and times
     """
     print("made it to the file")
-    print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date.isoformat(),end_date.isoformat()))
+    print("st: {}, end: {}, begin_date: {}, end_date: {}".format(st,end,begin_date.format("MM/DD/YYYY"),end_date.format("MM/DD/YYYY")))
     
 
     return event_list
+
+def list_to_agenda(event_list):
+    """
+    paramater:
+	event_list: [][arrow, arrow, string], list of events with descriptions
+    returns:
+	An Agenda with Appt's representing entries from event_list
+    """
+    agenda = new Agenda.Agenda()
+    for event in event_list: #turn each event into an Appt and append it to agenda
+        agenda.append(new Agenda.Appt(event[0].date(), event[0].time(), event[1].time(), event[2]))
+        #begin and end dates in event_list should always be the same
+
+    return agenda
+        
 
 if __name__ == "__main__":
     # test this file
