@@ -57,7 +57,7 @@ def agenda_to_list(agenda):
 	arrow times representing begin and end times of each appointment and a
 	string containing the Appt description
     """
-    ret_list
+    ret_list = []
     for apt in agenda:
         apt_str = str(apt) #get string representation
         info = appt_parts(apt) #get values in a list
