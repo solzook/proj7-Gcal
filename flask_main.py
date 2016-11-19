@@ -223,19 +223,20 @@ def calctimes():
     cur_busy_times = []
     for cal in flask.session['calendars']:
         if(request.form.get(cal['id']) == "checked" ):
-            cur_busy_times = get_busy_times(cal['busy_times'], cur_busy_times)
-    
+            cur_busy_times = add_busy_times(cal['busy_times'], cur_busy_times)
+
     flask.g.events = cur_busy_times
-    flask.session['events'] = flask.g.events
-    for ev in cur_busy_times:
+    flask.session['events'] = cur_busy_times
+    for ev in flask.session['events']:
         start = arrow.get(ev[0])
         end = arrow.get(ev[1])
         ev_desc = ev[2]#get event summary and description from ev[2] as a string
         flask.flash("{} is on {} from {} to {}".format(ev_desc, start.format('YYYY/MM/DD'), start.format('h:mm A'), end.format('h:mm A')))
+
     return flask.redirect(flask.url_for('index'))
 
 
-def get_busy_times(busy_list, cur_busy_times):
+def add_busy_times(busy_list, cur_busy_times):
     """
     gets busy times from busy_list and add them to cur_busy_times if they are during the user specified hours
     (the portion of an event during those hours will be added if applicable)
