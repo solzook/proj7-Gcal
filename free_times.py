@@ -76,7 +76,9 @@ def appt_parts(apt):
         [year, month, day, start_hours, start_mins, end_hours, end_mins, description]
 	values are all ints except description which is a string
     """
+    print("Entered apt_parts")
     apt_str = str(apt)
+    print(apt_str)
     li = apt_str.split('|')
     date_info = li[0].split()
     desc = li[1]
