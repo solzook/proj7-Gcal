@@ -58,7 +58,10 @@
 
 {% if g.events is defined %}
 Deselect any events you would like to ignore <br/>
-
+<form action ="/free_times" method="post">
+  <input type="text" id="box" size="10"
+  <input type="submit" value="Get Free Times" />
+</form>
 {% endif %}
 
 
@@ -123,12 +126,10 @@ Deselect any events you would like to ignore <br/>
 <br /><input type="submit" value="Choose" />
 </form>
 
-    <!--
-    Show the calendar list (if we have it).  This will need to be turned into
-    a form from which calendars can be picked. Up to three entries are
-    shown in each row (but the order is across then down; I would
-    prefer down then across). 
-    -->
+
+<--
+Show a checkbox form to select which calendars to retrieve events from
+-->
 
 {% if g.calendars is defined  %}
 Select which calendars to get times for <br />
@@ -144,5 +145,5 @@ Select which calendars to get times for <br />
 {% endif %}
 
 
-  </div>  <!-- container (for bootstrap) -->
-  </body> </html>
+</div>  <!-- container (for bootstrap) -->
+</body> </html>
