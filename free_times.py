@@ -59,8 +59,7 @@ def agenda_to_list(agenda):
     """
     ret_list = []
     for apt in agenda:
-        apt_str = str(apt) #get string representation
-        info = appt_parts(apt_str) #get values in a list
+        info = appt_parts(apt) #get values in a list
         begin = arrow.get(info[0], info[1], info[2], info[3], info[4]) #get arrow times
         end = arrow.get(info[0], info[1], info[2], info[5], info[6])
         desc = info[7]
@@ -72,12 +71,13 @@ def appt_parts(apt):
     """
     divide apt into parts like Agenda.__str__(Appt) describes
     parameter:
-	apt: string, string representation of an Appt, eg str(Appt)
+	apt: Appt, Appt to be split
     returns:
         [year, month, day, start_hours, start_mins, end_hours, end_mins, description]
 	values are all ints except description which is a string
     """
-    li = apt_str.split('|') #separate each piece of the Appt
+    apt_str = str(apt)
+    li = apt_str.split('|')
     date_info = li[0].split()
     desc = li[1]
 
