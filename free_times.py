@@ -48,7 +48,7 @@ def list_to_agenda(event_list):
 
     return agenda
 
-def agenda_to_list(agenda)
+def agenda_to_list(agenda):
     """
     parameter:
 	agenda: Agenda, an Agenda
