@@ -51,8 +51,8 @@ def test_touching():
     li2 = get_free_times(t1,t4,d1,d2,ev3)
     for i in range(len(li1)):
         for j in range(len(li1[i])):
-            assert li1[i][j]['begin'] == ev2[i][j]['begin']
-            assert li2[i][j]['end'] == ev2[i][j]['end']
+            assert li1[i][j]['begin'] == li2[i][j]['begin']
+            assert li2[i][j]['end'] == li2[i][j]['end']
 
 def test_overlapping():
     """
