@@ -87,7 +87,7 @@ def flash_free_times():
     """
     event_list = []
     for event in flask.session['events']:
-        event_list.append([ arrow.get(event['begin']), arrow.get(event['end']), event['name'])
+        event_list.append([ arrow.get(event['begin']), arrow.get(event['end']), event['name']])
     start_time = flask.session['begin_time']
     end_time = flask.session['end_time']
     start_date = flask.session['start_date']
