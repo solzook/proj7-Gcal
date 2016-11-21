@@ -5,7 +5,7 @@ Author: Solomon Zook
 from free_times import get_free_times # this is what flask_main uses
 import arrow
 import time
-import date
+import datetime
 
 def test_invalid():
     """
