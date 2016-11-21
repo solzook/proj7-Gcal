@@ -248,6 +248,7 @@ def calctimes():
         result['begin'] = ev[0]
         result['end'] = ev[1]
         result['name'].ev[2]
+        app.logger.debug("appending {} to event_list".format(result))
         event_list.append(result)
 
     for ev in event_list:
