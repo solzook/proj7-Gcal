@@ -30,18 +30,17 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
                 'end' :ISO formatted date
 		'description': "Free time on 'YYYY/MM/DD'" 
     """
-    busy_agenda = list_to_agenda(event_list)
-    busy_agenda.normalize() #sort the agenda
+    if(arrow.get(begin_time) >= arrow.get(end_time)):
+        return []
+    if(arrow.get(begin_date) > arrow.get(end_date)):
+        return []
 
+    busy_agenda = list_to_agenda(event_list)
+    busy_agenda.normalize()
     time1 = arrow.get(begin_time).time()
     time2 = arrow.get(end_time).time()
     date1 = arrow.get(begin_date)
     date2 = arrow.get(end_date)
-
-    if(time2 >= time1):
-        return []
-    if(date2 > date1):
-        return []
 
     free_times = []
     for day in arrow.Arrow.span_range('day', date1, date2):
