@@ -280,7 +280,6 @@ def calctimes():
         if(request.form.get(cal['id']) == "checked" ):
             cur_busy_times = add_busy_times(cal['busy_times'], cur_busy_times)
 
-    app.logger.debug("Got busy list {}".format(cur_busy_times))
     event_list = []
     for ev in cur_busy_times:
         begin = ev[0]
@@ -291,10 +290,6 @@ def calctimes():
 
     flask.g.events = event_list
     flask.session['events'] = flask.g.events
-
-    for ev in flask.session['events']:
-        flask.flash("{} from {} - {}".format(ev['name'], arrow.get(ev['begin']).format("DD h:mm  A"), arrow.get(ev['end']).format("DD h:mm A")))
-
     return flask.redirect(flask.url_for('freetimes'))
 
 
