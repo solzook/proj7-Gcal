@@ -39,6 +39,6 @@ def test_invalid():
     test for invalid inputs
     """
     assert get_free_times(t2, t1, d1, d2, ev1) == []#time range can't go backwards
-    #assert get_free_times(t1,t1,d1,d2,ev1) == []#no time gap would crash Appt class
-    #assert get_free_times(t1,t3,d2,d1,ev1) == []#date range can't go backwards
-    #assert get_free_times(t2,t3,d1,d1,ev1) != []#searching for 1 day is okay
+    assert get_free_times(t1,t1,d1,d2,ev1) == []#no time gap would crash Appt class
+    assert get_free_times(t1,t3,d2,d1,ev1) == []#date range can't go backwards
+    assert get_free_times(t2,t3,d1,d1,ev1) != []#searching for 1 day is okay
