@@ -96,7 +96,7 @@ def flash_free_times():
     free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
     
     app.logger.debug("Free times = {}".format(free_times))
-    if free_times == None:
+    if free_times == []:
         flask.flash("Invalid date or time range was entered")
     else:
         for day in free_times:
