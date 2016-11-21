@@ -140,8 +140,12 @@ if __name__ == "__main__":
     event_list.append([begin_time.replace(hours=11), begin_time.replace(hours=12), "Event 6(should completely overlap)"])
     event_list.append([begin_time.replace(hours=4), begin_time.replace(hours=13), "Event 7(should partailly overlap)"])
     event_list.append([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"])
+    
+    for ev in event_list:
+        ev[0] = ev[0].isoformat()
+        ev[1] = ev[1].isoformat()
 
-    free_list = get_free_times(st, end, begin_time, end_time, event_list)
+    free_list = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), end_time.isoformat(), event_list)
     print("printing list of free times from main")
     for day in free_list:
         if day[0]:
