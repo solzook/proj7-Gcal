@@ -19,10 +19,11 @@ ev1 = [] #events from 12-15 each day
 for i in range(3):
     ev1.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=15), "12-15"])
 
-ev2 = [] #events from 12-13 and 13-15 each day
+ev2 = [] #events from 12-13, 13-15, and 13:30-14 each day
 for i in range(3):
     ev2.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=13), "12-13"])
-    ev2.append([d1.replace(days=i, hours=13), d1.replace(days=i,hour=15), "13-15"])
+    ev2.append([d1.replace(days=i, hour=13), d1.replace(days=i,hour=15), "13-15"])
+    ev2.append([d1.replace(days=i, hour=13.5), d1.replace(days=i, hour=14), "13.5-14"
    
 ev3 = [] #events from 12-14 and 13-15 each day
 for i in range(3):
@@ -68,3 +69,4 @@ def test_overlapping():
         for j in range(len(li1[i])):
             assert li1[i][j]['begin'] == li2[i][j]['begin']
             assert li1[i][j]['end'] == li2[i][j]['end']
+
