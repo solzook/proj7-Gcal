@@ -48,14 +48,19 @@ def test_touching():
     make sure no free times are given for touching appointments
     """
     li1 = get_free_times(t1,t4,d1,d2,ev1)
-    li2 = get_free_times(t1,t4,d1,d2,ev3)
+    li2 = get_free_times(t1,t4,d1,d2,ev2)
     for i in range(len(li1)):
         for j in range(len(li1[i])):
             assert li1[i][j]['begin'] == li2[i][j]['begin']
-            assert li2[i][j]['end'] == li2[i][j]['end']
+            assert li1[i][j]['end'] == li2[i][j]['end']
 
 def test_overlapping():
     """
     make sure no free times are given during overlapping appointments
     """
-    assert get_free_times(t1,t4,d1,d2,ev1) == get_free_times(t1,t4,d1,d2,ev3)
+    li1 = get_free_times(t1,t4,d1,d2,ev1)
+    li2 = get_free_times(t1,t4,d1,d2,ev3)
+    for i in range(len(li1)):
+        for j in range(len(li1[i])):
+            assert li1[i][j]['begin'] == li2[i][j]['begin']
+            assert li1[i][j]['end'] == li2[i][j]['end']
