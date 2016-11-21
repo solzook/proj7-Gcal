@@ -55,12 +55,13 @@ def test_output():
     """
     test that outputs are the expected values for a test list
     """
-    li1 = (t1,t3,d1,d2,ev4)
+    li1 = get_free_times(t1,t3,d1,d2,ev4)
     assert len(li1) == 3
     days = []
     times = [2,4,5,11]
     for i in range(len(li1)):
         days.append(arrow.get(d1).replace(days=i))
+        assert len(li1[i]) == 3
         for j in range(len(li1[i])):
             assert li1[i][j]['begin'] == li1[i][j]['begin']
             assert li1[i][j]['end'] == li1[i][j]['end']
