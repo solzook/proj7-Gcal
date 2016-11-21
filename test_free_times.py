@@ -62,9 +62,9 @@ def test_output():
     for i in range(3):
         assert len(li[i] == 3)
         days.append(arrow.get(d1).replace(days=i))
-        #for j in range(3):
-            #assert li1[i][j]['begin']
-            #assert li1[i][j]['end']
+        for j in range(3):
+            assert li1[i][j]['begin'] == li1[i][j]['begin']
+            assert li1[i][j]['end'] == li1[i][j]['end']
 
 def test_touching():
     """
