@@ -73,7 +73,9 @@ def selectevents():
             selected_events.append(ev)
 
     flask.session['events'] = selected_events
-    return render_template(flask.url_for('freetimes'))
+    for ev in flask.session['events']:
+        flask.flash(ev)
+    return render_template('freetime.html')
 
 
 @app.route("/choose")
