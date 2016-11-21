@@ -162,17 +162,17 @@ if __name__ == "__main__":
     li3 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), begin_time.replace(days=3).isoformat(), ev4)
     
     for i in range(len(li3)):
-        print("Looking at index {}".format(i))
+        print("Looking at index {} with length {}".format(i, len(li3[i]))
         for j in range(len(li3[i])):
-            print(li3[i][j])
+            print("Begin:{} End:{}".format(li3[i][j]['begin'], li3[i][j]['end'])
         print()
-    
+    """
     for i in range(len(li1)):
         for j in range(len(li1[i])):
             print("li1: begin:{}, end:{}".format(li1[i][j]['begin'], li1[i][j]['end']))
             print("li2: begin:{}, end:{}".format(li2[i][j]['begin'], li2[i][j]['end']))
             print()
-
+    """
     #free_list = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), end_time.isoformat(), event_list)
     #print("printing list of free times from main")
     #for day in free_list:
