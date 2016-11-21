@@ -23,7 +23,7 @@ ev2 = [] #events from 12-13, 13-15, and 13:30-14 each day
 for i in range(3):
     ev2.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=13), "12-13"])
     ev2.append([d1.replace(days=i, hour=13), d1.replace(days=i,hour=15), "13-15"])
-    ev2.append([d1.replace(days=i, hour=13.5), d1.replace(days=i, hour=14), "13.5-14"])
+    ev2.append([d1.replace(days=i, hour=13, minute=30), d1.replace(days=i, hour=14), "13:30-14"])
    
 ev3 = [] #events from 12-14 and 13-15 each day
 for i in range(3):
