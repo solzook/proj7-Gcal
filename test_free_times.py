@@ -59,7 +59,7 @@ def test_output():
     days = []
     times = [2,4,5,11]
     for i in range(len(li1)):
-        assert len(li1[i] == 3)
+        assert len(li1[i]) == 3
         days.append(arrow.get(d1).replace(days=i))
         for j in range(3):
             assert li1[i][j]['begin'] == li1[i][j]['begin']
