@@ -64,12 +64,12 @@ def freetimes():
     return render_template('freetime.html')
 
 
-#@app.route("/selectevents")
-#def selectevents():
-#    app.logger.debug("Getting events from the selected calendars")
-#    for ev in flask.session['events']:
-#        flask.flash("Got {}".format(ev[2]))
-#    return render_template(flask.url_for(index))
+@app.route("/selectedevents")
+def selectedevents():
+    app.logger.debug("Getting events from the selected calendars")
+    for ev in flask.session['events']:
+        flask.flash("Got {}".format(ev[2]))
+    return render_template(flask.url_for(index))
 
 
 @app.route("/choose")
