@@ -141,7 +141,8 @@ if __name__ == "__main__":
     event_list.append([begin_time.replace(hours=4), begin_time.replace(hours=13), "Event 7(should partailly overlap)"])
     event_list.append([begin_time.replace(hours=14), begin_time.replace(hours=16), "Event 8(could be out of order)"])
 
-    d1 = begin_time
+    d1 = arrow.get("2016/11/18", "YYYY/MM/DD")
+    d2 = arrow.get("2016/11/20", "YYYY/MM/DD")
     ev1 = [] #events from 12-15 each day
     for i in range(3):
         ev1.append([d1.replace(days=i, hour=2), d1.replace(days=i, hour=15), "12-15"])
@@ -150,16 +151,29 @@ if __name__ == "__main__":
     for i in range(3):
         ev2.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=13), "12-13"])
         ev2.append([d1.replace(days=i, hours=13), d1.replace(days=i,hour=15), "13-15"])
+
+    ev4 = [] #events from 2-4 and 5-11 each day
+    for i in range(3):
+        ev4.append([d1.replace(days=i, hour=2), d1.replace(days=i,hour=4), "2-4"])
+        ev4.append([d1.replace(days=i, hour=5), d1.replace(days=i,hour=11), "5-11"])
    
-    free_list = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), end_time.isoformat(), event_list)
     li1 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), begin_time.replace(days=3).isoformat(), ev1)
     li2 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), begin_time.replace(days=3).isoformat(), ev2)
+    li3 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), begin_time.replace(days=3).isoformat(), ev4)
+    
+    for i in range(len(li3)):
+        print("Looking at index {}".format(i))
+        for j in range(len(li3[i])):
+            print(li3[i][j])
+        print()
     
     for i in range(len(li1)):
         for j in range(len(li1[i])):
             print("li1: begin:{}, end:{}".format(li1[i][j]['begin'], li1[i][j]['end']))
             print("li2: begin:{}, end:{}".format(li2[i][j]['begin'], li2[i][j]['end']))
             print()
+
+    #free_list = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), end_time.isoformat(), event_list)
     #print("printing list of free times from main")
     #for day in free_list:
         #if day[0]:
