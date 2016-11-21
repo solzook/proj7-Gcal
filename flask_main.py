@@ -95,7 +95,7 @@ def flash_free_times():
     end_date = flask.session['end_date']
     free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
     
-    if free_times == []:
+    if free_times == None:
         flask.flash("Invalid date or time range was entered")
     else:
         for day in free_times:
