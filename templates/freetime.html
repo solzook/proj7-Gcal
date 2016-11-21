@@ -8,9 +8,8 @@
   <p>Deselect any events you would like to ignore</p>
 
   <form action="/selectevents" method="post">
-    <div class="row">
     {% for event in g.events %}
-      <input type="checkbox" name="{{event.name}}" checked="checked">{{event.name}}><br>
+      <input type="checkbox" name="{{event.name}}" checked="checked" value="checked">{{event.name}}><br>
     {% endfor %}
     <input type="submit" value="Get New Times">
 
