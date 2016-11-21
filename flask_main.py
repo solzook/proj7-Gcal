@@ -56,18 +56,20 @@ def index():
     init_session_values()
   return render_template('index.html')
 
-@app.route("/freetimes")
+@app.route("/freetimes", methods=['POST'])
 def freetimes():
     app.logger.debug("Entering freetimes")
+    for ev in flask.session['events']:
+        flask.flash(ev)
     return render_template('freetime.html')
 
 
-@app.route("/calcfree")
-def calcfree():
-    app.logger.debug("Preparing to calculate free times")
-    for ev in flask.session['events']:
-        flask.flash("Got {}".format(ev[2]))
-    return render_template(flask.url_for("freetime"))
+#@app.route("/selectevents", methods=['POST'])
+#def selectevents():
+#    app.logger.debug("Preparing to calculate free times")
+#    for ev in flask.session['events']:
+#        flask.flash("Got {}".format(ev[2]))
+#    return render_template(flask.url_for(index))
 
 @app.route("/choose")
 def choose():
