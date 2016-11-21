@@ -143,12 +143,12 @@ if __name__ == "__main__":
 
     ev1 = [] #events from 12-15 each day
     for i in range(3):
-    ev1.append([d1.replace(days=i, hour=2), d1.replace(days=i, hour=15), "12-15"])
+        ev1.append([d1.replace(days=i, hour=2), d1.replace(days=i, hour=15), "12-15"])
 
     ev2 = [] #events from 12-13 and 13-15 each day
     for i in range(3):
-    ev2.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=13), "12-13"])
-    ev2.append([d1.replace(days=i, hours=13), d1.replace(days=i,hour=15), "13-15"])
+        ev2.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=13), "12-13"])
+        ev2.append([d1.replace(days=i, hours=13), d1.replace(days=i,hour=15), "13-15"])
    
     free_list = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), end_time.isoformat(), event_list)
     li1 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), end_time.isoformat(), event_list)
