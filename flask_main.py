@@ -285,11 +285,9 @@ def calctimes():
         begin = ev[0]
         end = ev[1]
         name = ev[2]
-        app.logger.debug("appending {}: {}-{} to event_list".format(name, begin, end))
         event_list.append({'begin':begin, 'end':end, 'name':name})
 
-    flask.g.events = event_list
-    flask.session['events'] = flask.g.events
+    flask.session['events'] = event_list
     return flask.redirect(flask.url_for('freetimes'))
 
 
@@ -299,7 +297,6 @@ def add_busy_times(busy_list, cur_busy_times):
     (the portion of an event during those hours will be added if applicable)
     doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
     """
-    app.logger.debug("entering get_busy_times")
     time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
     for event in busy_list:
         ev_st = arrow.get(event[0])#get times as arrow objects
