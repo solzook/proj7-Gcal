@@ -54,7 +54,7 @@ def test_touching():
         assert len(li1[i]) == len(li2[i])
         for j in range(len(li1[i])):
             assert li1[i][j]['begin'] == li2[i][j]['begin']
-            #assert li1[i][j]['end'] == li2[i][j]['end']
+            assert li1[i][j]['end'] == li2[i][j]['end']
 
 def test_overlapping():
     """
