@@ -56,7 +56,7 @@ def index():
     init_session_values()
   return render_template('index.html')
 
-@app.route("/freetimes", methods=['POST'])
+@app.route("/freetimes")
 def freetimes():
     app.logger.debug("Entering freetimes")
     for ev in flask.session['events']:
@@ -64,8 +64,8 @@ def freetimes():
     return render_template('freetime.html')
 
 
-@app.route("/selectedevents")
-def selectedevents():
+@app.route("/selectevents", methods=['POST'])
+def selectevents():
     app.logger.debug("Getting events from the selected calendars")
     for ev in flask.session['events']:
         flask.flash("Got {}".format(ev[2]))
@@ -244,7 +244,7 @@ def calctimes():
     flask.g.events = cur_busy_times
     flask.session['events'] = flask.g.events
 
-    return flask.redirect(flask.url_for('index'))
+    return flask.redirect(flask.url_for('freetimes'))
 
 
 def add_busy_times(busy_list, cur_busy_times):
