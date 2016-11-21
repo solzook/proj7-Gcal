@@ -4,9 +4,11 @@ This program gets information about the user's google calendar events, then disp
 
 ## Using the Program
 Step 1: select the date and time ranges using the provided fields then press "Choose Calendars".
+
 Step 2: select which calendars to retrieve events from and press "Get Free Times".
-Step 3: A list of retrieved calendar events is shown, followed by free times and busy times for the given time/date ranges
-    deselect a number of events from the list at the top of the page and press "Get New Times" to recalculate times using only selected events 
+
+Step 3: A list of retrieved calendar events is shown, followed by free times and busy times for the given time/date ranges.
+    deselect a number of events from the list at the top of the page and press "Get New Times" to recalculate times using only selected events. 
 
 
 ## Running the Program
