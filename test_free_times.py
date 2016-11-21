@@ -53,8 +53,8 @@ def test_touching():
     for i in range(len(li1)):
         assert len(li1[i]) == len(li2[i])
         for j in range(len(li1[i])):
-            assert arrow.get(li1[i][j]['begin']) == arrow.get(li2[i][j]['begin'])
-            assert arrow.get(li1[i][j]['end']).format("YYYY/MM/DD h:mm A") == arrow.get(li2[i][j]['end']).format("YYYY/MM/DD h:mm A")
+            assert li1[i][j]['begin'] == li2[i][j]['begin']
+            assert li1[i][j]['end'] == li2[i][j]['end']
 
 def test_overlapping():
     """
@@ -67,4 +67,4 @@ def test_overlapping():
         assert len(li1[i]) == len(li2[i])
         for j in range(len(li1[i])):
             assert li1[i][j]['begin'] == li2[i][j]['begin']
-            #assert li1[i][j]['end'] == li2[i][j]['end']
+            assert li1[i][j]['end'] == li2[i][j]['end']
