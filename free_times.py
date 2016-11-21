@@ -39,9 +39,9 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     date2 = arrow.get(end_date)
 
     if(time2 >= time1):
-        return [][]{}
+        return [].append([].append({}))
     if(date2 > date1):
-        return [][]{}
+        return [].append([].append({}))
 
     free_times = []
     for day in arrow.Arrow.span_range('day', date1, date2):
