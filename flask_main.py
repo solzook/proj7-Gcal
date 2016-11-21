@@ -13,6 +13,9 @@ import datetime # But we still need time
 import time
 from dateutil import tz  # For interpreting local times
 
+# local free time calculator
+from free_times import get_free_times
+
 
 # OAuth2  - Google library implementation for convenience
 from oauth2client import client
@@ -73,9 +76,28 @@ def selectevents():
             selected_events.append(ev)
 
     flask.session['events'] = selected_events
+    flash_free_times()
     for ev in flask.session['events']:
         flask.flash(ev)
     return render_template('freetime.html')
+
+def flash_free_times():
+    """
+    flash free times
+    """
+    event_list = []
+    for event in flask.session['events']:
+        event_list.append([ arrow.get(event['begin']), arrow.get(event['end']), event['name'])
+    start_time = flask.session['begin_time']
+    end_time = flask.session['end_time']
+    start_date = flask.session['start_date']
+    end_date = flask.session['end_date']
+    free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
+    
+    for day in free_times:
+        flask.flash("Listing free times on {}".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
+        for t in day:
+            flask.flash("\t{} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
 
 
 @app.route("/choose")
