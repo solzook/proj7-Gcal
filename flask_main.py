@@ -245,18 +245,17 @@ def calctimes():
     app.logger.debug("Got busy list {}".format(cur_busy_times))
     event_list = []
     for ev in cur_busy_times:
-        result = {}
-        result['begin'] = ev[0]
-        result['end'] = ev[1]
-        result['name'] = ev[2]
-        app.logger.debug("appending {} to event_list".format(result))
-        event_list.append(result)
-
-    for ev in event_list:
-        flask.flash("{} from {} - {}".format(ev['name'], arrow.get(ev['begin']).format("DD h:mm  A"), arrow.get(ev['end']).format("DD h:mm A")))
+        begin = ev[0]
+        end = ev[1]
+        name = ev[2]
+        app.logger.debug("appending {}: {}-{} to event_list".format(name, begin, end))
+        event_list.append({'begin':begin, 'end':end, 'name':name})
 
     flask.g.events = event_list
     flask.session['events'] = flask.g.events
+
+    for ev in flask.session['events']:
+        flask.flash("{} from {} - {}".format(ev['name'], arrow.get(ev['begin']).format("DD h:mm  A"), arrow.get(ev['end']).format("DD h:mm A")))
 
     return flask.redirect(flask.url_for('freetimes'))
 
