@@ -1,14 +1,22 @@
 #proj7-Gcal
-Get a list of busy times from any number of the user's google calendars during a range of dates and times (e.g. the next 2 weeks from 8 AM to 5PM)
+This program gets information about the user's google calendar events, then displays free and busy times.
+
+
+## Using the Program
+Step 1: select the date and time ranges using the provided fields then press "Choose Calendars".
+Step 2: select which calendars to retrieve events from and press "Get Free Times".
+Step 3: A list of retrieved calendar events is shown, followed by free times and busy times for the given time/date ranges
+    deselect a number of events from the list at the top of the page and press "Get New Times" to recalculate times using only selected events 
+
 
 ## Running the Program
 
     git clone "https://github.com/solzook/proj7-Gcal
     bash ./configure
-    You will need to add your own 'secrets' file, described below
+    You will need to add your own 'secrets' file (described below)
     make run
 
-notes: the default port is 5000 and the page cannot be accessed by clients on a different ip address than the host when run from localhost
+notes: the default port is 5000
 
 ## Secrets File
 3 files are needed here: admin_secrets.py, client_secrets.py and google_client_key.json
