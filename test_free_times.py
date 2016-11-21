@@ -8,7 +8,7 @@ import time
 import datetime
 
 d1 = arrow.get("2016/11/18", "YYYY/MM/DD")
-d2 = d1.replace(days=3)
+d2 = d1.replace(days=2)
 
 t1 = arrow.get("12:00 AM", "h:mm A")
 t2 = arrow.get("2:00 AM", "h:mm A")
