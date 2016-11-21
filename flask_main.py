@@ -250,6 +250,9 @@ def calctimes():
         result['name'].ev[2]
         event_list.append(result)
 
+    for ev in event_list:
+        flask.flash("{} from {} - {}".format(ev['name'], arrow.get(ev['begin']).format("DD h:mm  A"), arrow.get(ev['end']).format("DD h:mm A")))
+
     flask.g.events = event_list
     flask.session['events'] = flask.g.events
 

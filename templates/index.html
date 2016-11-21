@@ -129,7 +129,7 @@ Select which calendars to get times for <br />
 <form action="/calctimes" method="post">
   <div class="row">
   {% for cal in g.calendars %}
-      <input type="checkbox" name="{{cal.id}}" checked="unchecked">{{cal.summary}}<br>
+      <input type="checkbox" name="{{cal.id}}">{{cal.summary}}<br>
   {% endfor %}
   </div>
 <br />
