@@ -243,7 +243,7 @@ def calctimes():
     flask.g.events = cur_busy_times
     flask.session['events'] = flask.g.events
 
-    return flask.redirect("freetime.html")
+    return flask.redirect(flask.url_for('index'))
 
 
 def add_busy_times(busy_list, cur_busy_times):
