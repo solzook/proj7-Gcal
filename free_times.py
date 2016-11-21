@@ -147,4 +147,4 @@ if __name__ == "__main__":
         if day[0]:
             print("Events on {}".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
         for ev in day:
-            print("\tFree from {} - {}".format(arrow.get(ev['begin']).format('h:mm A'), arrow.get(ev['end']).format('h:mm A')))
+            print("\tFree from {} - {}".format(arrow.get(ev['begin']), arrow.get(ev['end'])))
