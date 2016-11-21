@@ -64,12 +64,13 @@ def freetimes():
     return render_template('freetime.html')
 
 
-#@app.route("/selectevents", methods=['POST'])
+#@app.route("/selectevents")
 #def selectevents():
-#    app.logger.debug("Preparing to calculate free times")
+#    app.logger.debug("Getting events from the selected calendars")
 #    for ev in flask.session['events']:
 #        flask.flash("Got {}".format(ev[2]))
 #    return render_template(flask.url_for(index))
+
 
 @app.route("/choose")
 def choose():
