@@ -73,7 +73,7 @@ def selectevents():
             selected_events.append(ev)
 
     flask.session['events'] = selected_events
-    return render_template(flask.url_for("freetimes"))
+    return render_template(flask.url_for('/freetimes'))
 
 
 @app.route("/choose")
