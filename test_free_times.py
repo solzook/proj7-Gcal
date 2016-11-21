@@ -35,6 +35,13 @@ for i in range(3):
     ev4.append([d1.replace(days=i, hour=2), d1.replace(days=i,hour=4), "2-4"])
     ev4.append([d1.replace(days=i, hour=5), d1.replace(days=i,hour=11), "5-11"])
 
+d1=d1.isoformat()
+d2=d2.isoformat()
+t1=t1.isoformat()
+t2=t2.isoformat()
+t3=t3.isoformat()
+t4=t4.isoformat()
+
 def test_invalid():
     """
     test for invalid inputs
@@ -44,9 +51,23 @@ def test_invalid():
     assert get_free_times(t1,t3,d2,d1,ev1) == []#date range can't go backwards
     assert get_free_times(t2,t3,d1,d1,ev1) != []#searching for 1 day is okay
 
+def test_output():
+    """
+    test that outputs are the expected values for a test list
+    """
+    li1 = (t1,t3,d1,d2,ev4)
+    days = []
+    times = [2,4,5,11]
+    for i in range(3):
+        days.append(arrow.get(d1).replace(days=i)
+        #for j in range(3):
+            #ti1 = days[i].replace
+            #assert li1[i][j]['begin']
+
+
 def test_touching():
     """
-    make sure no free times are given for touching appointments
+    make sure no free times are given between touching appointments
     """
     li1 = get_free_times(t1,t4,d1,d2,ev1)
     li2 = get_free_times(t1,t4,d1,d2,ev2)
@@ -59,7 +80,7 @@ def test_touching():
 
 def test_overlapping():
     """
-    make sure no free times are given during overlapping appointments
+    make sure no free times are given between overlapping appointments
     """
     li1 = get_free_times(t1,t4,d1,d2,ev1)
     li2 = get_free_times(t1,t4,d1,d2,ev3)
