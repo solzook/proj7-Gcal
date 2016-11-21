@@ -8,7 +8,7 @@ import time
 import datetime
 
 d1 = arrow.get("2016/11/18", "YYYY/MM/DD")
-d2 = d1.replace(days=4)
+d2 = arrow.get("2016/11/20", "YYYY/MM/DD")
 
 t1 = arrow.get("12:00 AM", "h:mm A")
 t2 = arrow.get("2:00 AM", "h:mm A")
@@ -56,10 +56,9 @@ def test_output():
     test that outputs are the expected values for a test list
     """
     li1 = (t1,t3,d1,d2,ev4)
-    assert len(li1) == 3
     days = []
     times = [2,4,5,11]
-    for i in range(3):
+    for i in range(len(li1)):
         assert len(li[i] == 3)
         days.append(arrow.get(d1).replace(days=i))
         for j in range(3):
