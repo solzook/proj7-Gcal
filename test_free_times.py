@@ -58,13 +58,15 @@ def test_output():
     li1 = get_free_times(t1,t3,d1,d2,ev4)
     assert len(li1) == 3
     days = []
-    times = [2,4,5,11]
+    times = []
+    for i in [2,4,5,11]:
+
     for i in range(len(li1)):
         days.append(arrow.get(d1).replace(days=i))
         assert len(li1[i]) == 3
         for j in range(len(li1[i])):
-            assert li1[i][j]['begin'] == li1[i][j]['begin']
-            assert li1[i][j]['end'] == li1[i][j]['end']
+            assert li1[i][j]['begin'] == days[i].replace(hour=times[j]).isoformat()
+            assert li1[i][j]['end'] == days[i].replace(hour=times[j+1]).isoformat()
 
 def test_touching():
     """
