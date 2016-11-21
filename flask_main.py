@@ -62,8 +62,9 @@ def index():
 @app.route("/freetimes")
 def freetimes():
     app.logger.debug("Entering freetimes")
-    for ev in flask.session['events']:
-        flask.flash(ev)
+    flash_free_times()
+    flask.flash()
+    flash_busy_times()
     return render_template('freetime.html')
 
 
@@ -77,13 +78,13 @@ def selectevents():
 
     flask.session['events'] = selected_events
     flash_free_times()
-    for ev in flask.session['events']:
-        flask.flash(ev)
+    flask.flash()
+    flash_busy_times()
     return render_template('freetime.html')
 
 def flash_free_times():
     """
-    flash free times
+    flash free times, from get_free_times
     """
     event_list = []
     for event in flask.session['events']:
@@ -97,8 +98,18 @@ def flash_free_times():
     for day in free_times:
         flask.flash("Listing free times on {}".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
         for t in day:
-            flask.flash("\t{} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
+            flask.flash("    {} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
+        flask.flash()
 
+def flash_busy_times():
+    """
+    flash busy times, from session['events']
+    """
+    flask.flash("Busy event descriptions")
+    for event in flask.session['events']:
+        begin = arrow.get(event['begin'])
+        end = arrow.get(event['end'])
+        flask.flash("{} on {} from {} to {}".format(event['name'], begin.format("YYYY/MM/DD"), begin.format("h:mm A"), end.format("h:mm A")))
 
 @app.route("/choose")
 def choose():
