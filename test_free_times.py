@@ -53,7 +53,9 @@ def test_invalid():
 
 def test_output():
     """
-    test that outputs are the expected values for a test list with 2 events each day
+    test that outputs are the expected values for a test list with 2 events each day.
+    Also, test that when the date range is one day to itself get_free_times returns an 
+    enrty for a single day and contains the correct values.
     """
     li1 = get_free_times(t1,t3,d1,d2,ev4)
     assert len(li1) == 3
