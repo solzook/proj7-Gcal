@@ -58,7 +58,7 @@ def test_output():
     li1 = get_free_times(t1,t3,d1,d2,ev4)
     assert len(li1) == 3
     days = []
-    times = [2,4,5,11]:
+    times = [2,4,5,11]
 
     for i in range(len(li1)):
         days.append(arrow.get(d1).replace(days=i))
