@@ -96,7 +96,7 @@ def flash_free_times():
     free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
     
     for day in free_times:
-        flask.flash("Listing free times on {}".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
+        flask.flash("Free times on {}:".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
         for t in day:
             flask.flash("    {} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
         flask.flash("")
