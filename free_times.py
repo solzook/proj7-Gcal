@@ -163,7 +163,7 @@ if __name__ == "__main__":
     li1 = get_free_times(st.isoformat(), end.isoformat(), d1.isoformat(), d2.isoformat(), ev1)
     li2 = get_free_times(st.isoformat(), end.isoformat(), d1.isoformat(), d2.isoformat(), ev2)
     li3 = get_free_times(st.isoformat(), end.isoformat(), d1.isoformat(), d2.isoformat(), ev4)
-    print("got times for date range {}-{}".format(d1,d2))
+    print("got {} days for date range {}-{}".format(len(li3),d1,d2))
     for i in range(len(li3)):
         print("Looking at index {} with length {}".format(i, len(li3[i])))
         for j in range(len(li3[i])):
