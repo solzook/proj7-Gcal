@@ -49,10 +49,10 @@ def test_touching():
     """
     li1 = get_free_times(t1,t4,d1,d2,ev1)
     li2 = get_free_times(t1,t4,d1,d2,ev3)
-    for (day1,day2) in zip(li1,li2):
-        for (ev1,ev2) in zip(day1,day2):
-            assert ev1['begin'] == ev2['begin']
-            assert ev1['end'] == ev2['end']
+    for i in range(li1.length):
+        for j in range(li1[i].length):
+            assert li1[i][j]['begin'] == ev2['begin']
+            assert li2[i][j]['end'] == ev2['end']
 
 def test_overlapping():
     """
