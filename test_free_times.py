@@ -47,7 +47,12 @@ def test_touching():
     """
     make sure no free times are given for touching appointments
     """
-    assert get_free_times(t1,t4,d1,d2,ev1) == get_free_times(t1,t4,d1,d2,ev2)
+    li1 = get_free_times(t1,t4,d1,d2,ev1)
+    li2 = get_free_times(t1,t4,d1,d2,ev3)
+    for (day1,day2) in zip(li1,li2):
+        for (ev1,ev2) in zip(day1,day2):
+            assert ev1['begin'] == ev2['begin']
+            assert ev1['end'] == ev2['end']
 
 def test_overlapping():
     """
