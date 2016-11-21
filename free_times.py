@@ -42,7 +42,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
     date1 = arrow.get(begin_date)
     date2 = arrow.get(end_date)
 
-    print("date range is {}-{}".format(date1.format("YYYY/MM/DD"),date2.format("YYYY/MM/DD")))
+    print("date range is {}-{}".format(date1.format("YYYY/MM/DD HH:MM"),date2.format("YYYY/MM/DD HH:MM")))
 
     free_times = []
     for day in arrow.Arrow.span_range('day', date1, date2):
