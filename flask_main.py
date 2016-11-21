@@ -242,6 +242,7 @@ def calctimes():
         if(request.form.get(cal['id']) == "checked" ):
             cur_busy_times = add_busy_times(cal['busy_times'], cur_busy_times)
 
+    app.logger.debug("Got busy list {}".format(cur_busy_times))
     event_list = []
     for ev in cur_busy_times:
         result = {}
