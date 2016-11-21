@@ -17,7 +17,7 @@ t4 = arrow.get("4:00 PM", "h:mm A")
 
 ev1 = [] #events from 12-15 each day
 for i in range(3):
-    ev1.append([d1.replace(days=i, hour=2), d1.replace(days=i, hour=15), "12-15"])
+    ev1.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=15), "12-15"])
 
 ev2 = [] #events from 12-13 and 13-15 each day
 for i in range(3):
