@@ -63,7 +63,7 @@ def index():
 def freetimes():
     app.logger.debug("Entering freetimes")
     flash_free_times()
-    flask.flash()
+    flask.flash("")
     flash_busy_times()
     return render_template('freetime.html')
 
@@ -78,7 +78,7 @@ def selectevents():
 
     flask.session['events'] = selected_events
     flash_free_times()
-    flask.flash()
+    flask.flash("")
     flash_busy_times()
     return render_template('freetime.html')
 
@@ -99,7 +99,7 @@ def flash_free_times():
         flask.flash("Listing free times on {}".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
         for t in day:
             flask.flash("    {} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
-        flask.flash()
+        flask.flash("")
 
 def flash_busy_times():
     """
