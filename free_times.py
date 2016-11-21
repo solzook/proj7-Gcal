@@ -160,9 +160,9 @@ if __name__ == "__main__":
         ev4.append([d1.replace(days=i, hour=2), d1.replace(days=i,hour=4), "2-4"])
         ev4.append([d1.replace(days=i, hour=5), d1.replace(days=i,hour=11), "5-11"])
    
-    li1 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), begin_time.replace(days=3).isoformat(), ev1)
-    li2 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), begin_time.replace(days=3).isoformat(), ev2)
-    li3 = get_free_times(st.isoformat(), end.isoformat(), begin_time.isoformat(), begin_time.replace(days=3).isoformat(), ev4)
+    li1 = get_free_times(st.isoformat(), end.isoformat(), d1.isoformat(), d2.isoformat(), ev1)
+    li2 = get_free_times(st.isoformat(), end.isoformat(), d1.isoformat(), d2.isoformat(), ev2)
+    li3 = get_free_times(st.isoformat(), end.isoformat(), d1.isoformat(), d2.isoformat(), ev4)
     print("got times for date range {}-{}".format(d1,d2))
     for i in range(len(li3)):
         print("Looking at index {} with length {}".format(i, len(li3[i])))
