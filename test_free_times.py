@@ -17,28 +17,28 @@ t4 = arrow.get("4:00 PM", "h:mm A")
 
 ev1 = [] #events from 12-15 each day
 for i in range(3):
-    ev1.append([d1.replace(days=i, hour=2).isoformat(), d1.replace(days=i, hour=15).isoformat(), "12-15"])
+    ev1.append([d1.replace(days=i, hour=2), d1.replace(days=i, hour=15), "12-15"])
 
 ev2 = [] #events from 12-13 and 13-15 each day
 for i in range(3):
-    ev2.append([d1.replace(days=i, hour=12).isoformat(), d1.replace(days=i, hour=13).isoformat(), "12-13"])
-    ev2.append([d1.replace(days=i, hours=13).isoformat(), d1.replace(days=i,hour=15).isoformat(), "13-15"])
+    ev2.append([d1.replace(days=i, hour=12), d1.replace(days=i, hour=13), "12-13"])
+    ev2.append([d1.replace(days=i, hours=13), d1.replace(days=i,hour=15), "13-15"])
    
 ev3 = [] #events from 12-14 and 13-15 each day
 for i in range(3):
-    ev3.append([d1.replace(days=i, hour=12).isoformat(), d1.replace(days=i,hour=14).isoformat(), "12-14"])
-    ev3.append([d1.replace(days=i, hour=13).isoformat(), d1.replace(days=i,hour=15).isoformat(), "13-15"])
+    ev3.append([d1.replace(days=i, hour=12), d1.replace(days=i,hour=14), "12-14"])
+    ev3.append([d1.replace(days=i, hour=13), d1.replace(days=i,hour=15), "13-15"])
 
 ev4 = [] #events from 2-4 and 5-11 each day
 for i in range(3):
-    ev4.append([d1.replace(days=i, hour=2).isoformat(), d1.replace(days=i,hour=4).isoformat(), "2-4"])
-    ev4.append([d1.replace(days=i, hour=5).isoformat(), d1.replace(days=i,hour=11).isoformat(), "5-11"])
+    ev4.append([d1.replace(days=i, hour=2), d1.replace(days=i,hour=4), "2-4"])
+    ev4.append([d1.replace(days=i, hour=5), d1.replace(days=i,hour=11), "5-11"])
 
 def test_invalid():
     """
     test for invalid inputs
     """
     assert get_free_times(t2, t1, d1, d2, ev1) == []#time range can't go backwards
-    assert get_free_times(t1,t1,d1,d2,ev1) == []#no time gap would crash Appt class
-    assert get_free_times(t1,t3,d2,d1,ev1) == []#date range can't go backwards
-    assert get_free_times(t2,t3,d1,d1,ev1) != []#searching for 1 day is okay
+    #assert get_free_times(t1,t1,d1,d2,ev1) == []#no time gap would crash Appt class
+    #assert get_free_times(t1,t3,d2,d1,ev1) == []#date range can't go backwards
+    #assert get_free_times(t2,t3,d1,d1,ev1) != []#searching for 1 day is okay
