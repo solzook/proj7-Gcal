@@ -49,8 +49,8 @@ def test_touching():
     """
     li1 = get_free_times(t1,t4,d1,d2,ev1)
     li2 = get_free_times(t1,t4,d1,d2,ev3)
-    for i in range(li1.length):
-        for j in range(li1[i].length):
+    for i in range(len(li1)):
+        for j in range(len(li1[i])):
             assert li1[i][j]['begin'] == ev2['begin']
             assert li2[i][j]['end'] == ev2['end']
 
