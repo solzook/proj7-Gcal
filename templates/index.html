@@ -56,11 +56,6 @@
   {% endif %}
 {% endwith %}
 
-{% if g.events is defined %}
-  <li>Events are defined</li>
-{% endif %}
-
-
 
 
 <h2>Date range</h2>
@@ -134,7 +129,7 @@ Select which calendars to get times for <br />
 <form action="/calctimes" method="post">
   <div class="row">
   {% for cal in g.calendars %}
-      <input type="checkbox" name="{{cal.id}}" value="checked">{{cal.summary}}<br>
+      <input type="checkbox" name="{{cal.id}}" checked="unchecked">{{cal.summary}}<br>
   {% endfor %}
   </div>
 <br />

@@ -7,8 +7,12 @@
 <h1>Event List</h1>
   <p>Deselect any events you would like to ignore</p>
 
-  <form action="/freetimes" method="post">
-  <input type="submit" value="Get Free Times">
+  <form action="/selectevents" method="post">
+    <div class="row">
+    {% for event in g.events %}
+      <input type="checkbox" name="{{event.name}}" checked="checked">{{event.name}}><br>
+    {% endfor %}
+    <input type="submit" value="Get New Times">
 
 <h2>Free Times</h2>
   {% with messages = get_flashed_messages() %}

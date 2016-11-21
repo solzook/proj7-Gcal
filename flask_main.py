@@ -68,7 +68,8 @@ def freetimes():
 def selectevents():
     app.logger.debug("Getting events from the selected calendars")
     for ev in flask.session['events']:
-        flask.flash("Got {}".format(ev[2]))
+        if request.form.get(ev['name']) == "checked":
+            flask.flash("Got {}".format(ev[2]))
     return render_template(flask.url_for(index))
 
 
@@ -241,7 +242,15 @@ def calctimes():
         if(request.form.get(cal['id']) == "checked" ):
             cur_busy_times = add_busy_times(cal['busy_times'], cur_busy_times)
 
-    flask.g.events = cur_busy_times
+    event_list = []
+    for ev in cur_busy_times:
+        result = {}
+        result['begin'] = ev[0]
+        result['end'] = ev[1]
+        result['name'].ev[2]
+        event_list.append(result)
+
+    flask.g.events = event_list
     flask.session['events'] = flask.g.events
 
     return flask.redirect(flask.url_for('freetimes'))
