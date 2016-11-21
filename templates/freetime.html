@@ -5,6 +5,8 @@
 <body>
 
 <h1>Event List</h1>
+
+{% if g.events is defined %}
   <p>Deselect any events you would like to ignore</p>
 
   <form action="/selectevents" method="post">
@@ -12,6 +14,7 @@
       <input type="checkbox" name="{{event.name}}" checked="checked" value="checked">{{event.name}}><br>
     {% endfor %}
     <input type="submit" value="Get New Times">
+{% endif %}
 
 <h2>Free Times</h2>
   {% with messages = get_flashed_messages() %}
