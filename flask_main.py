@@ -67,10 +67,13 @@ def freetimes():
 @app.route("/selectevents", methods=['POST'])
 def selectevents():
     app.logger.debug("Getting events from the selected calendars")
+    selected_events = []
     for ev in flask.session['events']:
         if request.form.get(ev['name']) == "checked":
-            flask.flash("Got {}".format(ev[2]))
-    return render_template(flask.url_for(index))
+            selected_events.append(ev)
+
+    flask.session['events'] = selected_events
+    return render_template(flask.url_for("freetimes"))
 
 
 @app.route("/choose")
