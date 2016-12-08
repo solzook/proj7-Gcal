@@ -99,7 +99,10 @@ def flash_free_times():
         flask.flash("Invalid date or time range was entered")
     else:
         for day in free_times:
-            #app.logger.debug("flashing {}".format(day))
+            if day == []:
+                #there are no free times today
+                flask.flash("Busy all day\n")
+
             flask.flash("Free times on {}:".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
             for t in day:
                 flask.flash("\t{} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
