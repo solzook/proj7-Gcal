@@ -320,7 +320,6 @@ def add_busy_times(busy_list, cur_busy_times):
             #event is outside the specified time window, skip remainder of the loop
             continue
         
-        
         #don't include times outside the given time window
         if st_time < time_window[0]:
             new_hrs = time_window[0].hour
@@ -450,6 +449,7 @@ def list_calendars(service):
                 try:
                     #if this succeeds then the event isn't a busy time and there's nothing to do
                     is_busy = ev["transparency"]
+                    app.logger.debug("Event {} is transparent".format(ev['summary']))
                 except:
                     #busy events end up here, they can have start/end dates or datetimes, test for both
                     try:
