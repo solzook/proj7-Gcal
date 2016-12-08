@@ -317,13 +317,13 @@ def add_busy_times(busy_list, cur_busy_times):
             if(ev_end.format("HH:MM") == "00:00"):
                 #this is an all day appointment and can be treated as ending at 11:59 rather than 12:00 the next day
                 ev_end = ev_st.replace(hour=23,minute=59)
-                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_start, ev_end))
+                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
             else:
                 #Fixme: implement multi-day events
                 #use truncated end value (11:59 on begin date), and add '(this appointment was truncated)' to its description
                 ev_end = ev_st.replace(hour=23,minute=59)
                 ev_desc += " (this appointment was truncated)"
-                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_start, ev_end))
+                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
 
         st_time = ev_st.time()#get time values without a date
         end_time = ev_end.time()
