@@ -299,7 +299,6 @@ def add_busy_times(busy_list, cur_busy_times):
     """
     gets busy times from busy_list and add them to cur_busy_times if they are during the user specified hours
     (the portion of an event during those hours will be added if applicable)
-    this function assumes that no events in busy_list span multiple days
     doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
     """
     time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
@@ -310,9 +309,16 @@ def add_busy_times(busy_list, cur_busy_times):
         ev_desc = event[2]
         
         if(ev_st.date() != ev_end.date()):
-            #this function doesn't handle this type of busy time
-            app.logger.debug("ITS GONNA BREAK")
-            continue
+            #this functions logic doesn't work for appointments with different begin and end days
+            if(ev_end == ev_st.replace(days=1)) and (ev_start.format("HH:MM") == "00:00"):
+                #this is an all day appointment and can be treated as ending at 11:59 rather than 12:00 the next day
+                ev_end = ev_start.replace(hour=23,minute=59)
+                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_start, ev_end))
+            else:
+                #Fixme: implement multi-day events
+                #use truncated end value (11:59 on begin date), and add '(this appointment was truncated)' to its description
+                ev_end = ev_start.replace(hour=23,minute=59)
+                ev_desc += " (this appointment was truncated)"
 
         st_time = ev_st.time()#get time values without a date
         end_time = ev_end.time()
