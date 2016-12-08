@@ -61,7 +61,7 @@ def test_output():
     enrty for a single day and contains the correct values.
     """
     li1 = get_free_times(t1,t3,d1,d2,ev4)
-    assert len(li1) == 3
+    assert len(li1) == 5
     days = []
     times = [[0,2], [4,5], [11, 15]]
 
