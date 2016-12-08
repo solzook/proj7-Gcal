@@ -102,6 +102,7 @@ def flash_free_times():
             if day == []:
                 #there are no free times today
                 flask.flash("Busy all day\n")
+                continue
 
             flask.flash("Free times on {}:".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
             for t in day:
