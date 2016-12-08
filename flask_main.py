@@ -449,7 +449,6 @@ def list_calendars(service):
                 try:
                     #if this succeeds then the event isn't a busy time and there's nothing to do
                     is_busy = ev["transparency"]
-                    app.logger.debug("Event {} is transparent".format(ev['summary']))
                 except:
                     #busy events end up here, they can have start/end dates or datetimes, test for both
                     try:
@@ -466,11 +465,11 @@ def list_calendars(service):
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
                             ev_desc = ev["summary"]
                             event_list.append([ev_start, ev_end, ev_desc])
-                            #print("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
+                            app.logger.debug("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
                             pass
-                            #print("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
+                            app.logger.debug("{} has no start/end date or datetime, it has {} :: {}".format(ev["summary"], ev["start"], ev["end"]))
             page_token = events.get('nextPageToken')
             if not page_token:
                 break
