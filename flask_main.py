@@ -314,7 +314,7 @@ def add_busy_times(busy_list, cur_busy_times):
         
         if(ev_st.date() != ev_end.date()):
             #this functions logic doesn't work for appointments with different begin and end days
-            if(ev_end.isoformat() == ev_st.replace(days=1).isoformat()) and (ev_st.format("HH:MM") == "00:00"):
+            if(ev_end.format("HH:MM") == "00:00"):
                 #this is an all day appointment and can be treated as ending at 11:59 rather than 12:00 the next day
                 ev_end = ev_st.replace(hour=23,minute=59)
                 app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_start, ev_end))
@@ -323,6 +323,7 @@ def add_busy_times(busy_list, cur_busy_times):
                 #use truncated end value (11:59 on begin date), and add '(this appointment was truncated)' to its description
                 ev_end = ev_st.replace(hour=23,minute=59)
                 ev_desc += " (this appointment was truncated)"
+                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_start, ev_end))
 
         st_time = ev_st.time()#get time values without a date
         end_time = ev_end.time()
