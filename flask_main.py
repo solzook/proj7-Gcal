@@ -305,6 +305,7 @@ def add_busy_times(busy_list, cur_busy_times):
     """
     time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
     for event in busy_list:
+        app.logger.debug("Got event {}".format(event[2]))
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
         ev_desc = event[2]
@@ -465,7 +466,7 @@ def list_calendars(service):
                             ev_end = arrow.get(ev["end"]["date"]).isoformat()
                             ev_desc = ev["summary"]
                             event_list.append([ev_start, ev_end, ev_desc])
-                            app.logger.debug("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
+                            #app.logger.debug("{} goes from [{}] to [{}]".format(ev["summary"], ev_start, ev_end))
                         except:
                             #events here caused an error getting date/datetime info or don't have it
                             pass
