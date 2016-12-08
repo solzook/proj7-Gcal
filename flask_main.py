@@ -313,7 +313,7 @@ def add_busy_times(busy_list, cur_busy_times):
             #event is outside the date range, skip remainder of loop
             continue
 
-        if(st_time > time_window[1] or end_time < time_window[0]):
+        if(st_time >= time_window[1] or end_time <= time_window[0]):
             #event is outside the specified time window, skip remainder of the loop
             continue
         
