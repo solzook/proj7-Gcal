@@ -7,8 +7,8 @@ import arrow
 import time
 import datetime
 
-d1 = arrow.get("2016/11/18", "YYYY/MM/DD")
-d2 = arrow.get("2016/11/20", "YYYY/MM/DD")
+d1 = arrow.get("2016/11/21", "YYYY/MM/DD")
+d2 = arrow.get("2016/11/25", "YYYY/MM/DD")
 
 t1 = arrow.get("12:00 AM", "h:mm A")
 t2 = arrow.get("2:00 AM", "h:mm A")
@@ -34,6 +34,9 @@ ev4 = [] #events from 2-4 and 5-11 each day
 for i in range(3):
     ev4.append([d1.replace(days=i, hour=2), d1.replace(days=i,hour=4), "2-4"])
     ev4.append([d1.replace(days=i, hour=5), d1.replace(days=i,hour=11), "5-11"])
+
+piazza_test_cal = [] #test calendar taken from a piazza post
+
 
 d1=d1.isoformat()
 d2=d2.isoformat()
