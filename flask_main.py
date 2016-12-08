@@ -94,14 +94,12 @@ def flash_free_times():
     start_date = flask.session['begin_date']
     end_date = flask.session['end_date']
     free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
-    
-    app.logger.debug("got free times")
 
     if free_times == []:
         flask.flash("Invalid date or time range was entered")
     else:
         for day in free_times:
-            app.logger.debug("flashing {}".format(day))
+            #app.logger.debug("flashing {}".format(day))
             flask.flash("Free times on {}:".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
             for t in day:
                 flask.flash("\t{} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
@@ -301,6 +299,7 @@ def add_busy_times(busy_list, cur_busy_times):
     """
     gets busy times from busy_list and add them to cur_busy_times if they are during the user specified hours
     (the portion of an event during those hours will be added if applicable)
+    this function assumes that no events in busy_list span multiple days
     doesn't remove overlaps, people should only be doing one thing at a time anyways and may want to see the overlap
     """
     time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
@@ -309,6 +308,11 @@ def add_busy_times(busy_list, cur_busy_times):
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
         ev_desc = event[2]
+        
+        if(ev_st.date() != ev_end.date()):
+            #this function doesn't handle this type of busy time
+            app.logger.debug("ITS GONNA BREAK")
+            continue
 
         st_time = ev_st.time()#get time values without a date
         end_time = ev_end.time()
@@ -330,6 +334,7 @@ def add_busy_times(busy_list, cur_busy_times):
             ev_end = arrow.get(ev_end.year, ev_end.month, ev_end.day, time_window[1].hour, time_window[1].minute)
 
         to_add = [ev_st.isoformat(), ev_end.isoformat(), ev_desc]
+        app.logger.debug("added event {}, {}:{}".format(to_add[2], to_add[0], to_add[1]
         cur_busy_times.append(to_add)#the busy times from busy_list(in iso format) have now been added with their summary
 
     return cur_busy_times
