@@ -17,6 +17,8 @@ MONGO_ADMIN_URL = "mongodb://{}:{}@{}:{}/admin".format(
     secrets.admin_secrets.host, 
     secrets.admin_secrets.port)
 
+COLLECTION = "meetings"
+
 try: 
     dbclient = MongoClient(MONGO_ADMIN_URL)
     db = getattr(dbclient, secrets.client_secrets.db)
@@ -42,7 +44,7 @@ def add_meeting_info(begin_time_range, end_time_range, begin_date_range, end_dat
     to_add['st_date'] = begin_date_range
     to_add['end_date'] = end_date_range
     
-    db.insert(to_add)
+    db.COLLECTION.insert(to_add)
 
 def show_db():
     """
