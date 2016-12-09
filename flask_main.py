@@ -71,7 +71,7 @@ def freetimes():
 def fromdb():
     app.logger.debug("entering fromdb")
     try:
-        meeting_id = flask.request.form['id']
+        meeting_id = flask.request.args.get('id')
     except:
         app.logger.debug("Error in fromdb")
     
