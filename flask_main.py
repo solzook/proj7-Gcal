@@ -314,9 +314,11 @@ def add_busy_times(busy_list, cur_busy_times):
         
         if(ev_st.date() != ev_end.date()):
             #this functions logic doesn't work for appointments with different begin and end days
-            if(ev_end.format("HH:mm") == "00:00"):
-                #this is an all day appointment and can be treated as ending at 11:59 rather than 12:00 the next day
-                ev_end = ev_st.replace(hour=23,minute=59)
+            if(ev_end.format("HH:mm") == "00:00") and (ev_st.day == ev_end.day - 1):
+                #Events that end at 12am can be changed to 11:59pm since the lost minute is never a possible free time
+                #If
+                #all-day events from google calendars will be caught here
+                ev_end = ev_end.replace(minutes=-1)
                 app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
             else:
                 #Fixme: implement multi-day events
