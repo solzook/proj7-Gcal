@@ -82,6 +82,7 @@ def fromdb():
     flask.session['end_time'] = info['end_time']
     flask.session['begin_date'] = info['st_date']
     flask.session['end_date'] = info['end_date']
+    flask.session['meeting_id_num'] = info['id']
     return flask.redirect(flask.url_for("oauth2callback"))
 
 
@@ -94,8 +95,11 @@ def selectevents():
             selected_events.append(ev)
 
     flask.session['events'] = selected_events
-
-    meeting_id = randint(1000,1000000) #4-6 digit id tag
+    
+    if flask.session['meeting_id_num']:
+        meeting_id = flask.session['meeting_id_num']
+    else:
+        meeting_id = randint(1000,1000000) #4-6 digit id tag
     
     db_interactions.add_meeting_info(meeting_id, selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
     create_ordered_free_times(meeting_id)
@@ -110,7 +114,9 @@ def create_ordered_free_times(meeting_id):
     end_time = info['end_time']
     start_date = info['st_date']
     end_date = info['end_date']
-    event_list = info['busy_times']
+    ev_list = info['busy_times']
+    event_list = []
+    for ev in ev_list:
     free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
     
     #put string values in for display
