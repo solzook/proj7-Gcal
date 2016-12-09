@@ -51,6 +51,18 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
     entry = db.COLLECTION.find_one({'id':str(meeting_id)})
     if entry == None:
         db.COLLECTION.insert(to_add)
+
+    else:
+        info = get_meeting_info(meeting_id)
+        final_list = []
+        if info['busy_times']:
+            for el in info['busy_times']:
+                final_list.append(el)
+            for el in busy_times:
+                final_list.append(el)
+            db.COLLECTION.save({'id': str(meeting_id), 'st_time': begin_time_range, 'end_time': end_time_range,
+                'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': final_busy})
+"""
     else:
         final_busy = []
         for el in entry['busy_times']:
@@ -61,6 +73,7 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
             final_busy.append(el)
         db.COLLECTION.save({'id': str(meeting_id), 'st_time': begin_time_range, 'end_time': end_time_range,
                 'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': final_busy})
+"""
 
 def get_meeting_info(meeting_id):
     """
@@ -71,6 +84,9 @@ def get_meeting_info(meeting_id):
         a dictionary
     """
     entry = db.COLLECTION.find_one( {'id': str(meeting_id)} )
+    if entry == None:
+        return {}
+
     return ( {
                 'busy_times': entry['busy_times'],
                 'st_time': entry['st_time'],
