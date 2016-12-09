@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>Add Events</title>
+</head>
+<body>
+
+<h1>Event List</h1>
+
+{% if session.events is defined %}
+  <p>Deselect any events you would like to ignore</p>
+
+  <form action="/selectevents" method="post">
+    {% for event in session.events %}
+      <input type="checkbox" name="{{event.name}}" checked="checked" value="checked">{{event.name}}<br>
+    {% endfor %}
+    <input type="submit" value="Add Selected Events">
+{% endif %}
+
+
+</body>
+</html?
