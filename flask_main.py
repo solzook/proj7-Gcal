@@ -78,7 +78,7 @@ def selectevents():
 
     flask.session['events'] = selected_events
     flash_free_times()
-    return render_template('freetimes.html')
+    return flask.url_for('freetimes')
 
 def flash_free_times():
     """
