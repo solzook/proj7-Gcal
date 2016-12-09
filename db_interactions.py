@@ -48,8 +48,9 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
     to_add['end_date'] = end_date_range
     to_add['busy_times'] = busy_times
     
+    
     try:
-        db.COLLECTION.update( {'id': meeting_id}, { $addToSet:{'busy_times': busy_times}} )
+        db.COLLECTION.update( {'id': meeting_id}, { $inc:{'busy_times': busy_times}} )
     except:
         db.COLLECTION.insert(to_add)
 
