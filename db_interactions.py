@@ -61,10 +61,11 @@ def get_meeting_info(meeting_id):
     returns:
         a dictionary
     """
-    entry = db.COLLECTION.find( {'_id': str(meeting_id)} )
-    return ( {
-            'busy_times': entry['busy_times'],
-            'st_time': entry['st_time'],
-            'end_time': entry['end_time'],
-            'st_date': entry['st_date'],
-            'end_date': entry['end_date'], })
+    for item in db.COLLECTION.find():
+        if(item['_id'] == meeting_id):
+            return ( {
+                'busy_times': entry['busy_times'],
+                'st_time': entry['st_time'],
+                'end_time': entry['end_time'],
+                'st_date': entry['st_date'],
+                'end_date': entry['end_date'], })
