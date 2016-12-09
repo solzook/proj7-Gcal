@@ -67,7 +67,7 @@ def freetimes():
     app.logger.debug("Entering freetimes")
     create_ordered_free_times()
     db_interactions.add_meeting_info(flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
-    db_interactions.show_db():
+    db_interactions.show_db()
     flask.session['group_link'] = flask.url_for('freetimes', _external=True) + '/78787'
     return render_template('freetime.html')
 
