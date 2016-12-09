@@ -64,7 +64,7 @@ def get_meeting_info(meeting_id):
     result = []
     for entry in db.COLLECTION.find( {'_id': meeting_id} ):
         result.append( {
-            'busy_times': entry['busy_times']
+            'busy_times': entry['busy_times'],
             'st_time': entry['st_time'],
             'end_time': entry['end_time'],
             'st_date': entry['st_date'],
