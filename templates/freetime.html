@@ -7,16 +7,9 @@
 
 <h2>Possible Meeting Times</h2>
 
-<form method="get" action="/FIXME">
-    <button type="submit">Add Busy Times</button>
-</form>
-
 {% if session.group_link is defined %}
   <p>Share this link with your group members {{session.group_link}}</p>
 {% endif %}
-
-<script>
-
 
 {% if session.ordered_free_time is defined %}
   {% for day in session.ordered_free_time %}
