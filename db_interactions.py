@@ -56,12 +56,10 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
         info = get_meeting_info(meeting_id)
         final_list = []
         if info['busy_times']:
-            for el in info['busy_times']:
-                final_list.append(el)
-            for el in busy_times:
-                final_list.append(el)
+            final_list = info['busy_times'] + busy_times
+            
             db.COLLECTION.save({'id': str(meeting_id), 'st_time': begin_time_range, 'end_time': end_time_range,
-                'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': final_busy})
+                'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': final_list})
 """
     else:
         final_busy = []
