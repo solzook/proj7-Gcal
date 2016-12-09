@@ -50,7 +50,6 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
     
     entry = db.COLLECTION.find_one({'id':str(meeting_id)})
     if entry == None:
-        print("the first add triggered")
         db.COLLECTION.insert(to_add)
     else:
         final_busy = []
