@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from flask import url_for
 import uuid
+import urlparse
 
 import json
 import logging
@@ -13,11 +14,9 @@ import datetime # But we still need time
 import time
 from dateutil import tz  # For interpreting local times
 
-# local free time calculator
+# local modules
 from free_times import get_free_times
 import db_interactions
-#from db_interactions import add_meeting_info
-#from db_interactions import show_db
 
 
 # OAuth2  - Google library implementation for convenience
@@ -67,6 +66,13 @@ def freetimes():
     app.logger.debug("Entering freetimes")
     
     return render_template('freetime.html')
+
+
+@app.route("/fromdb", methods=['GET'])
+def fromdb():
+    app.logger.debug("entering fromdb")
+    meeting_id = request.form['id']
+    return render_template("freetime.html")
 
 
 @app.route("/selectevents", methods=['POST'])
