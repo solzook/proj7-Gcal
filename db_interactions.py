@@ -29,29 +29,29 @@ except Exception as err:
     print(err)
 
 
-def add_meeting_info(busy_times, begin_time_range, end_time_range, begin_date_range, end_date_range):
+def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, begin_date_range, end_date_range):
     """
     add information about a meeting to the database
     parameters:
-        busy_times:
-        begin_time_range:
-        end_time_range:
-        begin_date_range:
-        end_date_range:
-
-    returns:
-        the id of the meeting
+        meeting_id: random int, 0-100000
+        busy_times: list
+        begin_time_range: time
+        end_time_range: time
+        begin_date_range: date
+        end_date_range: date
     """
     to_add = {}
+    to_add['id'] = meeting_id
     to_add['st_time'] = begin_time_range
     to_add['end_time'] = end_time_range
     to_add['st_date'] = begin_date_range
     to_add['end_date'] = end_date_range
-    to_add['busy_times'].append(busy_times)
+    to_add['busy_times'] = busy_times
     
-    meeting_id = db.COLLECTION.insert(to_add)
-
-    return meeting_id
+    try:
+        db.COLLECTION.update( {'id': meeting_id}, { $push:{'busy_times': busy_times}} )
+    except:
+        db.COLLECTION.insert(to_add)
 
 
 def get_meeting_info(meeting_id):
