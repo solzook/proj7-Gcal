@@ -78,9 +78,7 @@ def selectevents():
 
     flask.session['events'] = selected_events
     flash_free_times()
-    flask.flash("")
-    flash_busy_times()
-    return render_template('selectevents.html')
+    return render_template('freetimes.html')
 
 def flash_free_times():
     """
@@ -297,7 +295,7 @@ def calctimes():
         event_list.append({'begin':begin, 'end':end, 'name':name})
 
     flask.session['events'] = event_list
-    return flask.redirect(flask.url_for('freetimes'))
+    return flask.redirect('selectevents.html')
 
 
 def add_busy_times(busy_list, cur_busy_times):
