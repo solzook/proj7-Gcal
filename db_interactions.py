@@ -65,3 +65,14 @@ def show_db():
             'end_date': entry['end_date'], })
 
     print(result)
+
+
+def get_ordered_free_time(meeting_id):
+    """
+    parameters:
+        meeting_id: should correspong to the _id of an entry in the database
+    returns:
+        a list of free time organized by day, [day][time_blocks]{info}
+    """
+    print(db.COLLECTION.find().pretty())
+    return db.COLLECTION.find().pretty()

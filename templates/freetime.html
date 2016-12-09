@@ -15,6 +15,9 @@
   <p>Share this link with your group members {{session.group_link}}</p>
 {% endif %}
 
+<script>
+
+
 {% if session.ordered_free_time is defined %}
   {% for day in session.ordered_free_time %}
     {% if day[0] is defined %}
