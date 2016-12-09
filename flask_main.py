@@ -77,9 +77,10 @@ def fromdb():
         app.logger.debug("Error in fromdb")
     
     info = db_interactions.get_meeting_info(meeting_id)
-    app.logger.debug("got info {}".format(info))
-    for el in info:
-        app.logger.debug(el)
+    flask.session['begin_time'] = info['st_time']
+    flask.session['end_time'] = info['end_time']
+    flask.session['begin_date'] = info['st_date']
+    flask.session['end_date'] = info['end_date']
     return render_template("freetime.html")
 
 
