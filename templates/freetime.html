@@ -19,10 +19,10 @@
 {% if session.ordered_free_time is defined %}
   {% for day in session.ordered_free_time %}
     {% if day[0] is defined %}
-      <li>Free Times on {{day[0]['day']}}:</li>
+      <p>Free Times on {{day[0]['day']}}:</p>
     {% endif %}
     {% for time in day %}
-      <li>/t{{time['begin']}} to {{time['end']}}</li>
+      <li>{{time['begin']}} to {{time['end']}}</li>
     {% endfor %}
   {% endfor %}
 {% endif %}
