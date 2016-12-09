@@ -33,7 +33,7 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
     """
     add information about a meeting to the database
     parameters:
-        meeting_id: random int, 0-100000
+        meeting_id: random int
         busy_times: list
         begin_time_range: time
         end_time_range: time
@@ -41,7 +41,7 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
         end_date_range: date
     """
     to_add = {}
-    to_add['id'] = meeting_id
+    to_add['id'] = str(meeting_id)
     to_add['st_time'] = begin_time_range
     to_add['end_time'] = end_time_range
     to_add['st_date'] = begin_date_range

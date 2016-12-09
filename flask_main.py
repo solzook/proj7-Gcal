@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from flask import url_for
 import uuid
+from random import randint
 
 import json
 import logging
@@ -94,7 +95,7 @@ def selectevents():
 
     flask.session['events'] = selected_events
 
-    meeting_id = 1000000*random()
+    meeting_id = randint(1000,1000000) #4-6 digit id tag
     
     db_interactions.add_meeting_info(meeting_id, selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
     create_ordered_free_times()
