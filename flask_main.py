@@ -72,7 +72,8 @@ def fromdb():
     app.logger.debug("entering fromdb")
     try:
         meeting_id = flask.request.args.get('id')
-    except:
+    except(err):
+        print(err)
         app.logger.debug("Error in fromdb")
     
     return render_template("freetime.html")
