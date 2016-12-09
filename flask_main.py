@@ -81,7 +81,7 @@ def fromdb():
     flask.session['end_time'] = info['end_time']
     flask.session['begin_date'] = info['st_date']
     flask.session['end_date'] = info['end_date']
-    return render_template("freetime.html")
+    return flask.redirect(flask.url_for("oauth2callback"))
 
 
 @app.route("/selectevents", methods=['POST'])
