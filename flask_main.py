@@ -76,8 +76,8 @@ def fromdb():
         print(err)
         app.logger.debug("Error in fromdb")
     
-    app.logger.debug("got meeting_id={}".format(meeting_id))
     info = db_interactions.get_meeting_info(meeting_id)
+    app.logger.debug("got info {}".format(info))
     for el in info:
         app.logger.debug(el)
     return render_template("freetime.html")
