@@ -47,7 +47,7 @@ def add_meeting_info(busy_times, begin_time_range, end_time_range, begin_date_ra
     to_add['end_time'] = end_time_range
     to_add['st_date'] = begin_date_range
     to_add['end_date'] = end_date_range
-    to_add['busy_times'] = busy_times
+    to_add['busy_times'].append(busy_times)
     
     meeting_id = db.COLLECTION.insert(to_add)
 
