@@ -63,7 +63,7 @@ def index():
 def freetimes():
     app.logger.debug("Entering freetimes")
     create_ordered_free_times()
-    return render_template('freetime.html' + '?id=34hi7')
+    return render_template('freetime.html?id=34hi7')
 
 
 @app.route("/selectevents", methods=['POST'])
