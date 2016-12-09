@@ -97,8 +97,9 @@ def create_ordered_free_times():
             to_add = {}
             to_add['begin'] = apt['begin'].format("h:mm A")
             to_add['end'] = apt['end'].format("h:mm A")
+            final_list[-1].append(to_add)
 
-    flask.session['ordered_free_time'] = free_times
+    flask.session['ordered_free_time'] = final_list
 
 
 def flash_free_times():
