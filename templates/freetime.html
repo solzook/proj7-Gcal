@@ -18,7 +18,11 @@
 
 {% if session.ordered_free_time is defined %}
   {% for day in session.ordered_free_time %}
-    <li>{{day}}</li>
+    {% if day is [] %}
+      <p> Busy all day </p>
+    {% else %}
+      <li>{{day}}</li>
+    {% endif %}
   {% endfor %}
 {% endif %}
 

@@ -89,6 +89,12 @@ def create_ordered_free_times():
     free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
     
     #implement database here
+    #put string values in for display
+    for day in free_times:
+        for apt in day:
+            apt['begin'] = apt['begin'].format("h:mm A")
+            apt['end'] = apt['end'].format("h:mm A")
+
     flask.session['ordered_free_time'] = free_times
 
 
