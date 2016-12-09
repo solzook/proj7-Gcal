@@ -34,7 +34,7 @@ def get_free_times(begin_time, end_time, begin_date, end_date, event_list):
         return []
     if(arrow.get(begin_date) > arrow.get(end_date)):
         return []
-
+    
     busy_agenda = list_to_agenda(event_list)
     busy_agenda.normalize()
     time1 = arrow.get(begin_time).time()
