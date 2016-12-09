@@ -104,7 +104,6 @@ def create_ordered_free_times():
             to_add['begin'] = arrow.get(apt['begin']).format("h:mm A")
             to_add['end'] = arrow.get(apt['end']).format("h:mm A")
             final_list[-1].append(to_add)
-            app.logger.debug("appended {} to {}".format(to_add['begin'], to_add['end']))
 
     flask.session['ordered_free_time'] = final_list
 

@@ -48,8 +48,8 @@ def add_meeting_info(begin_time_range, end_time_range, begin_date_range, end_dat
 
 def show_db():
     """
-    print info from the database
+    print info from the database to the command line
     """
     
-    db.find()
+    print(db.COLLECTION.find())
         
