@@ -98,20 +98,19 @@ def selectevents():
     meeting_id = randint(1000,1000000) #4-6 digit id tag
     
     db_interactions.add_meeting_info(meeting_id, selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
-    create_ordered_free_times()
+    create_ordered_free_times(meeting_id)
     flask.session['group_link'] = flask.url_for('fromdb', _external=True) + '?id={}'.format(meeting_id)
 
     return flask.redirect(flask.url_for('freetimes'))
 
 
-def create_ordered_free_times():
-    event_list = []
-    for event in flask.session['events']:
-        event_list.append([ arrow.get(event['begin']), arrow.get(event['end']), event['name']])
-    start_time = flask.session['begin_time']
-    end_time = flask.session['end_time']
-    start_date = flask.session['begin_date']
-    end_date = flask.session['end_date']
+def create_ordered_free_times(meeting_id):
+    info = get_meeting_info(meeting_id)
+    start_time = info['st_time']
+    end_time = info['end_time']
+    start_date = info['st_date']
+    end_date = info['end_date']
+    event_list = info['busy_list']
     free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
     
     #put string values in for display
