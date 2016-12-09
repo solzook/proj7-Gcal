@@ -50,6 +50,12 @@ def show_db():
     """
     print info from the database to the command line
     """
-    
-    print(db.COLLECTION.find().pretty())
-        
+    result = []
+    for entry in db.COLLECTION.find():
+        result.append( {
+            'st_time': entry['st_time'],
+            'end_time': entry['end_time'],
+            'st_date': entry['st_date'],
+            'end_date': entry['end_date'], })
+
+    print(result)
