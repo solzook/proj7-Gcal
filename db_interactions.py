@@ -76,4 +76,4 @@ def get_ordered_free_time(meeting_id):
     """
     print("entered get_ordered_free_time")
     print(db.COLLECTION.find( { '_id': str(meeting_id) } ))
-    return db.COLLECTION.find( { '_id': meeting_id } ))
+    return db.COLLECTION.find( { '_id': meeting_id } )
