@@ -2,6 +2,9 @@
 Author: Solomon Zook
 database interactions for the program are in this file
 """
+import pymongo
+import secrets/client_secrets
+
 def add_meeting_info(begin_time_range, end_time_range, begin_date_range, end_date_range):
     """
     add information about a meeting to the database
