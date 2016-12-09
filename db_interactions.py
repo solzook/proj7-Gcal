@@ -53,8 +53,8 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
         db.COLLECTION.insert(to_add)
     else:
         busy_times.append(entry['busy_times'])
-        db.COLLECTION.save('id': str(meeting_id), 'st_time': begin_time_range, 'end_time': end_time_range,
-                'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': busy_times )
+        db.COLLECTION.save({'id': str(meeting_id), 'st_time': begin_time_range, 'end_time': end_time_range,
+                'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': busy_times })
 
 def get_meeting_info(meeting_id):
     """
