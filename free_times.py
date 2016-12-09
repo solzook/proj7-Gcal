@@ -73,7 +73,7 @@ def list_to_agenda(event_list):
             agenda.append(Agenda.Appt(event[0].date(), event[0].time(), event[1].time(), event[2]))
             #begin and end dates in event_list should always be the same
         except:
-            agenda.append(Agenda.Appt(event['begin'].date(), event['begin'].time(), event['end'].time(), event['name']))
+            agenda.append(Agenda.Appt(arrow.get(event['begin']).date(), arrow.get(event['begin']).time(), arrow.get(event['end']).time(), event['name']))
     return agenda
 
 
