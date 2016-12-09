@@ -105,7 +105,7 @@ def selectevents():
 
 
 def create_ordered_free_times(meeting_id):
-    info = get_meeting_info(meeting_id)
+    info = db_interactions.get_meeting_info(meeting_id)
     start_time = info['st_time']
     end_time = info['end_time']
     start_date = info['st_date']
