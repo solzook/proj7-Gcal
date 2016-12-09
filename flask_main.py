@@ -70,7 +70,11 @@ def freetimes():
 @app.route("/fromdb", methods=['GET'])
 def fromdb():
     app.logger.debug("entering fromdb")
+    try {
     meeting_id = flask.request.form['id']
+    } except {
+        app.logger.debug("Error in fromdb")
+    }
     return render_template("freetime.html")
 
 
