@@ -68,9 +68,9 @@ def freetimes():
     return render_template('freetime.html')
 
 
-@app.route("/selectevents", methods=['POST'])
+@app.route("/selectevents")
 def selectevents():
-    app.logger.debug("Getting events from the selected calendars")
+    app.logger.debug("Entering selectevents")
     selected_events = []
     for ev in flask.session['events']:
         if request.form.get(ev['name']) == "checked":
@@ -295,7 +295,7 @@ def calctimes():
         event_list.append({'begin':begin, 'end':end, 'name':name})
 
     flask.session['events'] = event_list
-    return flask.redirect('selectevents.html')
+    return render_template('selectevents.html')
 
 
 def add_busy_times(busy_list, cur_busy_times):
