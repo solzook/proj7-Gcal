@@ -53,31 +53,16 @@ def add_meeting_info(busy_times, begin_time_range, end_time_range, begin_date_ra
     return meeting_id
 
 
-def show_db():
+def show_db(meeting_id):
     """
-    print info from the database to the command line
+    print info from the database with _id=meeding_id to the command line
     """
     result = []
-    for entry in db.COLLECTION.find():
+    for entry in db.COLLECTION.find( {'_id': meeting_id} ):
         result.append( {
             'st_time': entry['st_time'],
             'end_time': entry['end_time'],
             'st_date': entry['st_date'],
             'end_date': entry['end_date'], })
 
-    #print(result)
-
-
-def get_ordered_free_time(meeting_id):
-    """
-    parameters:
-        meeting_id: should correspong to the _id of an entry in the database
-    returns:
-        a list of free time organized by day, [day][time_blocks]{info}
-    """
-    print("entered get_ordered_free_time with id={}".format(meeting_id))
-    print("{}".format(db.COLLECTION.find({'_id': meeting_id}).count() ))
-    for el in db.COLLECTION.find( { '_id': meeting_id } ):
-        print("preparing to print a meeting")
-        print("{},{}".format(el['st_time'], el['end_time']))
-    return "return value"
+    print(result)

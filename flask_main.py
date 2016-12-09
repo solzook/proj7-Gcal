@@ -80,9 +80,8 @@ def selectevents():
     flask.session['events'] = selected_events
 
     meeting_id = db_interactions.add_meeting_info(selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
-    #db_interactions.show_db()
-    #flask.session['ordered_free_time'] = 
-    db_interactions.get_ordered_free_time(meeting_id)
+    db_interactions.show_db(meeting_id)
+    flask.session['ordered_free_time'] = create_ordered_free_times()
     flask.session['group_link'] = flask.url_for('freetimes', _external=True) + '/{}'.format(meeting_id)
 
     return flask.redirect(flask.url_for('freetimes'))
