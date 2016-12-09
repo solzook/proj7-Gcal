@@ -76,4 +76,4 @@ def get_ordered_free_time(meeting_id):
     """
     
     print(db.COLLECTION.find( { '_id': meeting_id } ))
-    return db.COLLECTION.find().pretty()
+    return db.COLLECTION.find()
