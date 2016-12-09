@@ -68,7 +68,7 @@ def freetimes():
     return render_template('freetime.html')
 
 
-@app.route("/selectevents")
+@app.route("/selectevents" methods=['POST'])
 def selectevents():
     app.logger.debug("Entering selectevents")
     selected_events = []
