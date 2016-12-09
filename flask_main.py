@@ -101,12 +101,13 @@ def flash_free_times():
         for day in free_times:
             if day == []:
                 #there are no free times today
-                flask.flash("Busy all day\n")
+                flask.flash("Busy all day")
+                flask.flash("")
                 continue
 
             flask.flash("Free times on {}:".format(arrow.get(day[0]['begin']).format("YYYY/MM/DD")))
             for t in day:
-                flask.flash("\t{} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
+                flask.flash("{} to {}".format(arrow.get(t['begin']).format("h:mm A"), arrow.get(t['end']).format("h:mm A")))
             flask.flash("")
 
 def flash_busy_times():
@@ -307,7 +308,7 @@ def add_busy_times(busy_list, cur_busy_times):
     """
     time_window = [arrow.get(flask.session['begin_time']).time(), arrow.get(flask.session['end_time']).time()]
     for event in busy_list:
-        app.logger.debug("Got event {}".format(event[2]))
+        #app.logger.debug("Got event {}".format(event[2]))
         ev_st = arrow.get(event[0])#get times as arrow objects
         ev_end = arrow.get(event[1])
         ev_desc = event[2]
@@ -315,17 +316,16 @@ def add_busy_times(busy_list, cur_busy_times):
         if(ev_st.date() != ev_end.date()):
             #this functions logic doesn't work for appointments with different begin and end days
             if(ev_end.format("HH:mm") == "00:00") and (ev_st.day == ev_end.day - 1):
-                #Events that end at 12am can be changed to 11:59pm since the lost minute is never a possible free time
-                #If
+                #Events that end at 12am the following day can be changed to 11:59pm since the lost minute is never a possible free time
                 #all-day events from google calendars will be caught here
                 ev_end = ev_end.replace(minutes=-1)
                 app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
             else:
                 #Fixme: implement multi-day events
-                #use truncated end value (11:59 on begin date), and add '(this appointment was truncated)' to its description
+                #use truncated end value (11:59pm on begin date), and add '(this appointment was truncated)' to its description
                 ev_end = ev_st.replace(hour=23,minute=59)
                 ev_desc += " (this appointment was truncated)"
-                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
+                #app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
 
         st_time = ev_st.time()#get time values without a date
         end_time = ev_end.time()
