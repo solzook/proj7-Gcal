@@ -61,11 +61,12 @@ def get_meeting_info(meeting_id):
     returns:
         a dictionary
     """
-    entry = db.COLLECTION.find( { '_id': meeting_id } )
+    entry = db.COLLECTION.find( { '_id': meeting_id } ).next()
     return ( {
                 'busy_times': entry['busy_times'],
                 'st_time': entry['st_time'],
                 'end_time': entry['end_time'],
                 'st_date': entry['st_date'],
                 'end_date': entry['end_date'], })
+
 
