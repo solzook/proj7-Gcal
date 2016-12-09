@@ -76,7 +76,7 @@ def get_ordered_free_time(meeting_id):
     """
     print("entered get_ordered_free_time with id={}".format(meeting_id))
     print("{}".format(db.COLLECTION.find({'_id': meeting_id}).count() ))
-    for el in db.COLLECTION.find( { '_id': '{}'.format(meeting_id) } ):
+    for el in db.COLLECTION.find( { '_id': meeting_id } ):
         print("preparing to print a meeting")
         print("{},{}".format(el['st_time'], el['end_time']))
     return "return value"
