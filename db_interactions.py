@@ -27,5 +27,5 @@ def show_db():
     """
     collection = 'db.{}'.format(secrets.client_secrets.db)
     
-    collection.find():
+    collection.find()
         
