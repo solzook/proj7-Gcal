@@ -96,9 +96,9 @@ def selectevents():
 
     flask.session['events'] = selected_events
     
-    if flask.session['meeting_id_num']:
+    try:
         meeting_id = flask.session['meeting_id_num']
-    else:
+    except:
         meeting_id = randint(1000,1000000) #4-6 digit id tag
     
     db_interactions.add_meeting_info(meeting_id, selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
