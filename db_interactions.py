@@ -28,11 +28,11 @@ except Exception as err:
     print(err)
 
 
-def add_meeting_info( begin_time_range, end_time_range, begin_date_range, end_date_range):
+def add_meeting_info(busy_times, begin_time_range, end_time_range, begin_date_range, end_date_range):
     """
     add information about a meeting to the database
     parameters:
-        free_times:
+        busy_times:
         begin_time_range:
         end_time_range:
         begin_date_range:
