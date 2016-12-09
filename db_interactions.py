@@ -63,7 +63,7 @@ def get_meeting_info(meeting_id):
         a dictionary
     """
     entry = db.COLLECTION.find_one( {'_id': ObjectId(meeting_id)} )
-        return ( {
+    return ( {
                 'busy_times': entry['busy_times'],
                 'st_time': entry['st_time'],
                 'end_time': entry['end_time'],
