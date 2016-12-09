@@ -76,6 +76,9 @@ def fromdb():
         print(err)
         app.logger.debug("Error in fromdb")
     
+    info = db_interactions.get_meeting_info(meeting_id)
+    for el in info:
+        app.logger.debug(el)
     return render_template("freetime.html")
 
 
@@ -90,7 +93,6 @@ def selectevents():
     flask.session['events'] = selected_events
 
     meeting_id = db_interactions.add_meeting_info(selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
-    #db_interactions.show_db(meeting_id)
     create_ordered_free_times()
     flask.session['group_link'] = flask.url_for('fromdb', _external=True) + '?id={}'.format(meeting_id)
 

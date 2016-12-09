@@ -53,16 +53,21 @@ def add_meeting_info(busy_times, begin_time_range, end_time_range, begin_date_ra
     return meeting_id
 
 
-def show_db(meeting_id):
+def get_meeting_info(meeting_id):
     """
-    print info from the database with _id=meeding_id to the command line
+    return information pertaining to the given meeting_id
+    parameter:
+        meeting_id, string
+    returns:
+        an array of dictionaries
     """
     result = []
     for entry in db.COLLECTION.find( {'_id': meeting_id} ):
         result.append( {
+            'busy_times': entry['busy_times']
             'st_time': entry['st_time'],
             'end_time': entry['end_time'],
             'st_date': entry['st_date'],
             'end_date': entry['end_date'], })
 
-    print(result)
+    return result
