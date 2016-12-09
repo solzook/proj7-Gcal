@@ -319,7 +319,7 @@ def add_busy_times(busy_list, cur_busy_times):
                 #Events that end at 12am the following day can be changed to 11:59pm since the lost minute is never a possible free time
                 #all-day events from google calendars will be caught here
                 ev_end = ev_end.replace(minutes=-1)
-                app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
+                #app.logger.debug("updated event {}, {}::{}".format(ev_desc, ev_st, ev_end))
             else:
                 #Fixme: implement multi-day events
                 #use truncated end value (11:59pm on begin date), and add '(this appointment was truncated)' to its description
@@ -347,7 +347,6 @@ def add_busy_times(busy_list, cur_busy_times):
             ev_end = arrow.get(ev_end.year, ev_end.month, ev_end.day, time_window[1].hour, time_window[1].minute)
 
         to_add = [ev_st.isoformat(), ev_end.isoformat(), ev_desc]
-        app.logger.debug("added event {}, {}:{}".format(to_add[2], to_add[0], to_add[1]))
         cur_busy_times.append(to_add)#the busy times from busy_list(in iso format) have now been added with their summary
 
     return cur_busy_times
