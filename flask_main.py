@@ -80,7 +80,7 @@ def selectevents():
     flash_free_times()
     flask.flash("")
     flash_busy_times()
-    return render_template('freetime.html')
+    return render_template('selectevents.html')
 
 def flash_free_times():
     """
