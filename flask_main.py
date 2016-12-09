@@ -115,8 +115,7 @@ def create_ordered_free_times(meeting_id):
     start_date = info['st_date']
     end_date = info['end_date']
     ev_list = info['busy_times']
-    event_list = []
-    free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
+    free_times = get_free_times(start_time, end_time, start_date, end_date, ev_list)
     
     #put string values in for display
     final_list = []
