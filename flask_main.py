@@ -3,7 +3,6 @@ from flask import render_template
 from flask import request
 from flask import url_for
 import uuid
-import urlparse
 
 import json
 import logging
@@ -71,7 +70,7 @@ def freetimes():
 @app.route("/fromdb", methods=['GET'])
 def fromdb():
     app.logger.debug("entering fromdb")
-    meeting_id = request.form['id']
+    meeting_id = flask.request.form['id']
     return render_template("freetime.html")
 
 
@@ -88,7 +87,7 @@ def selectevents():
     meeting_id = db_interactions.add_meeting_info(selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
     #db_interactions.show_db(meeting_id)
     create_ordered_free_times()
-    flask.session['group_link'] = flask.url_for('freetimes', _external=True) + '/{}'.format(meeting_id)
+    flask.session['group_link'] = flask.url_for('freetimes', _external=True) + '?id={}'.format(meeting_id)
 
     return flask.redirect(flask.url_for('freetimes'))
 
