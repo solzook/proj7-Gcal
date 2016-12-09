@@ -6,17 +6,18 @@
 
 
 <h2>Free Times</h2>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class=flashes>
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
-
+{% if session.ordered_free_time is defined %}
+  <p> Got free times </p>
 
 
 </body> 

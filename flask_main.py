@@ -62,7 +62,7 @@ def index():
 @app.route("/freetimes")
 def freetimes():
     app.logger.debug("Entering freetimes")
-    flash_free_times()
+    create_ordered_free_times()
     return render_template('freetime.html')
 
 
@@ -76,6 +76,21 @@ def selectevents():
 
     flask.session['events'] = selected_events
     return flask.redirect(flask.url_for('freetimes'))
+
+
+def create_ordered_free_times():
+    event_list = []
+    for event in flask.session['events']:
+        event_list.append([ arrow.get(event['begin']), arrow.get(event['end']), event['name']])
+    start_time = flask.session['begin_time']
+    end_time = flask.session['end_time']
+    start_date = flask.session['begin_date']
+    end_date = flask.session['end_date']
+    free_times = get_free_times(start_time, end_time, start_date, end_date, event_list)
+    
+    #implement database here
+    flask.session['ordered_free_time'] = free_times
+
 
 def flash_free_times():
     """
