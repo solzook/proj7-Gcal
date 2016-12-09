@@ -65,9 +65,9 @@ def index():
 @app.route("/freetimes")
 def freetimes():
     app.logger.debug("Entering freetimes")
-    create_ordered_free_times()
     meeting_id = db_interactions.add_meeting_info(flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
     db_interactions.show_db()
+    flask.session['ordered_free_time'] = db_interactions.get_ordered_free_time(meeting_id)
     flask.session['group_link'] = flask.url_for('freetimes', _external=True) + '/{}'.format(meeting_id)
     return render_template('freetime.html')
 
