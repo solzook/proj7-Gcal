@@ -50,8 +50,8 @@ INVENV = . env/bin/activate ;
 #  with debugging turned on unless it is unset in CONFIG.py
 # 
 run:	env
-        ($(INVENV) python3 destroy_db.py) ||  true
-        ($(INVENV) python3 create_db.py) ||  true
+	($(INVENV) python3 destroy_db.py) ||  true
+	($(INVENV) python3 create_db.py) ||  true
 	($(INVENV) python3 flask_main.py) ||  true
 
 
