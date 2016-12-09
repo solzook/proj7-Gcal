@@ -47,9 +47,10 @@ def add_meeting_info(begin_time_range, end_time_range, begin_date_range, end_dat
     to_add['st_date'] = begin_date_range
     to_add['end_date'] = end_date_range
     
-    db.COLLECTION.insert(to_add, function(docInserted){
-        console.log(docInserted)
-    })
+    meeting_id = db.COLLECTION.insert(to_add)
+
+    return meeting_id
+
 
 def show_db():
     """
