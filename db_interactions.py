@@ -50,12 +50,10 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
     
     try:
         info = get_meeting_info(meeting_id)
-        final_list = []
-        if info['busy_times']:
-            final_list = info['busy_times'] + busy_times
+        final_list = info['busy_times'] + busy_times
             
-            db.COLLECTION.save({'id': str(meeting_id), 'st_time': begin_time_range, 'end_time': end_time_range,
-                'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': final_list})
+        db.COLLECTION.save({'id': str(meeting_id), 'st_time': begin_time_range, 'end_time': end_time_range,
+            'st_date': begin_date_range, 'end_date': end_date_range, 'busy_times': final_list})
     except:
         db.COLLECTION.insert(to_add)
 """
