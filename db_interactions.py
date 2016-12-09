@@ -74,7 +74,7 @@ def get_ordered_free_time(meeting_id):
     returns:
         a list of free time organized by day, [day][time_blocks]{info}
     """
-    print("entered get_ordered_free_time")
+    print("entered get_ordered_free_time with id={}".format(meeting_id))
     for el in db.COLLECTION.find( { '_id': str(meeting_id) } ):
         print("preparing to print a meeting")
         print(el)
