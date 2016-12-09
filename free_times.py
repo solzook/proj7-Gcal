@@ -69,6 +69,7 @@ def list_to_agenda(event_list):
     """
     agenda = Agenda.Agenda()
     for event in event_list: #turn each event into an Appt and append it to agenda
+        print(event)
         agenda.append(Agenda.Appt(event[0].date(), event[0].time(), event[1].time(), event[2]))
         #begin and end dates in event_list should always be the same
 
