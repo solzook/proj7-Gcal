@@ -61,8 +61,8 @@ def get_meeting_info(meeting_id):
     returns:
         a dictionary
     """
-    item = db.COLLECTION.find('_id': meeting_id):
-        return ( {
+    entry = db.COLLECTION.find('_id': meeting_id)
+    return ( {
                 'busy_times': entry['busy_times'],
                 'st_time': entry['st_time'],
                 'end_time': entry['end_time'],
