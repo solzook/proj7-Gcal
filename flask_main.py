@@ -15,7 +15,8 @@ from dateutil import tz  # For interpreting local times
 
 # local free time calculator
 from free_times import get_free_times
-import db_interactions.py
+from db_interactions import add_meeting_info
+from db_interactions import show_db
 
 
 # OAuth2  - Google library implementation for convenience
@@ -64,9 +65,7 @@ def index():
 def freetimes():
     app.logger.debug("Entering freetimes")
     create_ordered_free_times()
-    db_interactions.add_meeting_info(flask.session['begin_time'], flask.session['end_time'], 
-            flask.session['begin_date'], flask.session['end_date'])
-
+    add_meeting_info(flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
     flask.session['group_link'] = flask.url_for('freetimes', _external=True) + '/78787'
     return render_template('freetime.html')
 
