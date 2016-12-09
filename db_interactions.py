@@ -6,6 +6,7 @@ database interactions for the program are in this file
 import pymongo
 from pymongo import MongoClient
 import sys
+from bson.objectid import ObjectId
 
 import secrets.client_secrets
 import secrets.admin_secrets
@@ -61,13 +62,12 @@ def get_meeting_info(meeting_id):
     returns:
         a dictionary
     """
-    item = db.COLLECTION.find( { '_id': meeting_id } )
-    for entry in item:
+    entry = db.COLLECTION.find_one( {'_id': ObjectId(meeting_id)} )
         return ( {
                 'busy_times': entry['busy_times'],
                 'st_time': entry['st_time'],
                 'end_time': entry['end_time'],
                 'st_date': entry['st_date'],
-                'end_date': entry['end_date'], })
+                'end_date': entry['end_date'], } )
 
 
