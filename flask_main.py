@@ -63,7 +63,7 @@ def index():
 def freetimes():
     app.logger.debug("Entering freetimes")
     create_ordered_free_times()
-    flask.session['group_link'] = flask.url_for('freetime.html', _external=True) + '/78787'
+    flask.session['group_link'] = flask.url_for('freetimes', _external=True) + '/78787'
     return render_template('freetime.html')
 
 
