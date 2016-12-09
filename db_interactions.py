@@ -48,22 +48,22 @@ def add_meeting_info(meeting_id, busy_times, begin_time_range, end_time_range, b
     to_add['end_date'] = end_date_range
     to_add['busy_times'] = busy_times
     
-    entry = db.COLLECTION.find_one({'id':meeting_id})
+    entry = db.COLLECTION.find_one({'id':str(meeting_id)})
     if entry.size() == 0:
         db.COLLECTION.insert(to_add)
     else:
         busy_times.append(entry['busy_times'])
-        db.COLLECTION.update( {'id': meeting_id}, { $set:{'busy_times': busy_times}} )
+        db.COLLECTION.update( {'id': str(meeting_id)}, { $set:{'busy_times': busy_times}} )
 
 def get_meeting_info(meeting_id):
     """
     return information pertaining to the given meeting_id
     parameter:
-        meeting_id, string
+        meeting_id, int
     returns:
         a dictionary
     """
-    entry = db.COLLECTION.find_one( {'_id': ObjectId(meeting_id)} )
+    entry = db.COLLECTION.find_one( {'id': str(meeting_id)} )
     return ( {
                 'busy_times': entry['busy_times'],
                 'st_time': entry['st_time'],

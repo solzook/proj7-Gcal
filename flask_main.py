@@ -94,7 +94,9 @@ def selectevents():
 
     flask.session['events'] = selected_events
 
-    meeting_id = db_interactions.add_meeting_info(selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
+    meeting_id = 1000000*random()
+    
+    db_interactions.add_meeting_info(meeting_id, selected_events, flask.session['begin_time'], flask.session['end_time'], flask.session['begin_date'], flask.session['end_date'])
     create_ordered_free_times()
     flask.session['group_link'] = flask.url_for('fromdb', _external=True) + '?id={}'.format(meeting_id)
 
