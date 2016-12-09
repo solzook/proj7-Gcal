@@ -51,5 +51,5 @@ def show_db():
     print info from the database to the command line
     """
     
-    print(db.COLLECTION.find())
+    print(db.COLLECTION.find().pretty())
         
