@@ -64,7 +64,7 @@ def show_db():
             'st_date': entry['st_date'],
             'end_date': entry['end_date'], })
 
-    print(result)
+    #print(result)
 
 
 def get_ordered_free_time(meeting_id):
