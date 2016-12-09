@@ -63,7 +63,8 @@ def index():
 def freetimes():
     app.logger.debug("Entering freetimes")
     create_ordered_free_times()
-    return render_template('freetime.html?id=34hi7')
+    flask.session['group_link'] = flask.url_for(freetime.html, _external=True) + '/78787'
+    return render_template('freetime.html')
 
 
 @app.route("/selectevents", methods=['POST'])
