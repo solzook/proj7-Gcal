@@ -63,8 +63,6 @@ def index():
 def freetimes():
     app.logger.debug("Entering freetimes")
     flash_free_times()
-    flask.flash("")
-    flash_busy_times()
     return render_template('freetime.html')
 
 
