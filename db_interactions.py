@@ -28,7 +28,7 @@ except Exception as err:
     print(err)
 
 
-def add_meeting_info(begin_time_range, end_time_range, begin_date_range, end_date_range):
+def add_meeting_info( begin_time_range, end_time_range, begin_date_range, end_date_range):
     """
     add information about a meeting to the database
     parameters:
@@ -74,5 +74,6 @@ def get_ordered_free_time(meeting_id):
     returns:
         a list of free time organized by day, [day][time_blocks]{info}
     """
-    print(db.COLLECTION.find().pretty())
+    
+    print(db.COLLECTION.find( { '_id': meeting_id } ).pretty())
     return db.COLLECTION.find().pretty()
