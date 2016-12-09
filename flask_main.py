@@ -95,7 +95,7 @@ def create_ordered_free_times():
         final_list.append([])
         for apt in day:
             to_add = {}
-            to_add['day'] = "Free times on " + arrow.get(apt['begin']).format("MM/DD")
+            to_add['day'] = arrow.get(apt['begin']).format("MM/DD")
             to_add['begin'] = arrow.get(apt['begin']).format("h:mm A")
             to_add['end'] = arrow.get(apt['end']).format("h:mm A")
             final_list[-1].append(to_add)
