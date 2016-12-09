@@ -18,11 +18,9 @@
 
 {% if session.ordered_free_time is defined %}
   {% for day in session.ordered_free_time %}
-    {% if day is empty %}
-      <p> Busy all day </p>
-    {% else %}
-      <li>{{day}}</li>
-    {% endif %}
+    {% for time in day %}
+      <li>{{time}}</li>
+    {% endfor %}
   {% endfor %}
 {% endif %}
 
