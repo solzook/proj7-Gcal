@@ -17,7 +17,9 @@
 {% endwith %}
 
 {% if session.ordered_free_time is defined %}
-  <p> Got free times </p>
+  {% for day in session.ordered_free_time %}
+    <li>{{day}}</li>
+  {% endfor %}
 {% endif %}
 
 </body> 
