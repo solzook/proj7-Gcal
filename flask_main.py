@@ -15,7 +15,7 @@ from dateutil import tz  # For interpreting local times
 
 # local free time calculator
 from free_times import get_free_times
-import db_interactions
+import db_interactions.py
 
 
 # OAuth2  - Google library implementation for convenience
