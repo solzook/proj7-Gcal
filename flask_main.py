@@ -72,7 +72,7 @@ def fromdb():
     app.logger.debug("entering fromdb")
     try:
         meeting_id = flask.request.form['id']
-    catch:
+    except:
         app.logger.debug("Error in fromdb")
     
     return render_template("freetime.html")
