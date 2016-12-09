@@ -86,6 +86,7 @@ def get_meeting_info(meeting_id):
                 'st_time': entry['st_time'],
                 'end_time': entry['end_time'],
                 'st_date': entry['st_date'],
-                'end_date': entry['end_date'], } )
+                'end_date': entry['end_date'],
+                'id': entry['id']  } )
 
 
